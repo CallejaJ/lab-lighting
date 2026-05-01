@@ -96,6 +96,7 @@ Módulo 05 · Lightning Network
 # 1. Recordatorio de Bitcoin
 
 ### Recordatorio de Bitcoin
+
 ## Bitcoin: El origen
 
 # ¿Qué es Bitcoin?
@@ -107,6 +108,7 @@ Manuel Montenegro
 ---
 
 ### 01 · Origen
+
 ## ¿Qué es Bitcoin?
 
 > \*\*
@@ -135,6 +137,7 @@ Lo que hace aceptable a una criptomoneda
 ---
 
 ### 02 · Criptografía
+
 ## Cimientos criptográficos
 
 > \*\*
@@ -149,6 +152,7 @@ Lo que hace aceptable a una criptomoneda
 ---
 
 ### 03 · Direcciones y Transacciones
+
 ## Propiedad basada en claves
 
 > \*\*
@@ -166,6 +170,7 @@ SegWit Bech32 · bc1… `bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq` Nativo SegW
 ---
 
 ### 04 · Blockchain y Consenso
+
 ## Inmutabilidad por encadenamiento
 
 > \*\*
@@ -206,6 +211,7 @@ nonce**?**
 ---
 
 ### 05 · La analogía del registro
+
 ## UTXO: El modelo contable
 
 > \*\*
@@ -246,6 +252,7 @@ Fee Σ in − Σ out = **0.01 BTC** → la diferencia no se declara; emerge como
 ---
 
 ### 06 · La red Bitcoin
+
 ## Una red P2P sin servidores
 
 > \*\*
@@ -274,6 +281,7 @@ El **tipo** de nodo se define por **qué módulos tiene activos**: cada combinac
 ---
 
 ### 07 · Tipos de nodos
+
 ## Jerarquías de validación
 
 > \*\*
@@ -289,6 +297,7 @@ Third-Party API Wallet delegada · REST / WebSocket Módulos: **W** (sin N, sin 
 ---
 
 ### 08 · SPV y Seguridad
+
 ## Simplified Payment Verification
 
 > \*\*
@@ -308,6 +317,7 @@ Un nodo ligero verifica **por profundidad**: si una transacción aparece en un b
 ---
 
 ### 09 · Redes de relay
+
 ## La carrera por la latencia
 
 > \*\*
@@ -325,6 +335,7 @@ La latencia es **crítica** en minería competitiva → en las siguientes transp
 ---
 
 ### 10 · Minado y Seguridad
+
 ## La función real del minado
 
 > \*\*
@@ -346,6 +357,7 @@ El propósito del minado **no es crear bitcoins**. Eso es el _incentivo_. El fin
 ---
 
 ### 11 · El Mempool
+
 ## La sala de espera de Bitcoin
 
 > \*\*
@@ -372,6 +384,7 @@ La mempool es la **sala de espera** de Bitcoin — y el termómetro más honesto
 ---
 
 ### 12 · Confirmaciones
+
 ## Finalidad estadística
 
 > \*\*
@@ -403,6 +416,7 @@ Si un atacante intenta reescribir la historia necesita **rehacer el PoW** de tod
 ---
 
 ### 13 · Incentivos: Subsidy y Fees
+
 ## Sostenibilidad de la red
 
 > \*\*
@@ -432,6 +446,7 @@ Fórmula de retarget new_target = old_target × (tiempo real 2016 bloques / 20 1
 ---
 
 ### 14 · Minería en Pool
+
 ## Cooperar para cobrar a menudo
 
 > \*\*
@@ -457,6 +472,7 @@ Mineroregistro (user/pass)Pool MinerosubscribePool Mineronotify · block templat
 ---
 
 ### 15 · Hard Forks
+
 ## Cambios incompatibles
 
 > \*\*
@@ -476,6 +492,7 @@ Incidente accidental · Mar 2013 Bug Core 0.7 → 0.8 Un cambio no intencionado 
 ---
 
 ### 16 · Soft Forks
+
 ## Cambios compatibles
 
 > \*\*
@@ -505,6 +522,7 @@ Bloque 2
 # 2. Infraestructura de Bitcoin
 
 ### 00 · Introducción
+
 ## Infraestructura Bitcoin
 
 De la instalación al bloque minado: cómo funciona un nodo Bitcoin por dentro.
@@ -514,6 +532,7 @@ Manuel Montenegro
 ---
 
 ### 01 · Implementaciones de Bitcoin
+
 ## ¿Descentralización también en el desarrollo?
 
 > \*\*
@@ -534,6 +553,7 @@ En **marzo de 2013**, la actualización de Bitcoin Core 0.7 a 0.8 cambió la bas
 ---
 
 ### 02 · Ecosistema de binarios
+
 ## Arquitectura de archivos y procesos
 
 > \*\*
@@ -565,6 +585,7 @@ Cada red (**main · testnet4 · signet · regtest**) aterriza en su propio subdi
 ---
 
 ### 03 · El archivo bitcoin.conf
+
 ## Configuración y ajustes del nodo
 
 > \*\*
@@ -605,6 +626,7 @@ listenonion=1
 ---
 
 ### 04 · Tipos de almacenamiento
+
 ## Archive vs Pruned
 
 > \*\*
@@ -628,6 +650,7 @@ Pruned · prune≥550 Nodo **completo con poda** 5 – 20 GB · SSD o HDD Verifi
 ---
 
 ### 05 · Interfaces del nodo
+
 ## RPC, REST, ZMQ y P2P
 
 > \*\*
@@ -688,6 +711,7 @@ Servicios auxiliares
 ---
 
 ### 07 · Gestión de wallet y minería
+
 ## Transacciones, PSBT y regtest
 
 > \*\*
@@ -733,6 +757,7 @@ Mempool · fees · descriptors
 ---
 
 ### 08 · Redes de Bitcoin
+
 ## Mainnet, Testnet4, Signet y Regtest
 
 > \*\*
@@ -790,6 +815,7 @@ Dev, CI, tests, **prácticas de clase**.
 ---
 
 ### 09 · Signet: La red estable
+
 ## Predecibilidad para desarrolladores
 
 > \*\*
@@ -809,6 +835,7 @@ Signet encaja cuando necesitas **una red pública con otros actores** pero _pred
 ---
 
 ### 10 · Iniciando Regtest
+
 ## Primeros pasos locales
 
 > \*\*
@@ -832,6 +859,7 @@ Signet encaja cuando necesitas **una red pública con otros actores** pero _pred
 ---
 
 ### 11 · Herramientas de simulación
+
 ## Polar, Nigiri y Warnet
 
 > \*\*
@@ -847,6 +875,7 @@ Filosofías distintas: **Polar** visualiza, **Nigiri** automatiza, **Warnet** es
 ---
 
 ### 12 · Alrededor de bitcoind
+
 ## Electrum, Explorers y Wallets
 
 > \*\*
@@ -874,6 +903,7 @@ Wallet desktop Sparrow · Specter Conectan a **tu** nodo (directo o vía Electrs
 ---
 
 ### 13 · Soberanía sin compilar
+
 ## Distribuciones de nodo (Umbrel, Blitz...)
 
 > \*\*
@@ -919,6 +949,7 @@ Cualquier máquina Linux con NixOS.
 ---
 
 ### 14 · Stack de minado
+
 ## Software, firmware y protocolos (Stratum)
 
 > \*\*
@@ -952,11 +983,12 @@ Para regtest, `generatetoaddress` sustituye a todo este stack.
 ---
 
 ### 15 · La política local
+
 ## Policy vs Consenso (Knots)
 
 > \*\*
 
-Core v30 (**oct. 2025**) eliminó el límite de 80 bytes en OP_RETURN. Miles de operadores migraron a **Bitcoin Knots** en protesta. Knots pasó del ~5 % al **~22-25 %** de la red. Es el mejor ejemplo pedagógico actual de que la política de relay _no es lo mismo_ que el consenso. El debate más caliente del ciclo 2024-2026.
+Core v30 (**oct. 2025**) eliminó el límite de 80 bytes en OP*RETURN. Miles de operadores migraron a **Bitcoin Knots** en protesta. Knots pasó del ~5 % al **~22-25 %** de la red. Es el mejor ejemplo pedagógico actual de que la política de relay \_no es lo mismo* que el consenso. El debate más caliente del ciclo 2024-2026.
 
 Policy · local Lo que decide **cada nodo** **Reglas blandas**, configurables, no rompen la red: qué tx relayas, cuáles aceptas en tu mempool, cuáles minas. Filtros de spam, `datacarriersize`, RBF. Dos nodos honestos pueden **discrepar** en policy sin bifurcar la red. Si una tx "prohibida" llega en un bloque, la **aceptan igual**.
 
@@ -967,6 +999,7 @@ Moraleja para operadores: **eliges tu política** al elegir cliente y configurar
 ---
 
 ### 16 · Cierre
+
 ## Recursos y puente al laboratorio
 
 > \*\*
@@ -1002,6 +1035,7 @@ Manuel Montenegro
 ---
 
 ### 01 · Escalabilidad
+
 ## Los límites de la capa 1
 
 > \*\*
@@ -1024,6 +1058,7 @@ Confirmar cada café en la cadena principal es caro, lento y poco privado. La de
 ---
 
 ### 02 · Segunda capa
+
 ## Alternativas y ecosistema
 
 > \*\*
@@ -1057,6 +1092,7 @@ Lightning resuelve **pagos**. RGB y Taproot Assets resuelven **emisión y transf
 ---
 
 ### 03 · Canales de pago
+
 ## La idea clave
 
 > \*\*
@@ -1084,6 +1120,7 @@ Miles de pagos entre medias
 ---
 
 ### 04 · Anatomía de un canal
+
 ## El ciclo de vida del canal
 
 > \*\*
@@ -1097,6 +1134,7 @@ En todo el ciclo sólo **2 transacciones tocan la blockchain**: funding tx y set
 ---
 
 ### 05 · Commitment & revocación
+
 ## El fairness protocol
 
 > \*\*
@@ -1111,6 +1149,7 @@ Si Alice publica un _commitment_ viejo que le favorece, Bob puede castigarla y l
 ---
 
 ### 06 · Límites de un canal aislado
+
 ## De la teoría a la práctica
 
 > \*\*
@@ -1144,6 +1183,7 @@ Esta limitación es la que empujará hacia el **enrutado** a través de terceros
 ---
 
 ### 07 · Los canales directos no bastan
+
 ## El problema del grafo completo
 
 > \*\*
@@ -1160,6 +1200,7 @@ Grafo completo con N = 6 nodos
 ---
 
 ### 08 · HTLCs
+
 ## Enrutado multi-hop sin confianza
 
 > \*\*
@@ -1173,6 +1214,7 @@ Un **HTLC** (_Hash Time-Locked Contract_) es un contrato que paga al receptor _s
 ---
 
 ### 09 · ¿Qué es Lightning Network?
+
 ## Resumen y estado actual
 
 > \*\*
@@ -1194,6 +1236,7 @@ Lightning Network es un protocolo P2P que transmite pagos en bitcoins a través 
 ---
 
 ### 10 · Beneficios de Lightning
+
 ## Por qué importa la red
 
 > \*\*
@@ -1225,6 +1268,7 @@ Transferencias globales sin bancos, sin KYC intermedio, sin días de espera. Út
 ---
 
 ### 11 · Capacidad y liquidez
+
 ## Inbound vs Outbound
 
 > \*\*
@@ -1244,6 +1288,7 @@ Canal equilibrado
 ---
 
 ### 12 · Ejemplo completo
+
 ## El camino del pago
 
 > \*\*
@@ -1284,6 +1329,7 @@ Cada par de nodos vecinos ya ha abierto previamente un canal Lightning entre ell
 ---
 
 ### 13 · Arquitectura técnica
+
 ## Cómo respira un nodo
 
 > \*\*
@@ -1317,6 +1363,7 @@ El nodo Lightning habla con **tres mundos**: la wallet del usuario, sus peers Li
 ---
 
 ### 14 · Wallets Lightning
+
 ## Custodios vs Soberanos
 
 > \*\*
@@ -1370,6 +1417,7 @@ Algunos wallets delegan la conectividad y el enrutado sin tomar custodia: el usu
 ---
 
 ### 15 · BOLT 11
+
 ## Anatomía de una invoice
 
 > \*\*
@@ -1403,6 +1451,7 @@ UTILIDAD [lightningdecoder.com](https://lightningdecoder.com/) — pega una invo
 ---
 
 ### 16 · UX moderna
+
 ## LNURL, Keysend y BOLT 12
 
 > \*\*
