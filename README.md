@@ -11,6 +11,13 @@
     <i>Laboratorio práctico de regtest para simular canales, enrutamiento y cierres en la red Lightning usando Polar y LND.</i>
 </p>
 
+## 📚 Índice del Laboratorio
+
+1. [Recordatorio de Bitcoin](01-bitcoin-recordatorio.md)
+2. [Infraestructura de Bitcoin](02-infraestructura-bitcoin.md)
+3. [Introducción a Lightning Network](03-lightning-network.md)
+4. [Laboratorio Lightning con Polar](04-lab-lightning-polar.md)
+
 ## Conceptos Core de Lightning
 
 Introducción a los conceptos clave que sustentan la red de canales de pago.
