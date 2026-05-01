@@ -1715,11 +1715,19 @@ Bloque 3
 
 Experimentamos en carne propia la asimetría del capital en Lightning. Un comercio que sólo recibe pagos se queda sin inbound rápidamente.
 
-1.  Añade un nuevo nodo LND **Erin** al network y añádele fondos.
-2.  Dave abre un canal hacia Erin de 10 000 000 sats. Polar se encargará de minar 6 bloques para confirmarlo.
-3.  Examina el canal Dave → Erin desde la interfaz. Tiene 10M de _inbound_ pero ningún sat _outbound_.
-4.  Simula el caso "comercio": Erin crea una invoice de 1 000 000 sats desde la interfaz y Alice la paga también desde la interfaz. La ruta será `Alice → Bob → Carol → Dave → Erin`. El pago funciona y, tras cobrar, Erin ahora tiene **1 000 000 sats outbound**.
-5.  Erin recibe ventas, ventas, ventas. Repite 4 pagos más de 1M cada uno desde Alice hasta Erin. Al quinto ya verás que falla: los _canales intermedios_ se quedan sin liquidez en la dirección Alice → Erin, o el propio canal Dave↔Erin ya tiene todo el balance del lado de Erin.
+1.  **Paso 11: Montar la tienda "Erin"**
+    Arrastra un nuevo nodo LND al lienzo desde la derecha, llámalo Erin, y deposítale fondos (100 millones de sats, igual que hiciste al principio).
+    
+    ![Topología de la red en Polar con el nodo Erin recién creado](file:///C:/Users/calle/.gemini/antigravity/brain/ebf14321-0453-419f-8637-e1f2e61681c1/media__1777642888355.png)
+
+    *   Haz que Dave le abra un canal a Erin por 10.000.000 sats.
+    *   Asegúrate de darle a **"Minado rápido"** unas 6 veces para que el canal se abra y la línea quede lista.
+
+2.  **Paso 12: Saturar la tienda a base de ventas**
+    *   Haz que Erin (la tienda) cree una factura de 1.000.000 sats.
+    *   Haz que Alice (la clienta en el otro extremo de la red) la pague.
+    *   Ahora vuelve a hacer lo mismo unas 4 veces más (factura nueva en Erin, pago en Alice).
+    *   Al 5º o 6º pago seguido, verás que la red te dice que el pago falla por `INSUFFICIENT_BALANCE`, a pesar de que el canal entre Dave y Erin tiene capacidad de sobra. ¡Intenta saturar la tienda y me cuentas si te salta el error!
 
 Checkpoint
 
