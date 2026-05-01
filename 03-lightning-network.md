@@ -115,7 +115,24 @@ Módulo 05 · Lightning Network
 
 **Ejemplo simple ·** Alice pasa cada mañana por la cafetería de Bob a por un café. En lugar de pagar on-chain cada vez, abren un canal Lightning y liquidan todos los cafés con una única transacción al final.
 
-01 · APERTURA funding tx (onchain) → 2-of-2 multisig ALICE BOB 🔑 🔑 2-of-2 MULTISIG · UTXO capacidad · 5 000 000 sats Alice deposita 5M sats; el output queda bajo el control conjunto de ambas claves. 1 tx on-chain 02 · ACTUALIZACIÓN N × commit\_tx (off-chain) ALICE BOB ☕ commit\_tx\_n alice 4.5M · bob 500k 1\. firma Alice → 2. Bob entrega ☕ → 3. firma Bob Cada commit\_tx redistribuye los saldos del canal. Con la tx firmada por Alice, Bob se asegura de poder cobrar al cierre del canal. 0 tx on-chain 03 · CIERRE settlement tx (onchain) · ambos firman ALICE BOB 4 500 000 sats 500 000 sats SETTLEMENT TX on-chain · minada Tras muchos cafés, ambos acuerdan cerrar. La settlement tx liquida los saldos on-chain. 1 tx on-chain
+### 01 · APERTURA
+**funding tx (on-chain) → 2-of-2 multisig ALICE BOB 🔑 🔑**
+- **UTXO capacidad:** 5 000 000 sats.
+- Alice deposita 5M sats; el output queda bajo el control conjunto de ambas claves.
+- **Coste:** 1 transacción on-chain.
+
+### 02 · ACTUALIZACIÓN
+**N × commit_tx (off-chain) ALICE BOB ☕**
+- **commit_tx_n:** Alice 4.5M · Bob 500k.
+- **Flujo:** 1. Firma Alice → 2. Bob entrega ☕ → 3. Firma Bob.
+- Cada `commit_tx` redistribuye los saldos del canal. Con la tx firmada por Alice, Bob se asegura de poder cobrar al cierre del canal.
+- **Coste:** 0 transacciones on-chain.
+
+### 03 · CIERRE
+**settlement tx (on-chain) · ambos firman ALICE BOB**
+- **Resultado:** Alice 4 500 000 sats | Bob 500 000 sats.
+- **Settlement:** Tras muchos cafés, ambos acuerdan cerrar. La settlement tx liquida los saldos on-chain.
+- **Coste:** 1 transacción on-chain.
 
 En todo el ciclo sólo **2 transacciones tocan la blockchain**: funding tx y settlement tx.
 
