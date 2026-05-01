@@ -114,9 +114,9 @@ Manuel Montenegro Curso de Extensión Universitaria en Tecnologías Blockchain �
 
 Módulo 05 · Bitcoin
 
-01 · Origen
+### 01 · Origen
 
-01 · Origen y esencia
+### 01 · Origen y esencia
 
 ## Dinero electrónico entre pares.
 
@@ -128,13 +128,13 @@ Lo que hace aceptable a una criptomoneda
 
 — A. Antonopoulos, _Mastering Bitcoin_ · cap. 1
 
-2008 Whitepaper
+- **2008** Whitepaper
 
-2009 Red Bitcoin
+- **2009** Red Bitcoin
 
-21MBTC Suministro finito
+- **21MBTC** Suministro finito
 
-~10min Ritmo de bloques
+- **~10min** Ritmo de bloques
 
 *   **Satoshi Nakamoto (2008)** publica un whitepaper de 9 páginas sobre dinero electrónico P2P.
 *   **Red descentralizada** sin autoridad central, sin intermediarios y sin permisos para participar.
@@ -145,9 +145,9 @@ Lo que hace aceptable a una criptomoneda
 
 Módulo 05 · Bitcoin
 
-02 · Criptografía
+### 02 · Criptografía
 
-02 · Cimientos criptográficos
+### 02 · Cimientos criptográficos
 
 ## Propiedad basada en claves
 
@@ -162,9 +162,9 @@ Módulo 05 · Bitcoin
 
 Módulo 05 · Bitcoin
 
-03 · Direcciones
+### 03 · Direcciones
 
-03 · Direcciones y transacciones
+### 03 · Direcciones y transacciones
 
 ## Tres formatos, un mismo propósito.
 
@@ -182,9 +182,9 @@ SegWit Bech32 · bc1… `bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq` Nativo SegW
 
 Módulo 05 · Bitcoin
 
-04 · Blockchain
+### 04 · Blockchain
 
-04 · Cadena de bloques
+### 04 · Cadena de bloques
 
 ## Bloques enlazados por hash.
 
@@ -225,9 +225,9 @@ nonce**?**
 
 Módulo 05 · Bitcoin
 
-05 · Transacciones
+### 05 · Transacciones
 
-05 · Transacciones y UTXO
+### 05 · Transacciones y UTXO
 
 ## Bitcoin es un registro, no un objeto.
 
@@ -268,9 +268,9 @@ Fee Σ in − Σ out = **0.01 BTC** → la diferencia no se declara; emerge como
 
 Módulo 05 · Bitcoin
 
-06 · La red Bitcoin
+### 06 · La red Bitcoin
 
-06 · La red Bitcoin
+### 06 · La red Bitcoin
 
 ## Una red P2P plana y abierta.
 
@@ -299,9 +299,9 @@ El **tipo** de nodo se define por **qué módulos tiene activos**: cada combinac
 
 Módulo 05 · Bitcoin
 
-07 · Tipos de nodos
+### 07 · Tipos de nodos
 
-07 · Tipos de nodos
+### 07 · Tipos de nodos
 
 ## Cuatro perfiles, cuatro compromisos.
 
@@ -317,9 +317,9 @@ Third-Party API Wallet delegada · REST / WebSocket Módulos: **W** (sin N, sin 
 
 Módulo 05 · Bitcoin
 
-08 · Nodos ligeros y SPV
+### 08 · Nodos ligeros y SPV
 
-08 · Nodos ligeros y SPV
+### 08 · Nodos ligeros y SPV
 
 ## SPV: verificación simplificada.
 
@@ -339,9 +339,9 @@ Un nodo ligero verifica **por profundidad**: si una transacción aparece en un b
 
 Módulo 05 · Bitcoin
 
-09 · Relay networks
+### 09 · Relay networks
 
-09 · Propagación y relay networks
+### 09 · Propagación y relay networks
 
 ## Minimizar la latencia entre mineros.
 
@@ -349,9 +349,9 @@ El problema · block-finding race
 
 Cuando un minero encuentra un bloque, los demás siguen trabajando sobre el anterior hasta que lo reciben. **Esos segundos de retraso favorecen a los grandes mineros** y empujan hacia la centralización. La red pública ya optimiza con _Compact Block Relay_ (BIP 152), pero **algunos actores van más allá con redes privadas**.
 
-2015 Bitcoin Relay Network Matt Corallo · VPSes globales Red privada de servidores virtuales estratégicamente distribuidos para conectar **la mayoría de mineros y pools** con muy baja latencia.
+- **2015** Bitcoin Relay Network Matt Corallo · VPSes globales Red privada de servidores virtuales estratégicamente distribuidos para conectar **la mayoría de mineros y pools** con muy baja latencia.
 
-2016 FIBRE Fast Internet Bitcoin Relay Engine Sucesor del BRN. **UDP + Forward Error Correction** + _compact block_: reduce drásticamente la latencia y tolera pérdidas sin re-peticiones.
+- **2016** FIBRE Fast Internet Bitcoin Relay Engine Sucesor del BRN. **UDP + Forward Error Correction** + _compact block_: reduce drásticamente la latencia y tolera pérdidas sin re-peticiones.
 
 La latencia es **crítica** en minería competitiva → en las siguientes transparencias nos centraremos en **minado** y proof-of-work.
 
@@ -359,9 +359,9 @@ La latencia es **crítica** en minería competitiva → en las siguientes transp
 
 Módulo 05 · Bitcoin
 
-10 · Minado & consenso
+### 10 · Minado & consenso
 
-10 · Minado = seguridad + consenso
+### 10 · Minado = seguridad + consenso
 
 ## Consenso emergente, sin autoridad central.
 
@@ -383,9 +383,9 @@ El propósito del minado **no es crear bitcoins**. Eso es el _incentivo_. El fin
 
 Módulo 05 · Bitcoin
 
-11 · La mempool
+### 11 · La mempool
 
-11 · La mempool
+### 11 · La mempool
 
 ## El limbo de las tx sin confirmar.
 
@@ -412,9 +412,9 @@ La mempool es la **sala de espera** de Bitcoin — y el termómetro más honesto
 
 Módulo 05 · Bitcoin
 
-12 · Confirmaciones & doble gasto
+### 12 · Confirmaciones & doble gasto
 
-12 · ¿Cuándo está "confirmada" una tx?
+### 12 · ¿Cuándo está "confirmada" una tx?
 
 ## Cada bloque es otra capa de seguridad.
 
@@ -446,9 +446,9 @@ Si un atacante intenta reescribir la historia necesita **rehacer el PoW** de tod
 
 Módulo 05 · Bitcoin
 
-13 · Recompensa & Proof of Work
+### 13 · Recompensa & Proof of Work
 
-13 · Incentivos + Proof of Work
+### 13 · Incentivos + Proof of Work
 
 ## Coinbase = subsidy + fees.
 
@@ -478,9 +478,9 @@ Fórmula de retarget new\_target = old\_target × (tiempo real 2016 bloques / 20
 
 Módulo 05 · Bitcoin
 
-14 · Mining pools & Stratum
+### 14 · Mining pools & Stratum
 
-14 · Mining pools
+### 14 · Mining pools
 
 ## Minar en solitario es una lotería.
 
@@ -506,9 +506,9 @@ Mineroregistro (user/pass)Pool MinerosubscribePool Mineronotify · block templat
 
 Módulo 05 · Bitcoin
 
-15 · Cambiando las reglas · Hard Forks
+### 15 · Cambiando las reglas · Hard Forks
 
-15 · Hard Forks
+### 15 · Hard Forks
 
 ## Cuando las reglas de consenso se rompen.
 
@@ -528,9 +528,9 @@ Incidente accidental · Mar 2013 Bug Core 0.7 → 0.8 Un cambio no intencionado 
 
 Módulo 05 · Bitcoin
 
-16 · Cambiando las reglas · Soft Forks
+### 16 · Cambiando las reglas · Soft Forks
 
-16 · Soft Forks
+### 16 · Soft Forks
 
 ## Reglas que se estrechan, compatibles hacia atrás.
 
@@ -572,9 +572,9 @@ Manuel Montenegro Curso de Extensión Universitaria en Tecnologías Blockchain �
 
 Módulo 05 · Bitcoin
 
-01 · Clientes de nodo
+### 01 · Clientes de nodo
 
-01 · Implementaciones del protocolo
+### 01 · Implementaciones del protocolo
 
 ## Varios clientes, un mismo consenso.
 
@@ -595,9 +595,9 @@ En **marzo de 2013**, la actualización de Bitcoin Core 0.7 a 0.8 cambió la bas
 
 Módulo 05 · Bitcoin
 
-02 · Anatomía del nodo
+### 02 · Anatomía del nodo
 
-02 · Qué se instala con Bitcoin Core
+### 02 · Qué se instala con Bitcoin Core
 
 ## Cuatro binarios y un datadir.
 
@@ -617,9 +617,9 @@ Cada red (**main · testnet4 · signet · regtest**) aterriza en su propio subdi
 
 Módulo 05 · Bitcoin
 
-03 · bitcoin.conf
+### 03 · bitcoin.conf
 
-03 · Configuración del nodo
+### 03 · Configuración del nodo
 
 ## El 90 % del despliegue vive en bitcoin.conf.
 
@@ -636,9 +636,9 @@ Módulo 05 · Bitcoin
 
 Módulo 05 · Bitcoin
 
-04 · Hardware
+### 04 · Hardware
 
-04 · Archive vs. pruned
+### 04 · Archive vs. pruned
 
 ## Dos perfiles de disco, mismo consenso.
 
@@ -648,7 +648,7 @@ Pruned · prune≥550 Nodo **completo con poda** 5 – 20 GB · SSD o HDD Verifi
 
 ~700GBCadena completa
 
-4GBRAM mínimo
+- **4GBRAM** mínimo
 
 8332Puerto RPC · mainnet
 
@@ -662,9 +662,9 @@ Pruned · prune≥550 Nodo **completo con poda** 5 – 20 GB · SSD o HDD Verifi
 
 Módulo 05 · Bitcoin
 
-05 · Interfaces
+### 05 · Interfaces
 
-05 · Cómo se habla con bitcoind
+### 05 · Cómo se habla con bitcoind
 
 ## Cuatro canales, cuatro propósitos.
 
@@ -682,9 +682,9 @@ Una stack típica: la **app** lanza comandos vía **RPC**, se suscribe a **ZMQ**
 
 Módulo 05 · Bitcoin
 
-06 · bitcoin-cli · cadena
+### 06 · bitcoin-cli · cadena
 
-06 · Cheatsheet · estado · bloques · tx
+### 06 · Cheatsheet · estado · bloques · tx
 
 ## Los comandos de gestión del nodo.
 
@@ -729,9 +729,9 @@ Servicios auxiliares
 
 Módulo 05 · Bitcoin
 
-07 · bitcoin-cli · wallet
+### 07 · bitcoin-cli · wallet
 
-07 · Cheatsheet · wallet · PSBT · regtest
+### 07 · Cheatsheet · wallet · PSBT · regtest
 
 ## Wallet, firma multi-parte y minería local.
 
@@ -777,9 +777,9 @@ Mempool · fees · descriptors
 
 Módulo 05 · Bitcoin
 
-08 · Redes
+### 08 · Redes
 
-08 · Redes de Bitcoin
+### 08 · Redes de Bitcoin
 
 ## Una red para cada propósito.
 
@@ -837,9 +837,9 @@ Dev, CI, tests, **prácticas de clase**.
 
 Módulo 05 · Bitcoin
 
-09 · Signet
+### 09 · Signet
 
-09 · Signet · la red pública estable
+### 09 · Signet · la red pública estable
 
 ## Misma semántica, otra cadencia.
 
@@ -859,9 +859,9 @@ Signet encaja cuando necesitas **una red pública con otros actores** pero _pred
 
 Módulo 05 · Bitcoin
 
-10 · Regtest
+### 10 · Regtest
 
-10 · Regtest · nuestro laboratorio
+### 10 · Regtest · nuestro laboratorio
 
 ## Tu red privada de Bitcoin, en segundos.
 
@@ -885,9 +885,9 @@ Módulo 05 · Bitcoin
 
 Módulo 05 · Bitcoin
 
-11 · Simulación
+### 11 · Simulación
 
-11 · Herramientas de simulación regtest
+### 11 · Herramientas de simulación regtest
 
 ## Regtest con todo incluido.
 
@@ -903,9 +903,9 @@ Filosofías distintas: **Polar** visualiza, **Nigiri** automatiza, **Warnet** es
 
 Módulo 05 · Bitcoin
 
-12 · Infra periférica
+### 12 · Infra periférica
 
-12 · Alrededor de bitcoind
+### 12 · Alrededor de bitcoind
 
 ## El nodo no va solo.
 
@@ -933,9 +933,9 @@ Wallet desktop Sparrow · Specter Conectan a **tu** nodo (directo o vía Electrs
 
 Módulo 05 · Bitcoin
 
-13 · Node-in-a-box
+### 13 · Node-in-a-box
 
-13 · Soberanía sin compilar
+### 13 · Soberanía sin compilar
 
 ## Distros llave en mano.
 
@@ -981,9 +981,9 @@ Cualquier máquina Linux con NixOS.
 
 Módulo 05 · Bitcoin
 
-14 · Minado
+### 14 · Minado
 
-14 · Stack de minado · infraestructura
+### 14 · Stack de minado · infraestructura
 
 ## Cliente, firmware, pool, protocolo.
 
@@ -1017,9 +1017,9 @@ Para regtest, `generatetoaddress` sustituye a todo este stack.
 
 Módulo 05 · Bitcoin
 
-15 · Policy vs. consensus
+### 15 · Policy vs. consensus
 
-15 · La polémica OP\_RETURN / Knots
+### 15 · La polémica OP\_RETURN / Knots
 
 ## Policy no es consensus.
 
@@ -1035,9 +1035,9 @@ Moraleja para operadores: **eliges tu política** al elegir cliente y configurar
 
 Módulo 05 · Bitcoin
 
-16 · Recursos y próximos pasos
+### 16 · Recursos y próximos pasos
 
-16 · Cierre · puente a la práctica
+### 16 · Cierre · puente a la práctica
 
 ## Ahora toca tocarlo.
 
@@ -1079,9 +1079,9 @@ Manuel Montenegro Curso de Extensión Universitaria en Tecnologías Blockchain �
 
 Módulo 05 · Lightning Network
 
-01 · Escalabilidad
+### 01 · Escalabilidad
 
-01 · El reto
+### 01 · El reto
 
 ## Bitcoin es seguro, pero lento.
 
@@ -1104,25 +1104,25 @@ Confirmar cada café en la cadena principal es caro, lento y poco privado. La de
 
 Módulo 05 · Lightning Network
 
-02 · Segunda capa
+### 02 · Segunda capa
 
-02 · Panorama de soluciones L2
+### 02 · Panorama de soluciones L2
 
 ## Construir sobre Bitcoin sin tocarlo.
 
-01 · ACTIVOS RGB
+### 01 · ACTIVOS RGB
 
 Emite y transfiere **activos** (stablecoins, tokens, NFTs) con _client-side validation_. Los datos viven _off-chain_; la L1 sólo graba un hash-commitment incrustado en una UTXO (técnica _Pay-to-Contract_).
 
 **Ventaja:** máxima privacidad — la cadena no ve nada del activo. **Reto:** emisor y receptor deben conservar la historia completa.
 
-02 · ACTIVOS Taproot Assets
+### 02 · ACTIVOS Taproot Assets
 
 Propuesta de Lightning Labs. Emite **activos** anclados en outputs Taproot mediante _Merkle trees_. Pueden enrutarse por Lightning → stablecoins a velocidad LN.
 
 **Ventaja:** interoperable con Lightning vía LND. **Caso típico:** Tether (USDT) pagable como sats.
 
-03 · PAGOS Lightning Network
+### 03 · PAGOS Lightning Network
 
 Red de **canales de pago** enrutados con HTLCs que permite enviar bitcoin entre cualquier par de nodos de forma **instantánea y barata**.
 
@@ -1140,9 +1140,9 @@ Lightning resuelve **pagos**. RGB y Taproot Assets resuelven **emisión y transf
 
 Módulo 05 · Lightning Network
 
-03 · Canales de pago
+### 03 · Canales de pago
 
-03 · Canales de pago · La idea clave
+### 03 · Canales de pago · La idea clave
 
 ## Un canal de pago es un 2-of-2 multisig con saldo móvil.
 
@@ -1170,15 +1170,15 @@ Miles de pagos entre medias
 
 Módulo 05 · Lightning Network
 
-04 · Anatomía de un canal
+### 04 · Anatomía de un canal
 
-04 · Ciclo de vida
+### 04 · Ciclo de vida
 
 ## Apertura · Actualización · Cierre.
 
 **Ejemplo simple ·** Alice pasa cada mañana por la cafetería de Bob a por un café. En lugar de pagar on-chain cada vez, abren un canal Lightning y liquidan todos los cafés con una única transacción al final.
 
-01 · APERTURA funding tx (onchain) → 2-of-2 multisig ALICE BOB 🔑 🔑 2-of-2 MULTISIG · UTXO capacidad · 5 000 000 sats Alice deposita 5M sats; el output queda bajo el control conjunto de ambas claves. 1 tx on-chain 02 · ACTUALIZACIÓN N × commit\_tx (off-chain) ALICE BOB ☕ commit\_tx\_n alice 4.5M · bob 500k 1\. firma Alice → 2. Bob entrega ☕ → 3. firma Bob Cada commit\_tx redistribuye los saldos del canal. Con la tx firmada por Alice, Bob se asegura de poder cobrar al cierre del canal. 0 tx on-chain 03 · CIERRE settlement tx (onchain) · ambos firman ALICE BOB 4 500 000 sats 500 000 sats SETTLEMENT TX on-chain · minada Tras muchos cafés, ambos acuerdan cerrar. La settlement tx liquida los saldos on-chain. 1 tx on-chain
+### 01 · APERTURA funding tx (onchain) → 2-of-2 multisig ALICE BOB 🔑 🔑 2-of-2 MULTISIG · UTXO capacidad · 5 000 000 sats Alice deposita 5M sats; el output queda bajo el control conjunto de ambas claves. 1 tx on-chain 02 · ACTUALIZACIÓN N × commit\_tx (off-chain) ALICE BOB ☕ commit\_tx\_n alice 4.5M · bob 500k 1\. firma Alice → 2. Bob entrega ☕ → 3. firma Bob Cada commit\_tx redistribuye los saldos del canal. Con la tx firmada por Alice, Bob se asegura de poder cobrar al cierre del canal. 0 tx on-chain 03 · CIERRE settlement tx (onchain) · ambos firman ALICE BOB 4 500 000 sats 500 000 sats SETTLEMENT TX on-chain · minada Tras muchos cafés, ambos acuerdan cerrar. La settlement tx liquida los saldos on-chain. 1 tx on-chain
 
 En todo el ciclo sólo **2 transacciones tocan la blockchain**: funding tx y settlement tx.
 
@@ -1186,9 +1186,9 @@ En todo el ciclo sólo **2 transacciones tocan la blockchain**: funding tx y set
 
 Módulo 05 · Lightning Network
 
-05 · Commitment & revocación
+### 05 · Commitment & revocación
 
-05 · Fairness protocol
+### 05 · Fairness protocol
 
 ## ¿Por qué no se puede hacer trampa?
 
@@ -1203,33 +1203,33 @@ Si Alice publica un _commitment_ viejo que le favorece, Bob puede castigarla y l
 
 Módulo 05 · Lightning Network
 
-06 · Límites de un canal aislado
+### 06 · Límites de un canal aislado
 
-06 · El canal aislado
+### 06 · El canal aislado
 
 ## Dos partes, dos problemas.
 
 Un canal bilateral resuelve el intercambio repetido entre dos personas… _siempre que_ ambas colaboren y estén atentas. Fuera de ese escenario ideal aparecen limitaciones que frenan su uso real.
 
-01 · DISPONIBILIDAD Si la contraparte desaparece
+### 01 · DISPONIBILIDAD Si la contraparte desaparece
 
 Para cerrar cooperativamente hace falta la firma de los dos. Si Bob se desconecta, Alice sólo puede hacer un **cierre unilateral** publicando su última commitment.
 
 Ese output queda _time-locked_: sus fondos permanecen bloqueados durante todo el _CSV delay_ antes de que pueda gastarlos.
 
-02 · VIGILANCIA Hay que estar mirando
+### 02 · VIGILANCIA Hay que estar mirando
 
 El fairness protocol sólo castiga si alguien **detecta** la commitment antigua dentro del time-lock. Si nadie observa la cadena, el tramposo cobra sin consecuencias.
 
 En la práctica obliga a tener el nodo online 24/7 o a delegar la vigilancia en _watchtowers_ de terceros.
 
-03 · CAPITAL Fondos inmovilizados
+### 03 · CAPITAL Fondos inmovilizados
 
 La capacidad del canal vive en un UTXO 2-of-2. Mientras el canal esté abierto, ese capital no puede usarse para nada más.
 
 Cuanto mayor sea el importe que quiera mover Alice, más dinero tiene que dejar encerrado por adelantado.
 
-04 · RELACIÓN 1-A-1 Sólo sirve con esa persona
+### 04 · RELACIÓN 1-A-1 Sólo sirve con esa persona
 
 El canal entre Alice y Bob sólo permite pagarle **a Bob**. Para pagar a Carol hace falta abrir otro canal, con sus fees on-chain y su propio capital bloqueado.
 
@@ -1239,9 +1239,9 @@ Esta limitación es la que empujará hacia el **enrutado** a través de terceros
 
 Módulo 05 · Lightning Network
 
-07 · Los canales directos no bastan
+### 07 · Los canales directos no bastan
 
-07 · El límite de los canales bilaterales
+### 07 · El límite de los canales bilaterales
 
 ## Un canal por pareja: inviable.
 
@@ -1258,9 +1258,9 @@ Grafo completo con N = 6 nodos
 
 Módulo 05 · Lightning Network
 
-08 · HTLCs
+### 08 · HTLCs
 
-08 · Hash Time-Locked Contracts
+### 08 · Hash Time-Locked Contracts
 
 ## El pegamento del enrutado.
 
@@ -1274,9 +1274,9 @@ Un **HTLC** (_Hash Time-Locked Contract_) es un contrato que paga al receptor _s
 
 Módulo 05 · Lightning Network
 
-09 · ¿Qué es Lightning Network?
+### 09 · ¿Qué es Lightning Network?
 
-09 · Lightning Network
+### 09 · Lightning Network
 
 ## Una red de canales enrutados.
 
@@ -1298,9 +1298,9 @@ Lightning Network es un protocolo P2P que transmite pagos en bitcoins a través 
 
 Módulo 05 · Lightning Network
 
-10 · Beneficios de Lightning
+### 10 · Beneficios de Lightning
 
-10 · Qué se gana
+### 10 · Qué se gana
 
 ## Instantáneo, barato y privado.
 
@@ -1332,9 +1332,9 @@ Transferencias globales sin bancos, sin KYC intermedio, sin días de espera. Út
 
 Módulo 05 · Lightning Network
 
-11 · Capacidad y liquidez
+### 11 · Capacidad y liquidez
 
-11 · Inbound & outbound
+### 11 · Inbound & outbound
 
 ## Dos depósitos en un canal.
 
@@ -1354,9 +1354,9 @@ Canal equilibrado
 
 Módulo 05 · Lightning Network
 
-12 · Ejemplo completo
+### 12 · Ejemplo completo
 
-12 · Ejemplo completo
+### 12 · Ejemplo completo
 
 ## Alice paga 1 BTC a Eric a través de 3 intermediarios.
 
@@ -1392,9 +1392,9 @@ Cada par de nodos vecinos ya ha abierto previamente un canal Lightning entre ell
 
 Módulo 05 · Lightning Network
 
-13 · Arquitectura técnica
+### 13 · Arquitectura técnica
 
-13 · Arquitectura técnica
+### 13 · Arquitectura técnica
 
 ## Una red P2P sobre Bitcoin.
 
@@ -1413,9 +1413,9 @@ El nodo Lightning habla con **tres mundos**: la wallet del usuario, sus peers Li
 
 Módulo 05 · Lightning Network
 
-14 · Wallets y custodia
+### 14 · Wallets y custodia
 
-14 · Wallets Lightning
+### 14 · Wallets Lightning
 
 ## Wallets Lightning: ¿quién tiene las keys?
 
@@ -1469,9 +1469,9 @@ Algunos wallets delegan la conectividad y el enrutado sin tomar custodia: el usu
 
 Módulo 05 · Lightning Network
 
-15 · BOLT 11
+### 15 · BOLT 11
 
-15 · BOLT 11
+### 15 · BOLT 11
 
 ## Anatomía de una invoice.
 
@@ -1510,9 +1510,9 @@ UTILIDAD [lightningdecoder.com](https://lightningdecoder.com/) — pega una invo
 
 Módulo 05 · Lightning Network
 
-16 · UX moderna
+### 16 · UX moderna
 
-16 · Más allá de BOLT 11
+### 16 · Más allá de BOLT 11
 
 ## Experiencias reutilizables y estáticas.
 
