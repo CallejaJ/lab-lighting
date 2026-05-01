@@ -1748,7 +1748,8 @@ Experimentamos en carne propia la asimetría del capital en Lightning. Un comerc
     ![Error de saldo insuficiente al intentar realizar un pago sin liquidez en la ruta](./img/insufficient-balance-error.png)
 
     *   Ahora vuelve a hacer lo mismo unas 4 veces más (factura nueva en Erin, pago en Alice).
-    *   Al 5º o 6º pago seguido, verás que la red te dice que el pago falla por `INSUFFICIENT_BALANCE`, a pesar de que el canal entre Dave y Erin tiene capacidad de sobra. ¡Intenta saturar la tienda y me cuentas si te salta el error!
+    *   ![Fallo de pago tras agotar la liquidez en el cuarto intento](./img/failure-4th-payment-erin-alice.png)
+    *   Al 4º o 5º pago seguido, verás que la red te dice que el pago falla por `INSUFFICIENT_BALANCE`, a pesar de que el canal entre Dave y Erin tiene capacidad de sobra. ¡Has conseguido saturar la tienda!
 
 Checkpoint
 
