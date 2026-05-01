@@ -89,18 +89,13 @@ Las validaciones del proyecto se ejecutan de manera exploratoria sobre un entorn
 
 ---
 
-Built for Curso de Extensión Universitaria en Tecnologías Blockchain · UMA · 2026.
-
+Built for .
 
 ---
 
 # 1. Recordatorio de Bitcoin
 
          
-
-←→ Navegar
-
-Módulo 05 · Bitcoin
 
 Sesión 1 / Teoría
 
@@ -110,9 +105,7 @@ Recordatorioe
 
 Un breve repaso a los fundamentos de la primera blockchain descentralizada
 
-Manuel Montenegro Curso de Extensión Universitaria en Tecnologías Blockchain · UMA · 2026
-
-Módulo 05 · Bitcoin
+Manuel Montenegro 
 
 ### 01 · Origen
 
@@ -141,10 +134,6 @@ Lo que hace aceptable a una criptomoneda
 *   **Resuelve el doble gasto** en entornos sin confianza mediante consenso por PoW.
 *   **Unidad mínima**: 1 BTC = 100 000 000 satoshis; emisión programada hasta alcanzar 21 millones (en teoría).
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 02/17
-
-Módulo 05 · Bitcoin
-
 ### 02 · Criptografía
 
 ### 02 · Cimientos criptográficos
@@ -157,10 +146,6 @@ Módulo 05 · Bitcoin
 *   **Derivación unidireccional**: clave privada → clave pública. Lo contrario es computacionalmente inviable.
 *   **SHA-256** como función hash: compromete datos, construye hashes de bloques y direcciones.
 *   **Firma digital ECDSA**: demuestra autoría sin revelar la clave privada; cualquiera puede verificarla con la clave pública.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 03/17
-
-Módulo 05 · Bitcoin
 
 ### 03 · Direcciones
 
@@ -177,10 +162,6 @@ SegWit Bech32 · bc1… `bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq` Nativo SegW
 *   **Dirección** = derivada de la clave pública mediante SHA-256 + RIPEMD-160 y codificada (Base58 o Bech32).
 *   **Transacción** = conjunto de inputs firmados con la clave privada + outputs que definen los nuevos propietarios.
 *   **Fee** = inputs − outputs; incentivo económico que los mineros cobran por incluir la transacción en un bloque.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 04/17
-
-Módulo 05 · Bitcoin
 
 ### 04 · Blockchain
 
@@ -221,10 +202,6 @@ nonce**?**
 *   **Nonce + PoW**: los mineros prueban valores hasta que el hash cumpla la dificultad objetivo.
 *   **Ritmo**: un bloque cada ~10 minutos; reajuste automático de dificultad cada 2 016 bloques.
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 05/17
-
-Módulo 05 · Bitcoin
-
 ### 05 · Transacciones
 
 ### 05 · Transacciones y UTXO
@@ -264,10 +241,6 @@ Fee Σ in − Σ out = **0.01 BTC** → la diferencia no se declara; emerge como
 *   **Outputs** = nuevas UTXOs que se crean (pago + cambio); todo sobrante vuelve al emisor como una UTXO de «cambio».
 *   **Fee implícita**: Σ inputs − Σ outputs. Incentiva al minero a priorizar la transacción (ver _Mastering Bitcoin_, cap. 6).
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 06/17
-
-Módulo 05 · Bitcoin
-
 ### 06 · La red Bitcoin
 
 ### 06 · La red Bitcoin
@@ -295,10 +268,6 @@ N Network Routing Habla el protocolo P2P y propaga.
 
 El **tipo** de nodo se define por **qué módulos tiene activos**: cada combinación da un perfil distinto.
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 07/17
-
-Módulo 05 · Bitcoin
-
 ### 07 · Tipos de nodos
 
 ### 07 · Tipos de nodos
@@ -312,10 +281,6 @@ Archive Node Full node que guarda todo el histórico Módulos: **B · N** (sin w
 Lightweight (SPV) Cliente ligero · móviles, wallets Módulos: **W · N** (sin blockchain) Solo descarga **cabeceras de bloques** (~80 B cada una) y usa _Simplified Payment Verification_. Verifica PoW y pruebas Merkle; **confía en nodos completos** para los datos. Menos recursos, menos seguridad.
 
 Third-Party API Wallet delegada · REST / WebSocket Módulos: **W** (sin N, sin B) No habla el protocolo P2P: consulta un servicio externo (Electrum, Esplora, APIs de exchanges…). Saldos, historial y _broadcast_ se **delegan por completo**. Máxima comodidad, máxima dependencia.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 08/17
-
-Módulo 05 · Bitcoin
 
 ### 08 · Nodos ligeros y SPV
 
@@ -335,10 +300,6 @@ Un nodo ligero verifica **por profundidad**: si una transacción aparece en un b
 
 ⚠ Riesgo Sybil attack **Un Sybil attack** consiste en crear **muchas identidades falsas** (nodos controlados por el mismo atacante) para _rodear_ a la víctima en la red. Si todos sus pares son hostiles, ve una realidad fabricada. Los SPV son **especialmente sensibles**: sin cadena local no pueden verificar por sí mismos, así que **dependen de sus pares**. También son vulnerables a _network partitioning_, DoS y, en última instancia, a doble gasto. **Defensa**: conectar a muchos pares aleatorios y, si es posible, apuntar al **propio nodo completo**.
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 09/17
-
-Módulo 05 · Bitcoin
-
 ### 09 · Relay networks
 
 ### 09 · Propagación y relay networks
@@ -354,10 +315,6 @@ Cuando un minero encuentra un bloque, los demás siguen trabajando sobre el ante
 - **2016** FIBRE Fast Internet Bitcoin Relay Engine Sucesor del BRN. **UDP + Forward Error Correction** + _compact block_: reduce drásticamente la latencia y tolera pérdidas sin re-peticiones.
 
 La latencia es **crítica** en minería competitiva → en las siguientes transparencias nos centraremos en **minado** y proof-of-work.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 10/17
-
-Módulo 05 · Bitcoin
 
 ### 10 · Minado & consenso
 
@@ -378,10 +335,6 @@ El propósito del minado **no es crear bitcoins**. Eso es el _incentivo_. El fin
 04 / Elegir Más PoW acumulado Cada nodo selecciona la cadena con **mayor trabajo acumulado**. Esa es, por definición, la verdad.
 
 **Consenso** no se vota: **emerge** de la interacción asíncrona de nodos independientes que siguen reglas simples.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 11/17
-
-Módulo 05 · Bitcoin
 
 ### 11 · La mempool
 
@@ -407,10 +360,6 @@ RAM Donde vive
 *   **Ciclo**: validar → mempool → relay → minada en bloque → expulsada. También se expulsan por _expiración_ (~2 semanas).
 
 La mempool es la **sala de espera** de Bitcoin — y el termómetro más honesto del estado de la red. Sin ella no habría mercado de fees ni propagación eficiente.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 12/17
-
-Módulo 05 · Bitcoin
 
 ### 12 · Confirmaciones & doble gasto
 
@@ -442,10 +391,6 @@ Si un atacante intenta reescribir la historia necesita **rehacer el PoW** de tod
 
 ⚠ Doble gasto Ataque del 51% Un minero (o coalición) con **mayoría del hash rate** puede forkear la cadena y _reemplazar_ una tx ya confirmada por otra que devuelve el UTXO al atacante. Solo es rentable sobre txs propias y requiere un coste energético enorme. **Defensa**: esperar suficientes confirmaciones antes de entregar bienes de alto valor.
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 13/17
-
-Módulo 05 · Bitcoin
-
 ### 13 · Recompensa & Proof of Work
 
 ### 13 · Incentivos + Proof of Work
@@ -474,10 +419,6 @@ Cada cuántos bloques 2 016 Cada ~2 semanas todos los nodos **reajustan** el tar
 
 Fórmula de retarget new\_target = old\_target × (tiempo real 2016 bloques / 20 160 min) Si se minaron **más rápido** de 10 min/bloque → el target baja (más difícil). Si más lento → sube (más fácil). Ajuste máximo ×4 por período.
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 14/17
-
-Módulo 05 · Bitcoin
-
 ### 14 · Mining pools & Stratum
 
 ### 14 · Mining pools
@@ -502,10 +443,6 @@ Protocolo Stratum TCP + JSON-RPC · creado por Slush **No es un BIP**. El minero
 
 Mineroregistro (user/pass)Pool MinerosubscribePool Mineronotify · block templatePool Mineroset\_difficultyPool Minerosubmit · "share"Pool
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 15/17
-
-Módulo 05 · Bitcoin
-
 ### 15 · Cambiando las reglas · Hard Forks
 
 ### 15 · Hard Forks
@@ -523,10 +460,6 @@ Caso más famoso · Ago 2017 Bitcoin Cash (BCH) Disputa por el tamaño de bloque
 Otros casos Bitcoin Gold (2017), Bitcoin XT, Bitcoin Classic Propuestas que, o no lograron adopción (XT, Classic), o derivaron en su propia cadena minoritaria. Ilustran lo **difícil** que es mover Bitcoin por hard fork.
 
 Incidente accidental · Mar 2013 Bug Core 0.7 → 0.8 Un cambio no intencionado en BerkeleyDB provocó un fork involuntario durante 6 bloques. Se resolvió volviendo a la versión antigua.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 16/17
-
-Módulo 05 · Bitcoin
 
 ### 16 · Cambiando las reglas · Soft Forks
 
@@ -548,17 +481,11 @@ BIP 340/341/342 · Nov 2021 Taproot Firmas **Schnorr** + MAST: mejora privacidad
 
 En Bitcoin, las reglas cambian **lentamente y con consenso**: los hard forks dividen la red, los soft forks la hacen evolucionar.
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 17/17
-
 ---
 
 # 2. Infraestructura de Bitcoin
 
          
-
-←→ Navegar
-
-Módulo 05 · Bitcoin
 
 Sesión 2 / Infraestructura
 
@@ -568,9 +495,7 @@ Bloque 2
 
 De la instalación al bloque minado: cómo funciona un nodo Bitcoin por dentro.
 
-Manuel Montenegro Curso de Extensión Universitaria en Tecnologías Blockchain · UMA · 2026
-
-Módulo 05 · Bitcoin
+Manuel Montenegro 
 
 ### 01 · Clientes de nodo
 
@@ -590,10 +515,6 @@ Node.js bcoin <0.5% Mantenido por Purse/Handshake. **Casi inactivo** hoy.
 
 **¿Descentralización, también en el desarrollo?** Un bug sutil en una implementación minoritaria puede provocar un fork accidental.  
 En **marzo de 2013**, la actualización de Bitcoin Core 0.7 a 0.8 cambió la base de datos interna (de BerkeleyDB a LevelDB): un bloque perfectamente válido para los nodos 0.8 fue rechazado por los nodos 0.7 por un límite silencioso de BDB, y la red se bifurcó durante **~6 horas** hasta que los mineros acordaron volver a la cadena compatible con 0.7.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 02/17
-
-Módulo 05 · Bitcoin
 
 ### 02 · Anatomía del nodo
 
@@ -624,10 +545,6 @@ bitcoin-tx Crea y firma tx **offline**, sin nodo.
 ```
 
 Cada red (**main · testnet4 · signet · regtest**) aterriza en su propio subdirectorio, aislada del resto.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 03/17
-
-Módulo 05 · Bitcoin
 
 ### 03 · bitcoin.conf
 
@@ -668,10 +585,6 @@ listenonion=1
 *   **ZMQ** permite que apps externas (explorers, bots) reaccionen al instante a nuevos bloques y tx.
 *   **Configuración**: _Bitcoin Core Config Generator:_ [formulario web](https://jlopp.github.io/bitcoin-core-config-generator/) que te devuelve el fichero ya validado.
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 04/17
-
-Módulo 05 · Bitcoin
-
 ### 04 · Hardware
 
 ### 04 · Archive vs. pruned
@@ -694,10 +607,6 @@ Pruned · prune≥550 Nodo **completo con poda** 5 – 20 GB · SSD o HDD Verifi
 **Archive node** — variante de full node que _además_ conserva todos los bloques.  
 **SPV / light client** — no verifica: confía en los peers y trabaja solo con cabeceras.
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 05/17
-
-Módulo 05 · Bitcoin
-
 ### 05 · Interfaces
 
 ### 05 · Cómo se habla con bitcoind
@@ -713,10 +622,6 @@ Notificación · push ZMQ :28332+ · TCP pub/sub El nodo _empuja_ eventos: **blo
 Consenso · pares P2P :8333 · binario propio Protocolo entre nodos para propagar bloques y tx. **BIP 324** añade cifrado entre pares.
 
 Una stack típica: la **app** lanza comandos vía **RPC**, se suscribe a **ZMQ** para notificaciones, y expone datos al navegador por **REST**.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 06/17
-
-Módulo 05 · Bitcoin
 
 ### 06 · bitcoin-cli · cadena
 
@@ -761,10 +666,6 @@ Servicios auxiliares
 *   setnetworkactive true|false
 *   verifychain \[level\] \[nblocks\]
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 07/17
-
-Módulo 05 · Bitcoin
-
 ### 07 · bitcoin-cli · wallet
 
 ### 07 · Cheatsheet · wallet · PSBT · regtest
@@ -808,10 +709,6 @@ Mempool · fees · descriptors
 *   estimatesmartfee <confs>
 *   getdescriptorinfo \# valida y añade checksum a un descriptor
 *   deriveaddresses <desc> # expande un descriptor en direcciones
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 08/17
-
-Módulo 05 · Bitcoin
 
 ### 08 · Redes
 
@@ -869,10 +766,6 @@ Dev, CI, tests, **prácticas de clase**.
 
 **Timewarp**: vulnerabilidad clásica de testnet3 donde los mineros pueden manipular los _timestamps_ de los bloques para forzar un ajuste de dificultad a la baja y minar cientos de bloques en segundos. BIP 94 (testnet4) lo corrige acotando el margen de los timestamps entre periodos de dificultad.
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 09/17
-
-Módulo 05 · Bitcoin
-
 ### 09 · Signet
 
 ### 09 · Signet · la red pública estable
@@ -890,10 +783,6 @@ Pública · alternativa MutinyNet bloques cada 30 s Signet custom del equipo **M
 Privada Custom signet tú defines todo Arrancas con `-signet -signetchallenge=<script>`. **Tu propia red** para laboratorio, CI, talleres.
 
 Signet encaja cuando necesitas **una red pública con otros actores** pero _predecible_. Para trabajo 100 % solo, regtest es mejor.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 10/17
-
-Módulo 05 · Bitcoin
 
 ### 10 · Regtest
 
@@ -917,10 +806,6 @@ Módulo 05 · Bitcoin
 
 \# Descargar Bitcoin Core → [bitcoincore.org/en/download](https://bitcoincore.org/en/download/) \# Binarios oficiales firmados por los # mantenedores del proyecto. Incluye # bitcoind, bitcoin-cli, bitcoin-qt y # bitcoin-tx. Disponible para Linux, # macOS y Windows.
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 11/17
-
-Módulo 05 · Bitcoin
-
 ### 11 · Simulación
 
 ### 11 · Herramientas de simulación regtest
@@ -934,10 +819,6 @@ CLI · docker-compose Nigiri Un comando: `nigiri start` y tienes **bitcoind regt
 Kubernetes · Bitcoin Dev Project Warnet Despliega **redes Bitcoin P2P en un clúster Kubernetes** (o Minikube local). Monitoriza latencia, partición, comportamiento emergente. Usado en _Battle of Galen Erso_ — competición multi-equipo para **atacar nodos**. Avanzado · investigación
 
 Filosofías distintas: **Polar** visualiza, **Nigiri** automatiza, **Warnet** estresa. Para prácticas guiadas en clase, lo más cómodo suele ser empezar con Polar y migrar a Nigiri cuando el ejercicio se automatiza.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 12/17
-
-Módulo 05 · Bitcoin
 
 ### 12 · Infra periférica
 
@@ -964,10 +845,6 @@ Pasarela de pago BTCPay Server Auto-hospedado, multi-tienda. Integra bitcoind + 
 Wallet desktop Sparrow · Specter Conectan a **tu** nodo (directo o vía Electrs). PSBT, multisig, hardware wallets.
 
 **¿Qué es un Electrum server?** Un servicio que se conecta a tu `bitcoind`, lee la blockchain y construye un **índice por dirección y por script**. Expone el _protocolo Electrum_ (TCP/TLS, JSON) para que wallets ligeras (Sparrow, Electrum, Specter) pregunten "dame UTXOs e historial de esta xpub" sin descargar ni indexar toda la cadena. Sin un Electrum server propio, tu wallet acaba hablando con los servidores de terceros.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 13/17
-
-Módulo 05 · Bitcoin
 
 ### 13 · Node-in-a-box
 
@@ -1013,10 +890,6 @@ Cualquier máquina Linux con NixOS.
 
 **Nota**: todas estas distros permiten ya **cambiar Core por Knots** con un switch en los ajustes — reflejo del cambio de cuota de mercado tras la polémica OP\_RETURN.
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 14/17
-
-Módulo 05 · Bitcoin
-
 ### 14 · Minado
 
 ### 14 · Stack de minado · infraestructura
@@ -1049,10 +922,6 @@ Software del pool · servidor
 
 Para regtest, `generatetoaddress` sustituye a todo este stack.
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 15/17
-
-Módulo 05 · Bitcoin
-
 ### 15 · Policy vs. consensus
 
 ### 15 · La polémica OP\_RETURN / Knots
@@ -1066,10 +935,6 @@ Policy · local Lo que decide **cada nodo** **Reglas blandas**, configurables, n
 Consensus · red Lo que decide **el protocolo** **Reglas duras**: PoW válida, scripts correctos, firmas ECDSA/Schnorr, cap de 21 M, límites de tamaño de bloque. **Violarlas bifurca la cadena**. Un _soft fork_ endurece consenso; un _hard fork_ lo afloja. El límite de OP\_RETURN **nunca fue consenso** — era policy.
 
 Moraleja para operadores: **eliges tu política** al elegir cliente y configurar flags. Eliges **quién mina por ti** al elegir pool. Consenso lo decide la red entera, no tú.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 16/17
-
-Módulo 05 · Bitcoin
 
 ### 16 · Recursos y próximos pasos
 
@@ -1091,17 +956,11 @@ Signet público MutinyNet · faucet · explorer mutinynet.com
 
 Aprendizaje visual Learn Me A Bitcoin — Greg Walker learnmeabitcoin.com
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 17/17
-
 ---
 
 # 3. Introducción a Lightning Network
 
          
-
-←→ Navegar
-
-Módulo 05 · Lightning Network
 
 Sesión 3 / Teoría
 
@@ -1111,9 +970,7 @@ Segunda capa
 
 Pagos instantáneos, privados, escalables y de bajo coste sobre la Bitcoin Network.
 
-Manuel Montenegro Curso de Extensión Universitaria en Tecnologías Blockchain · UMA · 2026
-
-Módulo 05 · Lightning Network
+Manuel Montenegro 
 
 ### 01 · Escalabilidad
 
@@ -1135,10 +992,6 @@ Confirmar cada café en la cadena principal es caro, lento y poco privado. La de
 *   **Latencia de confirmación**: una tx sin confirmar puede ser reorganizada. Esperar 10 minutos a que se confirme el bloque no hace que la transacción sea segura.
 *   **Privacidad limitada**: cada transacción queda pública en la cadena para siempre.
 *   **No válido para micropagos**: pagar 50 sats en on-chain cuesta más fees que el propio pago.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 02/17
-
-Módulo 05 · Lightning Network
 
 ### 02 · Segunda capa
 
@@ -1172,10 +1025,6 @@ No cambian el protocolo base. Firman operaciones _off-chain_ y, si hay conflicto
 
 Lightning resuelve **pagos**. RGB y Taproot Assets resuelven **emisión y transferencia de activos**. Se complementan, no compiten.
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 03/17
-
-Módulo 05 · Lightning Network
-
 ### 03 · Canales de pago
 
 ### 03 · Canales de pago · La idea clave
@@ -1202,10 +1051,6 @@ OFF-CHAIN
 
 Miles de pagos entre medias
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 04/17
-
-Módulo 05 · Lightning Network
-
 ### 04 · Anatomía de un canal
 
 ### 04 · Ciclo de vida
@@ -1217,10 +1062,6 @@ Módulo 05 · Lightning Network
 ### 01 · APERTURA funding tx (onchain) → 2-of-2 multisig ALICE BOB 🔑 🔑 2-of-2 MULTISIG · UTXO capacidad · 5 000 000 sats Alice deposita 5M sats; el output queda bajo el control conjunto de ambas claves. 1 tx on-chain 02 · ACTUALIZACIÓN N × commit\_tx (off-chain) ALICE BOB ☕ commit\_tx\_n alice 4.5M · bob 500k 1\. firma Alice → 2. Bob entrega ☕ → 3. firma Bob Cada commit\_tx redistribuye los saldos del canal. Con la tx firmada por Alice, Bob se asegura de poder cobrar al cierre del canal. 0 tx on-chain 03 · CIERRE settlement tx (onchain) · ambos firman ALICE BOB 4 500 000 sats 500 000 sats SETTLEMENT TX on-chain · minada Tras muchos cafés, ambos acuerdan cerrar. La settlement tx liquida los saldos on-chain. 1 tx on-chain
 
 En todo el ciclo sólo **2 transacciones tocan la blockchain**: funding tx y settlement tx.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 05/17
-
-Módulo 05 · Lightning Network
 
 ### 05 · Commitment & revocación
 
@@ -1234,10 +1075,6 @@ Si Alice publica un _commitment_ viejo que le favorece, Bob puede castigarla y l
 *   **Revocation key**: al firmar la siguiente commitment, cada parte _revela_ una clave que revoca la anterior. Ambos guardan pruebas para castigar.
 *   **Justicia criptográfica**: si Alice publica una commitment antigua, esa tx reparte el canal en dos outputs. Bob gasta el suyo al instante (ya estaba firmado a su favor) y, con la revocation key que Alice le reveló al sustituir ese estado, barre también el output de Alice antes de que venza su time-lock. Bob se queda con **los dos outputs**, es decir, con el 100% del canal.
 *   **Watchtowers**: servicios que observan la cadena por ti; si estás offline, ellos publican la tx de castigo cuando detectan una commitment vieja.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 06/17
-
-Módulo 05 · Lightning Network
 
 ### 06 · Límites de un canal aislado
 
@@ -1271,10 +1108,6 @@ El canal entre Alice y Bob sólo permite pagarle **a Bob**. Para pagar a Carol h
 
 Esta limitación es la que empujará hacia el **enrutado** a través de terceros, la idea clave de Lightning.
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 07/17
-
-Módulo 05 · Lightning Network
-
 ### 07 · Los canales directos no bastan
 
 ### 07 · El límite de los canales bilaterales
@@ -1290,10 +1123,6 @@ Grafo completo con N = 6 nodos
 *   **Mantenimiento**: cada canal requiere vigilancia, firmas, storage de commits y posibles cierres.
 *   **La solución**: enrutar pagos a través de canales ya existentes, como los paquetes en Internet.
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 08/17
-
-Módulo 05 · Lightning Network
-
 ### 08 · HTLCs
 
 ### 08 · Hash Time-Locked Contracts
@@ -1305,10 +1134,6 @@ Un **HTLC** (_Hash Time-Locked Contract_) es un contrato que paga al receptor _s
 *   **Atomicidad**: o todos los saltos del enrutado cobran, o ninguno. **R** es el secreto que tiene que atravesar el camino completo; hasta que aparece, ningún nodo puede cobrar.
 *   **Time-lock decreciente**: cada salto tiene un plazo un poco menor que el anterior, de modo que si el pago falla, cada nodo recupera sus fondos a tiempo.
 *   **Onion routing**: el remitente cifra la ruta en capas, como una cebolla. Cada nodo intermedio descifra sólo _su_ capa, descubre a qué peer reenviar el pago y pasa el resto todavía cifrado. Ningún nodo conoce el camino completo: sólo ve a su predecesor y a su sucesor, nunca al remitente ni al destinatario final.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 09/17
-
-Módulo 05 · Lightning Network
 
 ### 09 · ¿Qué es Lightning Network?
 
@@ -1329,10 +1154,6 @@ Lightning Network es un protocolo P2P que transmite pagos en bitcoins a través 
 *   **Capas complementarias**: LN no sustituye a Bitcoin. Depende de él como ancla de seguridad y liquidación.
 *   **BOLTs**: especificación abierta y mantenida en GitHub (_Basis Of Lightning Technology_). Implementaciones: LND, Core Lightning, Eclair, LDK.
 *   **Propiedad clave**: _trust-minimized_. El enrutado no requiere confiar en los nodos intermedios para la custodia.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 10/17
-
-Módulo 05 · Lightning Network
 
 ### 10 · Beneficios de Lightning
 
@@ -1364,10 +1185,6 @@ INTERNACIONAL Remesas en minutos
 
 Transferencias globales sin bancos, sin KYC intermedio, sin días de espera. Útil en entornos con banca frágil.
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 11/17
-
-Módulo 05 · Lightning Network
-
 ### 11 · Capacidad y liquidez
 
 ### 11 · Inbound & outbound
@@ -1385,10 +1202,6 @@ Canal equilibrado
 *   **Outbound**: sats tuyos en tu lado del canal. Se gastan al enviar.
 *   **Inbound**: sats del otro lado. Determina cuánto puedes recibir.
 *   **Desbalance**: canales sin inbound no pueden recibir pagos. Hay que rebalancear (circular payments, submarine swaps, LSP).
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 12/17
-
-Módulo 05 · Lightning Network
 
 ### 12 · Ejemplo completo
 
@@ -1425,10 +1238,6 @@ Canal Diana ↔ Eric
 01 Configuración inicial
 Cada par de nodos vecinos ya ha abierto previamente un canal Lightning entre ellos. Cada nodo ha bloqueado **2 BTC** en su lado del canal, así que **cada canal arranca con 4 BTC de capacidad total** repartidos a partes iguales.
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 13/17
-
-Módulo 05 · Lightning Network
-
 ### 13 · Arquitectura técnica
 
 ### 13 · Arquitectura técnica
@@ -1460,10 +1269,6 @@ Cada nodo Lightning mantiene conexiones cifradas con sus _peers_, vigila su subc
 ```
 
 El nodo Lightning habla con **tres mundos**: la wallet del usuario, sus peers Lightning y bitcoind.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 14/17
-
-Módulo 05 · Lightning Network
 
 ### 14 · Wallets y custodia
 
@@ -1517,10 +1322,6 @@ HÍBRIDOS Modelos intermedios
 
 Algunos wallets delegan la conectividad y el enrutado sin tomar custodia: el usuario conserva las claves pero no opera un nodo 24/7.
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 15/17
-
-Módulo 05 · Lightning Network
-
 ### 15 · BOLT 11
 
 ### 15 · BOLT 11
@@ -1552,10 +1353,6 @@ Ejemplo real de la spec BOLT 11 · 2 500 μBTC (≈ 250 000 sats) en mainnet · 
 - **Signature**: e89639ba…bd750e · recovery flag 1
 
 UTILIDAD [lightningdecoder.com](https://lightningdecoder.com/) — pega una invoice y la descompone en tiempo real.
-
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 16/17
-
-Módulo 05 · Lightning Network
 
 ### 16 · UX moderna
 
@@ -1601,21 +1398,19 @@ offer → invoice\_request → invoice → pago
 
 Candidato a suceder a BOLT 11.
 
-**Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 17/17
-
 ---
 
 # 4. Laboratorio Lightning con Polar
 
        
 
-Módulo 05 · Lightning Network · Sesión 4 · Laboratorio
+ · Sesión 4 · Laboratorio
 
 # Laboratorio Lightning con Polar
 
 Del canal bilateral al pago enrutado: abrimos canales, enviamos invoices, debuggeamos HTLCs y provocamos un force-close sobre una red Lightning _regtest_ levantada en nuestro propio equipo host.
 
-**Manuel Montenegro** Curso de Extensión Universitaria en Tecnologías Blockchain · UMA · 2026
+**Manuel Montenegro** 
 
 ## Objetivos de la sesión
 
