@@ -609,7 +609,19 @@ bitcoin-cli Cliente CLI que habla **JSON-RPC** con el daemon.
 
 bitcoin-tx Crea y firma tx **offline**, sin nodo.
 
-~/.bitcoin/ \# datadir por defecto ├── blocks/ \# bloques crudos: blk00000.dat, blk00001.dat… ├── chainstate/ \# UTXO set actual (LevelDB) ├── indexes/ \# opcional: txindex, coinstatsindex… ├── wallets/ \# descriptor wallets (SQLite) desde v0.21 ├── mempool.dat \# mempool persistido entre reinicios ├── debug.log \# log principal ├── bitcoin.conf \# configuración ├── testnet4/ \# cada red vive en su subdir ├── signet/ └── regtest/
+```text
+~/.bitcoin/ # datadir por defecto
+├── blocks/ # bloques crudos: blk00000.dat, blk00001.dat…
+├── chainstate/ # UTXO set actual (LevelDB)
+├── indexes/ # opcional: txindex, coinstatsindex…
+├── wallets/ # descriptor wallets (SQLite) desde v0.21
+├── mempool.dat # mempool persistido entre reinicios
+├── debug.log # log principal
+├── bitcoin.conf # configuración
+├── testnet4/ # cada red vive en su subdir
+├── signet/
+└── regtest/
+```
 
 Cada red (**main · testnet4 · signet · regtest**) aterriza en su propio subdirectorio, aislada del resto.
 
@@ -623,7 +635,31 @@ Módulo 05 · Bitcoin
 
 ## El 90 % del despliegue vive en bitcoin.conf.
 
-\# ── Red ───────────────────────────── testnet4\=1 \# signet=1 / regtest=1 \# ── Almacenamiento ───────────────── prune\=5000 \# MiB; 0 = archive dbcache\=4000 \# RAM para UTXO cache txindex\=1 \# incompatible con prune coinstatsindex\=1 blockfilterindex\=1 \# ── RPC ──────────────────────────── server\=1 rpcauth\=user:hash... rpcbind\=127.0.0.1 rpcallowip\=127.0.0.1 \# ── ZMQ · push a apps ────────────── zmqpubrawblock\=tcp://127.0.0.1:28332 zmqpubrawtx\=tcp://127.0.0.1:28333 \# ── Privacidad · Tor ─────────────── proxy\=127.0.0.1:9050 listenonion\=1
+```ini
+# ── Red ─────────────────────────────
+testnet4=1 # signet=1 / regtest=1
+
+# ── Almacenamiento ─────────────────
+prune=5000 # MiB; 0 = archive
+dbcache=4000 # RAM para UTXO cache
+txindex=1 # incompatible con prune
+coinstatsindex=1
+blockfilterindex=1
+
+# ── RPC ────────────────────────────
+server=1
+rpcauth=user:hash...
+rpcbind=127.0.0.1
+rpcallowip=127.0.0.1
+
+# ── ZMQ · push a apps ──────────────
+zmqpubrawblock=tcp://127.0.0.1:28332
+zmqpubrawtx=tcp://127.0.0.1:28333
+
+# ── Privacidad · Tor ───────────────
+proxy=127.0.0.1:9050
+listenonion=1
+```
 
 *   **Flags mutuamente excluyentes**: `testnet`, `testnet4`, `signet`, `regtest`. Sin ninguna = mainnet.
 *   **Prune vs. txindex**: elige uno. Prune tira bloques viejos; txindex conserva todo e indexa.
@@ -1360,33 +1396,34 @@ Módulo 05 · Lightning Network
 
 ## Alice paga 1 BTC a Eric a través de 3 intermediarios.
 
-Invoice: H = hash (R) HTLC 1.003 · 10 bloques HTLC 1.002 · 9 bloques HTLC 1.001 · 8 bloques HTLC 1.000 · 7 bloques Revelar R · cobra 1 R · cobra 1.001 R · cobra 1.002 R · cobra 1.003 A Alice B Bob C Carol D Diana E Eric
+```text
+Invoice: H = hash(R)
+
+Alice ---- HTLC 1.003 (10 bloques) ---> Bob
+Bob   ---- HTLC 1.002 (9 bloques)  ---> Carol
+Carol ---- HTLC 1.001 (8 bloques)  ---> Diana
+Diana ---- HTLC 1.000 (7 bloques)  ---> Eric
+
+Eric  ---- Revelar R (cobra 1.000) ---> Diana
+Diana ---- Revelar R (cobra 1.001) ---> Carol
+Carol ---- Revelar R (cobra 1.002) ---> Bob
+Bob   ---- Revelar R (cobra 1.003) ---> Alice
+```
 
 Canal Alice ↔ Bob
-
-Alice · 2 BTCBob · 2 BTC
+- Alice · 2 BTC | Bob · 2 BTC
 
 Canal Bob ↔ Carol
-
-Bob · 2 BTCCarol · 2 BTC
+- Bob · 2 BTC | Carol · 2 BTC
 
 Canal Carol ↔ Diana
-
-Carol · 2 BTCDiana · 2 BTC
+- Carol · 2 BTC | Diana · 2 BTC
 
 Canal Diana ↔ Eric
-
-Diana · 2 BTCEric · 2 BTC
+- Diana · 2 BTC | Eric · 2 BTC
 
 01 Configuración inicial
-
 Cada par de nodos vecinos ya ha abierto previamente un canal Lightning entre ellos. Cada nodo ha bloqueado **2 BTC** en su lado del canal, así que **cada canal arranca con 4 BTC de capacidad total** repartidos a partes iguales.
-
-←
-
-1 2 3 4 5 6 7 8 9 10
-
-→
 
 **Curso de Extensión Universitaria en Tecnologías Blockchain** · UMA · 2026 13/17
 
@@ -1405,7 +1442,22 @@ Cada nodo Lightning mantiene conexiones cifradas con sus _peers_, vigila su subc
 *   **Implementaciones**: LND (Go), Core Lightning (C), Eclair (Scala), LDK (Rust).
 *   **Nodo Bitcoin asociado**: Lightning requiere bitcoind para publicar y observar transacciones on-chain.
 
-Wallet del usuario móvil · web · desktop · CLI gRPC / REST Nodo Lightning lnd · CLN · eclair · LDK TCP + Noise peers Lightning otros nodos de la red RPC / ZMQ bitcoind backend Bitcoin · capa 1
+```text
+[ Wallet del usuario ] (móvil, web, desktop, CLI)
+        |
+        | gRPC / REST
+        v
+[ Nodo Lightning ] (lnd, CLN, eclair, LDK)
+        |
+   +----+----+
+   |         |
+ TCP +     RPC /
+ Noise     ZMQ
+   |         |
+   v         v
+[ peers ]  [ bitcoind ]
+(Bitcoin capa 1)
+```
 
 El nodo Lightning habla con **tres mundos**: la wallet del usuario, sus peers Lightning y bitcoind.
 
@@ -1482,27 +1534,22 @@ Módulo 05 · Lightning Network
 *   **Single-use**: una invoice = un pago. Reutilizarla puede provocar pérdida de fondos.
 *   **Distribución**: viaja fuera de Lightning — QR, NFC, email, deep-link `lightning:`.
 
+```text
 lnbc2500u1pvjluezpp5qqqsyqcyq5rqwzqfqqqsyqcyq5rqwzqfqqqsyqcyq5rqwzqfqypqdq5xysxxatsyp3k7enxv4jsxqzpuaztrnwngzn3kdzw5hydlzf03qdgm2hdq27cqv3agm2awhz5se903vruatfhq77w3ls4evs3ch9zw97j25emudupq63nyw24cg27h2rspfj9srp
 
-HRP Amount Timestamp Tagged fields Signature
+[ HRP ] [ Amount ] [ Timestamp ] [ Tagged fields ] [ Signature ]
+```
 
 Ejemplo real de la spec BOLT 11 · 2 500 μBTC (≈ 250 000 sats) en mainnet · _"1 cup coffee"_.
 
-Chainbitcoin (mainnet)
-
-Amount250 000 sats · 250 000 000 msat · 2 500 μBTC
-
-Description"1 cup coffee"
-
-Payee pubkey03e7156ae33b0a208d0744199163177e909e80176e55d97a2f221ede0f934dd9ad
-
-Payment hash0001020304050607080900010203040506070809000102030405060708090102
-
-Timestamp1 496 314 658 · 2017-06-01 10:57:38 UTC
-
-Expiry60 s · caduca 10:58:38 UTC
-
-Signaturee89639ba…bd750e · recovery flag 1
+- **Chain**: bitcoin (mainnet)
+- **Amount**: 250 000 sats · 250 000 000 msat · 2 500 μBTC
+- **Description**: "1 cup coffee"
+- **Payee pubkey**: 03e7156ae33b0a208d0744199163177e909e80176e55d97a2f221ede0f934dd9ad
+- **Payment hash**: 0001020304050607080900010203040506070809000102030405060708090102
+- **Timestamp**: 1 496 314 658 · 2017-06-01 10:57:38 UTC
+- **Expiry**: 60 s · caduca 10:58:38 UTC
+- **Signature**: e89639ba…bd750e · recovery flag 1
 
 UTILIDAD [lightningdecoder.com](https://lightningdecoder.com/) — pega una invoice y la descompone en tiempo real.
 
