@@ -107,11 +107,11 @@ Un breve repaso a los fundamentos de la primera blockchain descentralizada
 
 Manuel Montenegro 
 
-### 01 · Origen
+---
 
-### 01 · Origen y esencia
+## . 
+> **
 
-## Dinero electrónico entre pares.
 
 Lo que hace aceptable a una criptomoneda
 
@@ -134,11 +134,11 @@ Lo que hace aceptable a una criptomoneda
 *   **Resuelve el doble gasto** en entornos sin confianza mediante consenso por PoW.
 *   **Unidad mínima**: 1 BTC = 100 000 000 satoshis; emisión programada hasta alcanzar 21 millones (en teoría).
 
-### 02 · Criptografía
+---
 
-### 02 · Cimientos criptográficos
+## . 
+> **
 
-## Propiedad basada en claves
 
 «Poseer bitcoins equivale a poseer la clave privada asociada a la dirección» Esa clave autoriza a gastar las **UTXOs** (_Unspent Transaction Outputs_) vinculadas a la dirección — lo que llamamos «saldo» es simplemente la suma de esas UTXOs.
 
@@ -147,11 +147,11 @@ Lo que hace aceptable a una criptomoneda
 *   **SHA-256** como función hash: compromete datos, construye hashes de bloques y direcciones.
 *   **Firma digital ECDSA**: demuestra autoría sin revelar la clave privada; cualquiera puede verificarla con la clave pública.
 
-### 03 · Direcciones
+---
 
-### 03 · Direcciones y transacciones
+## . 
+> **
 
-## Tres formatos, un mismo propósito.
 
 Legacy P2PKH · 1… `1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa` Pay-to-PubKey-Hash — el formato clásico basado en el hash de la clave pública.
 
@@ -163,11 +163,11 @@ SegWit Bech32 · bc1… `bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq` Nativo SegW
 *   **Transacción** = conjunto de inputs firmados con la clave privada + outputs que definen los nuevos propietarios.
 *   **Fee** = inputs − outputs; incentivo económico que los mineros cobran por incluir la transacción en un bloque.
 
-### 04 · Blockchain
+---
 
-### 04 · Cadena de bloques
+## . 
+> **
 
-## Bloques enlazados por hash.
 
 BlockN−1
 
@@ -202,11 +202,11 @@ nonce**?**
 *   **Nonce + PoW**: los mineros prueban valores hasta que el hash cumpla la dificultad objetivo.
 *   **Ritmo**: un bloque cada ~10 minutos; reajuste automático de dificultad cada 2 016 bloques.
 
-### 05 · Transacciones
+---
 
-### 05 · Transacciones y UTXO
+## . 
+> **
 
-## Bitcoin es un registro, no un objeto.
 
 Analogía · Registro de la Propiedad
 
@@ -241,11 +241,11 @@ Fee Σ in − Σ out = **0.01 BTC** → la diferencia no se declara; emerge como
 *   **Outputs** = nuevas UTXOs que se crean (pago + cambio); todo sobrante vuelve al emisor como una UTXO de «cambio».
 *   **Fee implícita**: Σ inputs − Σ outputs. Incentiva al minero a priorizar la transacción (ver _Mastering Bitcoin_, cap. 6).
 
-### 06 · La red Bitcoin
+---
 
-### 06 · La red Bitcoin
+## . 
+> **
 
-## Una red P2P plana y abierta.
 
 La red · a vista de pájaro
 
@@ -268,11 +268,11 @@ N Network Routing Habla el protocolo P2P y propaga.
 
 El **tipo** de nodo se define por **qué módulos tiene activos**: cada combinación da un perfil distinto.
 
-### 07 · Tipos de nodos
+---
 
-### 07 · Tipos de nodos
+## . 
+> **
 
-## Cuatro perfiles, cuatro compromisos.
 
 Full Node Bitcoin Core · «Satoshi Client» Módulos: **W · M\* · B · N** (\*minero desactivado por defecto) **Valida cada bloque y transacción** aplicando todas las reglas de consenso. Implementación de referencia (C++, desde 2009). Independencia y privacidad máximas; >95 % de los nodos públicos lo ejecutan.
 
@@ -282,11 +282,11 @@ Lightweight (SPV) Cliente ligero · móviles, wallets Módulos: **W · N** (sin 
 
 Third-Party API Wallet delegada · REST / WebSocket Módulos: **W** (sin N, sin B) No habla el protocolo P2P: consulta un servicio externo (Electrum, Esplora, APIs de exchanges…). Saldos, historial y _broadcast_ se **delegan por completo**. Máxima comodidad, máxima dependencia.
 
-### 08 · Nodos ligeros y SPV
+---
 
-### 08 · Nodos ligeros y SPV
+## . 
+> **
 
-## SPV: verificación simplificada.
 
 Cómo funciona SPV
 
@@ -300,11 +300,11 @@ Un nodo ligero verifica **por profundidad**: si una transacción aparece en un b
 
 ⚠ Riesgo Sybil attack **Un Sybil attack** consiste en crear **muchas identidades falsas** (nodos controlados por el mismo atacante) para _rodear_ a la víctima en la red. Si todos sus pares son hostiles, ve una realidad fabricada. Los SPV son **especialmente sensibles**: sin cadena local no pueden verificar por sí mismos, así que **dependen de sus pares**. También son vulnerables a _network partitioning_, DoS y, en última instancia, a doble gasto. **Defensa**: conectar a muchos pares aleatorios y, si es posible, apuntar al **propio nodo completo**.
 
-### 09 · Relay networks
+---
 
-### 09 · Propagación y relay networks
+## . 
+> **
 
-## Minimizar la latencia entre mineros.
 
 El problema · block-finding race
 
@@ -316,11 +316,11 @@ Cuando un minero encuentra un bloque, los demás siguen trabajando sobre el ante
 
 La latencia es **crítica** en minería competitiva → en las siguientes transparencias nos centraremos en **minado** y proof-of-work.
 
-### 10 · Minado & consenso
+---
 
-### 10 · Minado = seguridad + consenso
+## . 
+> **
 
-## Consenso emergente, sin autoridad central.
 
 La función real del minado
 
@@ -336,11 +336,11 @@ El propósito del minado **no es crear bitcoins**. Eso es el _incentivo_. El fin
 
 **Consenso** no se vota: **emerge** de la interacción asíncrona de nodos independientes que siguen reglas simples.
 
-### 11 · La mempool
+---
 
-### 11 · La mempool
+## . 
+> **
 
-## El limbo de las tx sin confirmar.
 
 Memory pool · mempool
 
@@ -361,11 +361,11 @@ RAM Donde vive
 
 La mempool es la **sala de espera** de Bitcoin — y el termómetro más honesto del estado de la red. Sin ella no habría mercado de fees ni propagación eficiente.
 
-### 12 · Confirmaciones & doble gasto
+---
 
-### 12 · ¿Cuándo está "confirmada" una tx?
+## . 
+> **
 
-## Cada bloque es otra capa de seguridad.
 
 Confirmación
 
@@ -391,11 +391,11 @@ Si un atacante intenta reescribir la historia necesita **rehacer el PoW** de tod
 
 ⚠ Doble gasto Ataque del 51% Un minero (o coalición) con **mayoría del hash rate** puede forkear la cadena y _reemplazar_ una tx ya confirmada por otra que devuelve el UTXO al atacante. Solo es rentable sobre txs propias y requiere un coste energético enorme. **Defensa**: esperar suficientes confirmaciones antes de entregar bienes de alto valor.
 
-### 13 · Recompensa & Proof of Work
+---
 
-### 13 · Incentivos + Proof of Work
+## . 
+> **
 
-## Coinbase = subsidy + fees.
 
 Bloque nuevo Subsidy 3,125 BTC (2024+) Bitcoins **acuñados de la nada** en cada bloque. Empezó en **50 BTC** y se _halvea_ cada 210 000 bloques (~4 años). En 2140 será cero.
 
@@ -419,11 +419,11 @@ Cada cuántos bloques 2 016 Cada ~2 semanas todos los nodos **reajustan** el tar
 
 Fórmula de retarget new\_target = old\_target × (tiempo real 2016 bloques / 20 160 min) Si se minaron **más rápido** de 10 min/bloque → el target baja (más difícil). Si más lento → sube (más fácil). Ajuste máximo ×4 por período.
 
-### 14 · Mining pools & Stratum
+---
 
-### 14 · Mining pools
+## . 
+> **
 
-## Minar en solitario es una lotería.
 
 Cómo funciona un pool Cooperar para cobrar a menudo Muchos mineros conectan su hardware a un **servidor pool**. El pool arma bloques candidato, distribuye trabajo, y cuando _alguien_ del pool encuentra la solución, el premio se reparte **proporcionalmente al trabajo aportado**.
 
@@ -443,11 +443,11 @@ Protocolo Stratum TCP + JSON-RPC · creado por Slush **No es un BIP**. El minero
 
 Mineroregistro (user/pass)Pool MinerosubscribePool Mineronotify · block templatePool Mineroset\_difficultyPool Minerosubmit · "share"Pool
 
-### 15 · Cambiando las reglas · Hard Forks
+---
 
-### 15 · Hard Forks
+## . 
+> **
 
-## Cuando las reglas de consenso se rompen.
 
 Hard fork Cambio **incompatible hacia atrás**. Alguien introduce una regla nueva que hace **válidos** bloques o txs que antes eran inválidos (o al revés). Los nodos que **no actualicen** rechazarán los nuevos bloques: la red se _parte en dos cadenas_ que evolucionan por separado.
 
@@ -461,11 +461,11 @@ Otros casos Bitcoin Gold (2017), Bitcoin XT, Bitcoin Classic Propuestas que, o n
 
 Incidente accidental · Mar 2013 Bug Core 0.7 → 0.8 Un cambio no intencionado en BerkeleyDB provocó un fork involuntario durante 6 bloques. Se resolvió volviendo a la versión antigua.
 
-### 16 · Cambiando las reglas · Soft Forks
+---
 
-### 16 · Soft Forks
+## . 
+> **
 
-## Reglas que se estrechan, compatibles hacia atrás.
 
 Soft fork Cambio **forward-compatible**. Se introducen reglas **más restrictivas**: todo lo válido bajo la nueva regla sigue siendo válido bajo la antigua. Los nodos sin actualizar **no notan nada** y siguen en consenso con el resto. _Técnicamente no es un fork_.
 
@@ -497,11 +497,11 @@ De la instalación al bloque minado: cómo funciona un nodo Bitcoin por dentro.
 
 Manuel Montenegro 
 
-### 01 · Clientes de nodo
+---
 
-### 01 · Implementaciones del protocolo
+## . 
+> **
 
-## Varios clientes, un mismo consenso.
 
 C++ · MIT Bitcoin Core ~75% **Implementación de referencia**. v30 (oct. 2025). Descriptor-only wallets, sin BDB, sin límite OP\_RETURN.
 
@@ -516,11 +516,11 @@ Node.js bcoin <0.5% Mantenido por Purse/Handshake. **Casi inactivo** hoy.
 **¿Descentralización, también en el desarrollo?** Un bug sutil en una implementación minoritaria puede provocar un fork accidental.  
 En **marzo de 2013**, la actualización de Bitcoin Core 0.7 a 0.8 cambió la base de datos interna (de BerkeleyDB a LevelDB): un bloque perfectamente válido para los nodos 0.8 fue rechazado por los nodos 0.7 por un límite silencioso de BDB, y la red se bifurcó durante **~6 horas** hasta que los mineros acordaron volver a la cadena compatible con 0.7.
 
-### 02 · Anatomía del nodo
+---
 
-### 02 · Qué se instala con Bitcoin Core
+## . 
+> **
 
-## Cuatro binarios y un datadir.
 
 bitcoind Daemon en _background_. El nodo propiamente dicho.
 
@@ -546,11 +546,11 @@ bitcoin-tx Crea y firma tx **offline**, sin nodo.
 
 Cada red (**main · testnet4 · signet · regtest**) aterriza en su propio subdirectorio, aislada del resto.
 
-### 03 · bitcoin.conf
+---
 
-### 03 · Configuración del nodo
+## . 
+> **
 
-## El 90 % del despliegue vive en bitcoin.conf.
 
 ```ini
 # ── Red ─────────────────────────────
@@ -585,11 +585,11 @@ listenonion=1
 *   **ZMQ** permite que apps externas (explorers, bots) reaccionen al instante a nuevos bloques y tx.
 *   **Configuración**: _Bitcoin Core Config Generator:_ [formulario web](https://jlopp.github.io/bitcoin-core-config-generator/) que te devuelve el fichero ya validado.
 
-### 04 · Hardware
+---
 
-### 04 · Archive vs. pruned
+## . 
+> **
 
-## Dos perfiles de disco, mismo consenso.
 
 Archive · prune=0 Nodo **completo** ~700 GB (abril 2026) · SSD Guarda **toda la historia** de bloques. Útil para: _txindex_, explorers, block-cutters, queries del pasado. **IBD** (_Initial Block Download_ — la sincronización inicial desde el génesis hasta la punta actual): **días a semanas**. **Sirve bloques históricos** a otros peers cuando se sincronizan. _Community service_ de la red.
 
@@ -607,11 +607,11 @@ Pruned · prune≥550 Nodo **completo con poda** 5 – 20 GB · SSD o HDD Verifi
 **Archive node** — variante de full node que _además_ conserva todos los bloques.  
 **SPV / light client** — no verifica: confía en los peers y trabaja solo con cabeceras.
 
-### 05 · Interfaces
+---
 
-### 05 · Cómo se habla con bitcoind
+## . 
+> **
 
-## Cuatro canales, cuatro propósitos.
 
 Control · pull JSON-RPC :8332 · HTTP + JSON El 95 % del trabajo. Control total del nodo y la wallet desde apps y CLI. **Autenticado**.
 
@@ -623,11 +623,11 @@ Consenso · pares P2P :8333 · binario propio Protocolo entre nodos para propaga
 
 Una stack típica: la **app** lanza comandos vía **RPC**, se suscribe a **ZMQ** para notificaciones, y expone datos al navegador por **REST**.
 
-### 06 · bitcoin-cli · cadena
+---
 
-### 06 · Cheatsheet · estado · bloques · tx
+## . 
+> **
 
-## Los comandos de gestión del nodo.
 
 Todos los comandos de esta lista se invocan como `bitcoin-cli [-regtest|-signet] <comando> [args…]`. El flag de red (por defecto, mainnet) se coloca _antes_ del comando.
 
@@ -666,11 +666,11 @@ Servicios auxiliares
 *   setnetworkactive true|false
 *   verifychain \[level\] \[nblocks\]
 
-### 07 · bitcoin-cli · wallet
+---
 
-### 07 · Cheatsheet · wallet · PSBT · regtest
+## . 
+> **
 
-## Wallet, firma multi-parte y minería local.
 
 Todos los comandos de esta lista se invocan como `bitcoin-cli [-regtest|-signet] <comando> [args…]`. El flag de red (por defecto, mainnet) se coloca _antes_ del comando.
 
@@ -710,11 +710,11 @@ Mempool · fees · descriptors
 *   getdescriptorinfo \# valida y añade checksum a un descriptor
 *   deriveaddresses <desc> # expande un descriptor en direcciones
 
-### 08 · Redes
+---
 
-### 08 · Redes de Bitcoin
+## . 
+> **
 
-## Una red para cada propósito.
 
 Red
 
@@ -766,11 +766,11 @@ Dev, CI, tests, **prácticas de clase**.
 
 **Timewarp**: vulnerabilidad clásica de testnet3 donde los mineros pueden manipular los _timestamps_ de los bloques para forzar un ajuste de dificultad a la baja y minar cientos de bloques en segundos. BIP 94 (testnet4) lo corrige acotando el margen de los timestamps entre periodos de dificultad.
 
-### 09 · Signet
+---
 
-### 09 · Signet · la red pública estable
+## . 
+> **
 
-## Misma semántica, otra cadencia.
 
 **Signet** es una red pública de pruebas en la que _no hay competición por minar_: en lugar de _proof-of-work_ abierto, los bloques los produce un conjunto cerrado de firmantes autorizados. Esto elimina los problemas de testnet3 (ataques de timewarp, _stalls_ de días, reorgs enormes) y hace que la red sea **predecible**, **estable** y **compartida** entre desarrolladores de todo el mundo.
 
@@ -784,11 +784,11 @@ Privada Custom signet tú defines todo Arrancas con `-signet -signetchallenge=<s
 
 Signet encaja cuando necesitas **una red pública con otros actores** pero _predecible_. Para trabajo 100 % solo, regtest es mejor.
 
-### 10 · Regtest
+---
 
-### 10 · Regtest · nuestro laboratorio
+## . 
+> **
 
-## Tu red privada de Bitcoin, en segundos.
 
 01 Arrancar $ bitcoind -regtest -daemon
 
@@ -806,11 +806,11 @@ Signet encaja cuando necesitas **una red pública con otros actores** pero _pred
 
 \# Descargar Bitcoin Core → [bitcoincore.org/en/download](https://bitcoincore.org/en/download/) \# Binarios oficiales firmados por los # mantenedores del proyecto. Incluye # bitcoind, bitcoin-cli, bitcoin-qt y # bitcoin-tx. Disponible para Linux, # macOS y Windows.
 
-### 11 · Simulación
+---
 
-### 11 · Herramientas de simulación regtest
+## . 
+> **
 
-## Regtest con todo incluido.
 
 GUI · Electron + Docker Polar Interfaz gráfica para levantar **redes Bitcoin + Lightning en regtest** con un clic. Faucet integrado, logs en vivo, visualización de canales. Ideal para: **principiantes**, demos visuales, primeros experimentos. Recomendado · aprendizaje y testing sencillo
 
@@ -820,11 +820,11 @@ Kubernetes · Bitcoin Dev Project Warnet Despliega **redes Bitcoin P2P en un cl�
 
 Filosofías distintas: **Polar** visualiza, **Nigiri** automatiza, **Warnet** estresa. Para prácticas guiadas en clase, lo más cómodo suele ser empezar con Polar y migrar a Nigiri cuando el ejercicio se automatiza.
 
-### 12 · Infra periférica
+---
 
-### 12 · Alrededor de bitcoind
+## . 
+> **
 
-## El nodo no va solo.
 
 `bitcoind` valida el consenso, pero por sí solo **no resuelve** preguntas como "¿qué saldo tiene esta dirección?" o "¿qué fees se están pagando ahora mismo?". Alrededor del nodo aparece un **ecosistema de servicios** que transforman esos datos en respuestas útiles para wallets, explorers y pasarelas de pago.
 
@@ -846,11 +846,11 @@ Wallet desktop Sparrow · Specter Conectan a **tu** nodo (directo o vía Electrs
 
 **¿Qué es un Electrum server?** Un servicio que se conecta a tu `bitcoind`, lee la blockchain y construye un **índice por dirección y por script**. Expone el _protocolo Electrum_ (TCP/TLS, JSON) para que wallets ligeras (Sparrow, Electrum, Specter) pregunten "dame UTXOs e historial de esta xpub" sin descargar ni indexar toda la cadena. Sin un Electrum server propio, tu wallet acaba hablando con los servidores de terceros.
 
-### 13 · Node-in-a-box
+---
 
-### 13 · Soberanía sin compilar
+## . 
+> **
 
-## Distros llave en mano.
 
 Distribución
 
@@ -890,11 +890,11 @@ Cualquier máquina Linux con NixOS.
 
 **Nota**: todas estas distros permiten ya **cambiar Core por Knots** con un switch en los ajustes — reflejo del cambio de cuota de mercado tras la polémica OP\_RETURN.
 
-### 14 · Minado
+---
 
-### 14 · Stack de minado · infraestructura
+## . 
+> **
 
-## Cliente, firmware, pool, protocolo.
 
 Cliente · en el minero
 
@@ -922,11 +922,11 @@ Software del pool · servidor
 
 Para regtest, `generatetoaddress` sustituye a todo este stack.
 
-### 15 · Policy vs. consensus
+---
 
-### 15 · La polémica OP\_RETURN / Knots
+## . 
+> **
 
-## Policy no es consensus.
 
 Core v30 (**oct. 2025**) eliminó el límite de 80 bytes en OP\_RETURN. Miles de operadores migraron a **Bitcoin Knots** en protesta. Knots pasó del ~5 % al **~22-25 %** de la red. Es el mejor ejemplo pedagógico actual de que la política de relay _no es lo mismo_ que el consenso. El debate más caliente del ciclo 2024-2026.
 
@@ -936,11 +936,11 @@ Consensus · red Lo que decide **el protocolo** **Reglas duras**: PoW válida, s
 
 Moraleja para operadores: **eliges tu política** al elegir cliente y configurar flags. Eliges **quién mina por ti** al elegir pool. Consenso lo decide la red entera, no tú.
 
-### 16 · Recursos y próximos pasos
+---
 
-### 16 · Cierre · puente a la práctica
+## . 
+> **
 
-## Ahora toca tocarlo.
 
 Libro de referencia Mastering Bitcoin — Antonopoulos & Harding github.com/bitcoinbook/bitcoinbook
 
@@ -972,11 +972,11 @@ Pagos instantáneos, privados, escalables y de bajo coste sobre la Bitcoin Netwo
 
 Manuel Montenegro 
 
-### 01 · Escalabilidad
+---
 
-### 01 · El reto
+## . 
+> **
 
-## Bitcoin es seguro, pero lento.
 
 Confirmar cada café en la cadena principal es caro, lento y poco privado. La descentralización y la seguridad se pagan en throughput.
 
@@ -993,11 +993,11 @@ Confirmar cada café en la cadena principal es caro, lento y poco privado. La de
 *   **Privacidad limitada**: cada transacción queda pública en la cadena para siempre.
 *   **No válido para micropagos**: pagar 50 sats en on-chain cuesta más fees que el propio pago.
 
-### 02 · Segunda capa
+---
 
-### 02 · Panorama de soluciones L2
+## . 
+> **
 
-## Construir sobre Bitcoin sin tocarlo.
 
 ### 01 · ACTIVOS RGB
 
@@ -1025,11 +1025,11 @@ No cambian el protocolo base. Firman operaciones _off-chain_ y, si hay conflicto
 
 Lightning resuelve **pagos**. RGB y Taproot Assets resuelven **emisión y transferencia de activos**. Se complementan, no compiten.
 
-### 03 · Canales de pago
+---
 
-### 03 · Canales de pago · La idea clave
+## . 
+> **
 
-## Un canal de pago es un 2-of-2 multisig con saldo móvil.
 
 Un **canal de pago** es un acuerdo financiero bilateral entre dos nodos: bloquean fondos en la cadena y después intercambian _off-chain_ actualizaciones firmadas del saldo, liquidables en cualquier momento. Es el ladrillo sobre el que se construye toda Lightning Network.
 
@@ -1051,11 +1051,11 @@ OFF-CHAIN
 
 Miles de pagos entre medias
 
-### 04 · Anatomía de un canal
+---
 
-### 04 · Ciclo de vida
+## . 
+> **
 
-## Apertura · Actualización · Cierre.
 
 **Ejemplo simple ·** Alice pasa cada mañana por la cafetería de Bob a por un café. En lugar de pagar on-chain cada vez, abren un canal Lightning y liquidan todos los cafés con una única transacción al final.
 
@@ -1063,11 +1063,11 @@ Miles de pagos entre medias
 
 En todo el ciclo sólo **2 transacciones tocan la blockchain**: funding tx y settlement tx.
 
-### 05 · Commitment & revocación
+---
 
-### 05 · Fairness protocol
+## . 
+> **
 
-## ¿Por qué no se puede hacer trampa?
 
 Si Alice publica un _commitment_ viejo que le favorece, Bob puede castigarla y llevarse **todo** el saldo del canal.
 
@@ -1076,11 +1076,11 @@ Si Alice publica un _commitment_ viejo que le favorece, Bob puede castigarla y l
 *   **Justicia criptográfica**: si Alice publica una commitment antigua, esa tx reparte el canal en dos outputs. Bob gasta el suyo al instante (ya estaba firmado a su favor) y, con la revocation key que Alice le reveló al sustituir ese estado, barre también el output de Alice antes de que venza su time-lock. Bob se queda con **los dos outputs**, es decir, con el 100% del canal.
 *   **Watchtowers**: servicios que observan la cadena por ti; si estás offline, ellos publican la tx de castigo cuando detectan una commitment vieja.
 
-### 06 · Límites de un canal aislado
+---
 
-### 06 · El canal aislado
+## . 
+> **
 
-## Dos partes, dos problemas.
 
 Un canal bilateral resuelve el intercambio repetido entre dos personas… _siempre que_ ambas colaboren y estén atentas. Fuera de ese escenario ideal aparecen limitaciones que frenan su uso real.
 
@@ -1108,11 +1108,11 @@ El canal entre Alice y Bob sólo permite pagarle **a Bob**. Para pagar a Carol h
 
 Esta limitación es la que empujará hacia el **enrutado** a través de terceros, la idea clave de Lightning.
 
-### 07 · Los canales directos no bastan
+---
 
-### 07 · El límite de los canales bilaterales
+## . 
+> **
 
-## Un canal por pareja: inviable.
 
 N = 6 15 canales
 
@@ -1123,11 +1123,11 @@ Grafo completo con N = 6 nodos
 *   **Mantenimiento**: cada canal requiere vigilancia, firmas, storage de commits y posibles cierres.
 *   **La solución**: enrutar pagos a través de canales ya existentes, como los paquetes en Internet.
 
-### 08 · HTLCs
+---
 
-### 08 · Hash Time-Locked Contracts
+## . 
+> **
 
-## El pegamento del enrutado.
 
 Un **HTLC** (_Hash Time-Locked Contract_) es un contrato que paga al receptor _si_ revela un secreto antes de un plazo; en caso contrario, devuelve los fondos al remitente.
 
@@ -1135,11 +1135,11 @@ Un **HTLC** (_Hash Time-Locked Contract_) es un contrato que paga al receptor _s
 *   **Time-lock decreciente**: cada salto tiene un plazo un poco menor que el anterior, de modo que si el pago falla, cada nodo recupera sus fondos a tiempo.
 *   **Onion routing**: el remitente cifra la ruta en capas, como una cebolla. Cada nodo intermedio descifra sólo _su_ capa, descubre a qué peer reenviar el pago y pasa el resto todavía cifrado. Ningún nodo conoce el camino completo: sólo ve a su predecesor y a su sucesor, nunca al remitente ni al destinatario final.
 
-### 09 · ¿Qué es Lightning Network?
+---
 
-### 09 · Lightning Network
+## . 
+> **
 
-## Una red de canales enrutados.
 
 Lightning Network es un protocolo P2P que transmite pagos en bitcoins a través de una red de canales de pago, usando enrutado en cebolla, HTLCs y técnicas de _fair exchange_ criptográficas.
 
@@ -1155,11 +1155,11 @@ Lightning Network es un protocolo P2P que transmite pagos en bitcoins a través 
 *   **BOLTs**: especificación abierta y mantenida en GitHub (_Basis Of Lightning Technology_). Implementaciones: LND, Core Lightning, Eclair, LDK.
 *   **Propiedad clave**: _trust-minimized_. El enrutado no requiere confiar en los nodos intermedios para la custodia.
 
-### 10 · Beneficios de Lightning
+---
 
-### 10 · Qué se gana
+## . 
+> **
 
-## Instantáneo, barato y privado.
 
 VELOCIDAD Sub-segundo
 
@@ -1185,11 +1185,11 @@ INTERNACIONAL Remesas en minutos
 
 Transferencias globales sin bancos, sin KYC intermedio, sin días de espera. Útil en entornos con banca frágil.
 
-### 11 · Capacidad y liquidez
+---
 
-### 11 · Inbound & outbound
+## . 
+> **
 
-## Dos depósitos en un canal.
 
 «La capacidad de un canal es la suma de los saldos de ambos lados. Lo que puedes _enviar_ es tu saldo local (outbound); lo que puedes _recibir_ es el saldo remoto (inbound).»
 
@@ -1203,11 +1203,11 @@ Canal equilibrado
 *   **Inbound**: sats del otro lado. Determina cuánto puedes recibir.
 *   **Desbalance**: canales sin inbound no pueden recibir pagos. Hay que rebalancear (circular payments, submarine swaps, LSP).
 
-### 12 · Ejemplo completo
+---
 
-### 12 · Ejemplo completo
+## . 
+> **
 
-## Alice paga 1 BTC a Eric a través de 3 intermediarios.
 
 ```text
 Invoice: H = hash(R)
@@ -1238,11 +1238,11 @@ Canal Diana ↔ Eric
 01 Configuración inicial
 Cada par de nodos vecinos ya ha abierto previamente un canal Lightning entre ellos. Cada nodo ha bloqueado **2 BTC** en su lado del canal, así que **cada canal arranca con 4 BTC de capacidad total** repartidos a partes iguales.
 
-### 13 · Arquitectura técnica
+---
 
-### 13 · Arquitectura técnica
+## . 
+> **
 
-## Una red P2P sobre Bitcoin.
 
 Cada nodo Lightning mantiene conexiones cifradas con sus _peers_, vigila su subconjunto de la cadena y participa en un _gossip_ distribuido para descubrir rutas. La implementación de referencia cumple las **BOLTs**.
 
@@ -1270,11 +1270,11 @@ Cada nodo Lightning mantiene conexiones cifradas con sus _peers_, vigila su subc
 
 El nodo Lightning habla con **tres mundos**: la wallet del usuario, sus peers Lightning y bitcoind.
 
-### 14 · Wallets y custodia
+---
 
-### 14 · Wallets Lightning
+## . 
+> **
 
-## Wallets Lightning: ¿quién tiene las keys?
 
 Toda interacción del usuario con Lightning pasa por una **wallet**. La gran división entre wallets está en **quién custodia los fondos**: el proveedor de la wallet, o el propio usuario.
 
@@ -1322,11 +1322,11 @@ HÍBRIDOS Modelos intermedios
 
 Algunos wallets delegan la conectividad y el enrutado sin tomar custodia: el usuario conserva las claves pero no opera un nodo 24/7.
 
-### 15 · BOLT 11
+---
 
-### 15 · BOLT 11
+## . 
+> **
 
-## Anatomía de una invoice.
 
 **BOLT 11** (_Basis Of Lightning Technology #11_) es la especificación abierta que define cómo se codifica una _payment request_. Empaqueta en un único string **bech32** todo lo que el remitente necesita para pagar: destino, _payment hash_, importe, expiración y pistas de ruta.
 
@@ -1354,11 +1354,11 @@ Ejemplo real de la spec BOLT 11 · 2 500 μBTC (≈ 250 000 sats) en mainnet · 
 
 UTILIDAD [lightningdecoder.com](https://lightningdecoder.com/) — pega una invoice y la descompone en tiempo real.
 
-### 16 · UX moderna
+---
 
-### 16 · Más allá de BOLT 11
+## . 
+> **
 
-## Experiencias reutilizables y estáticas.
 
 Una invoice BOLT 11 sirve para **un único cobro**: quien recibe tiene que generar una nueva cada vez. Esto no encaja del todo con suscripciones, donaciones abiertas o propinas en streaming. Actualizaciones modernas añaden **tres mecanismos por encima** que cubren esos huecos sin tocar el protocolo base.
 
