@@ -1,0 +1,2794 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recordatorio · ¿Qué es Bitcoin? — Módulo 5 (presentación)</title>
+  <meta name="author" content="Manuel Montenegro">
+  <meta name="description" content="Sesión 1 · Teoría Bitcoin — Introducción y recordatorio de los fundamentos de Bitcoin antes de desplegar la infraestructura.">
+
+  <!-- Fonts: Archivo (display) + Nunito (body) + JetBrains Mono (code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&amp;family=Nunito:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+
+  <style>
+    /* ========================================================================
+       THEME TOKENS · Swiss Modern
+       Change these to adjust the whole look.
+       ======================================================================== */
+    :root {
+      /* Core palette */
+      --bg:        #ffffff;
+      --bg-panel:  #f5f5f5;
+      --ink:       #0a0a0a;
+      --ink-soft:  #3a3a3a;
+      --muted:     #6a6a6a;
+      --muted-2:   #b0b0b0;
+      --grid:      rgba(10, 10, 10, 0.05);
+      --grid-line: rgba(10, 10, 10, 0.08);
+
+      /* Accents */
+      --accent:    #ff3300;   /* Swiss red */
+      --accent-2:  #0a0a0a;   /* Black as co-accent */
+      --accent-btc:#f7931a;   /* Bitcoin orange (used very sparingly) */
+
+      /* Typography */
+      --font-display: "Archivo", sans-serif;
+      --font-body:    "Nunito", sans-serif;
+      --font-mono:    "JetBrains Mono", ui-monospace, monospace;
+
+      /* Motion */
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --duration-normal: 0.7s;
+    }
+
+    /* ========================================================================
+       GLOBAL RESETS
+       ======================================================================== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ========================================================================
+       VIEWPORT FITTING — MANDATORY BASE STYLES
+       (verbatim copy of viewport-base.css; don't remove)
+       ======================================================================== */
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+    }
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .slide-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-height: 100%;
+      overflow: hidden;
+      padding: var(--slide-padding);
+    }
+    :root {
+      --title-size: clamp(1.5rem, 5vw, 4rem);
+      --h2-size:    clamp(1.25rem, 3.5vw, 2.5rem);
+      --h3-size:    clamp(1rem, 2.5vw, 1.75rem);
+      --body-size:  clamp(0.75rem, 1.5vw, 1.125rem);
+      --small-size: clamp(0.65rem, 1vw, 0.875rem);
+      --slide-padding: clamp(1rem, 4vw, 4rem);
+      --content-gap:   clamp(0.5rem, 2vw, 2rem);
+      --element-gap:   clamp(0.25rem, 1vw, 1rem);
+    }
+    .card, .container, .content-box {
+      max-width: min(90vw, 1000px);
+      max-height: min(80vh, 700px);
+    }
+    .feature-list, .bullet-list { gap: clamp(0.4rem, 1vh, 1rem); }
+    .feature-list li, .bullet-list li {
+      font-size: var(--body-size);
+      line-height: 1.4;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+      gap: clamp(0.5rem, 1.5vw, 1rem);
+    }
+    img, .image-container {
+      max-width: 100%;
+      max-height: min(50vh, 400px);
+      object-fit: contain;
+    }
+    @media (max-height: 700px) {
+      :root {
+        --slide-padding: clamp(0.75rem, 3vw, 2rem);
+        --content-gap:   clamp(0.4rem, 1.5vw, 1rem);
+        --title-size:    clamp(1.25rem, 4.5vw, 2.5rem);
+        --h2-size:       clamp(1rem, 3vw, 1.75rem);
+      }
+    }
+    @media (max-height: 600px) {
+      :root {
+        --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem);
+        --content-gap:   clamp(0.3rem, 1vw, 0.75rem);
+        --title-size:    clamp(1.1rem, 4vw, 2rem);
+        --body-size:     clamp(0.7rem, 1.2vw, 0.95rem);
+      }
+      .nav-dots, .keyboard-hint, .decorative { display: none; }
+    }
+    @media (max-height: 500px) {
+      :root {
+        --slide-padding: clamp(0.4rem, 2vw, 1rem);
+        --title-size:    clamp(1rem, 3.5vw, 1.5rem);
+        --h2-size:       clamp(0.9rem, 2.5vw, 1.25rem);
+        --body-size:     clamp(0.65rem, 1vw, 0.85rem);
+      }
+    }
+    @media (max-width: 600px) {
+      :root { --title-size: clamp(1.25rem, 7vw, 2.5rem); }
+      .grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.2s !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ========================================================================
+       BODY · BACKGROUND
+       Swiss Modern: pure white with a very subtle 12-column grid.
+       ======================================================================== */
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.5;
+      background-image:
+        linear-gradient(to right, var(--grid) 1px, transparent 1px);
+      background-size: calc(100% / 12) 100%;
+    }
+
+    /* ========================================================================
+       SLIDE FRAME (shared header + footer)
+       ======================================================================== */
+    .slide {
+      padding: clamp(1.25rem, 3.5vw, 3.5rem);
+    }
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-bottom: clamp(0.5rem, 1vw, 0.75rem);
+      border-bottom: 1px solid var(--grid-line);
+    }
+    .slide-header .left {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-family: var(--font-display); font-weight: 800;
+      font-size: clamp(0.65rem, 0.95vw, 0.85rem);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+    }
+    .slide-header .left .mark {
+      width: clamp(0.55rem, 0.9vw, 0.8rem);
+      height: clamp(0.55rem, 0.9vw, 0.8rem);
+      background: var(--accent);
+    }
+    .slide-header .right {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(0.65rem, 0.95vw, 0.85rem);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(1rem, 2vw, 2rem) 0;
+      gap: clamp(0.75rem, 1.5vw, 1.5rem);
+      min-height: 0;
+    }
+
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      padding-top: clamp(0.4rem, 0.8vw, 0.75rem);
+      border-top: 1px solid var(--grid-line);
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+      color: var(--muted);
+    }
+    .slide-footer b { color: var(--ink); font-weight: 600; }
+    .slide-footer .page {
+      font-family: var(--font-display);
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: var(--ink);
+    }
+    .slide-footer .page .sep { color: var(--muted-2); margin: 0 0.3em; }
+
+    /* ========================================================================
+       SECTION KICKER + HEADING
+       ======================================================================== */
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: clamp(0.4rem, 0.7vw, 0.6rem);
+      font-family: var(--font-display); font-weight: 800;
+      font-size: clamp(0.7rem, 1vw, 0.95rem);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .kicker .bar {
+      width: clamp(1.25rem, 2.5vw, 2.5rem);
+      height: clamp(0.15rem, 0.25vw, 0.25rem);
+      background: var(--accent);
+    }
+    h2.heading {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(1.75rem, 5.5vw, 4.75rem);
+      line-height: 0.95;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      max-width: 18ch;
+    }
+    h2.heading .accent { color: var(--accent); }
+    h2.heading .stroke {
+      color: transparent;
+      -webkit-text-stroke: clamp(1px, 0.15vw, 2px) var(--ink);
+    }
+
+    /* ========================================================================
+       SLIDE 1 · TITLE
+       ======================================================================== */
+    .title-slide { background: var(--bg); }
+    .title-slide .slide-body {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr auto;
+      gap: clamp(1rem, 2vw, 2rem);
+    }
+    .title-slide .title-main {
+      align-self: center;
+      max-width: 24ch;
+    }
+    .title-slide .eyebrow-tag {
+      display: inline-block;
+      padding: clamp(0.3rem, 0.5vw, 0.45rem) clamp(0.65rem, 1vw, 0.95rem);
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.7rem, 1vw, 0.9rem);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    }
+    .title-slide h1 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.5rem, 10vw, 9rem);
+      line-height: 0.88;
+      letter-spacing: -0.035em;
+    }
+    .title-slide h1 .accent { color: var(--accent); }
+    .title-slide .rule {
+      margin-top: clamp(1rem, 2vw, 1.5rem);
+      width: clamp(2.5rem, 5vw, 5rem);
+      height: clamp(0.2rem, 0.3vw, 0.3rem);
+      background: var(--ink);
+    }
+    .title-slide .subline {
+      margin-top: clamp(0.75rem, 1.5vw, 1.25rem);
+      font-family: var(--font-body);
+      font-size: clamp(0.9rem, 1.4vw, 1.25rem);
+      color: var(--ink-soft);
+      max-width: 34ch;
+      line-height: 1.45;
+    }
+    .title-slide .circle-deco {
+      position: absolute;
+      top: clamp(3rem, 8vw, 7rem);
+      right: clamp(2rem, 6vw, 6rem);
+      width: clamp(7rem, 16vw, 17rem);
+      height: clamp(7rem, 16vw, 17rem);
+      border: clamp(1.5px, 0.25vw, 3px) solid var(--ink);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      pointer-events: none;
+    }
+    .title-slide .circle-deco::before {
+      content: "₿";
+      font-family: var(--font-display);
+      font-weight: 900;
+      color: var(--accent);
+      font-size: clamp(3rem, 8vw, 8rem);
+      line-height: 1;
+    }
+    .title-slide .byline {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      font-family: var(--font-body);
+      font-size: clamp(0.8rem, 1.1vw, 1rem);
+    }
+    .title-slide .byline .name { font-weight: 700; color: var(--ink); }
+    .title-slide .byline .meta {
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+      color: var(--muted);
+    }
+
+    /* ========================================================================
+       LAYOUT · TWO-COLUMN (heading left · content right)
+       ======================================================================== */
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: clamp(1.5rem, 3vw, 3rem);
+      align-items: start;
+      min-height: 0;
+    }
+    @media (max-width: 720px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+    .col-left { display: flex; flex-direction: column; gap: clamp(0.75rem, 1.5vw, 1.25rem); }
+    .col-right { display: flex; flex-direction: column; gap: clamp(0.75rem, 1.5vw, 1.25rem); min-width: 0; }
+
+    /* ========================================================================
+       BULLET LIST (Swiss style)
+       ======================================================================== */
+    ul.feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      counter-reset: bullet;
+    }
+    ul.feature-list li {
+      position: relative;
+      padding: clamp(0.5rem, 1vw, 0.8rem) 0 clamp(0.5rem, 1vw, 0.8rem) clamp(2.25rem, 3.5vw, 3rem);
+      border-bottom: 1px solid var(--grid-line);
+      counter-increment: bullet;
+      font-size: clamp(0.85rem, 1.2vw, 1rem);
+      line-height: 1.5;
+      color: var(--ink-soft);
+    }
+    ul.feature-list li::before {
+      content: counter(bullet, decimal-leading-zero);
+      position: absolute;
+      top: clamp(0.55rem, 1.1vw, 0.9rem);
+      left: 0;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.7rem, 1vw, 0.85rem);
+      letter-spacing: 0.15em;
+      color: var(--accent);
+    }
+    ul.feature-list li b { color: var(--ink); font-weight: 700; }
+
+    /* ========================================================================
+       STAT STRIP (Slide 2 · Origen)
+       ======================================================================== */
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(0.5rem, 1vw, 1rem);
+      padding: clamp(0.75rem, 1.5vw, 1rem) 0;
+      border-top: clamp(1.5px, 0.25vw, 2px) solid var(--ink);
+      border-bottom: clamp(1.5px, 0.25vw, 2px) solid var(--ink);
+    }
+    @media (max-width: 720px) {
+      .stat-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+    .stat { display: flex; flex-direction: column; gap: 0.2rem; }
+    .stat .num {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(1.75rem, 4.5vw, 3.75rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+    .stat .num .small {
+      font-size: 0.55em;
+      color: var(--muted);
+      margin-left: 0.1em;
+      letter-spacing: 0.05em;
+    }
+    .stat .lbl {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(0.6rem, 0.85vw, 0.75rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ========================================================================
+       PULL QUOTE (Slide 3 · Cimientos)
+       ======================================================================== */
+    .pull-quote {
+      padding: clamp(1rem, 2vw, 1.75rem) clamp(1.25rem, 2.5vw, 2rem);
+      border-left: clamp(3px, 0.5vw, 5px) solid var(--accent);
+      background: var(--bg-panel);
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      line-height: 1.25;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .pull-quote .src {
+      display: block;
+      margin-top: clamp(0.4rem, 0.8vw, 0.7rem);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-style: italic;
+      font-size: clamp(0.7rem, 1vw, 0.9rem);
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* ========================================================================
+       QUOTE CARD (Slide 2 · Origen) — numbered questions with attribution
+       ======================================================================== */
+    .quote-card {
+      padding: clamp(0.85rem, 1.5vw, 1.25rem) clamp(1rem, 1.8vw, 1.4rem);
+      border: 1px solid var(--ink);
+      border-left: clamp(3px, 0.5vw, 5px) solid var(--accent);
+      background: var(--bg-panel);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.45rem, 0.9vw, 0.75rem);
+    }
+    .quote-card .q-head {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.62rem, 0.9vw, 0.78rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .quote-card .q-list {
+      list-style: none;
+      counter-reset: q;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.3rem, 0.65vw, 0.5rem);
+      margin: 0;
+      padding: 0;
+    }
+    .quote-card .q-list li {
+      position: relative;
+      padding: 0 0 0 clamp(1.5rem, 2.2vw, 2rem);
+      counter-increment: q;
+      font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+      line-height: 1.4;
+      color: var(--ink);
+      border: none;
+    }
+    .quote-card .q-list li::before {
+      content: counter(q);
+      position: absolute;
+      left: 0;
+      top: 0.1em;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(0.75rem, 1vw, 0.9rem);
+      color: var(--accent);
+      letter-spacing: 0;
+    }
+    .quote-card .q-list li em {
+      color: var(--muted);
+      font-style: italic;
+      font-weight: 500;
+    }
+    .quote-card .q-src {
+      display: block;
+      padding-top: clamp(0.3rem, 0.6vw, 0.5rem);
+      border-top: 1px solid var(--grid-line);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-style: italic;
+      font-size: clamp(0.68rem, 0.95vw, 0.82rem);
+      color: var(--muted);
+    }
+
+    /* Override the global .feature-list style when bullets are inside .quote-card
+       (the generic feature-list rule targets .slide ul li; quote-card uses its own list) */
+
+    /* ========================================================================
+       ADDRESS CARDS (Slide 4 · Direcciones)
+       ======================================================================== */
+    .address-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(0.5rem, 1vw, 0.75rem);
+    }
+    @media (max-width: 720px) {
+      .address-grid { grid-template-columns: 1fr; }
+    }
+    .addr-card {
+      padding: clamp(0.75rem, 1.2vw, 1rem);
+      border: 1px solid var(--ink);
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.4rem, 0.8vw, 0.6rem);
+      min-width: 0;
+    }
+    .addr-card .tag {
+      display: inline-block;
+      padding: 0.15rem 0.45rem;
+      background: var(--ink);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.6rem, 0.85vw, 0.75rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      align-self: flex-start;
+    }
+    .addr-card .tag.red { background: var(--accent); }
+    .addr-card .tag.btc { background: var(--accent-btc); color: var(--ink); }
+    .addr-card .name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+      color: var(--ink);
+    }
+    .addr-card .sample {
+      font-family: var(--font-mono);
+      font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+      color: var(--ink-soft);
+      word-break: break-all;
+      padding: clamp(0.3rem, 0.6vw, 0.5rem);
+      background: var(--bg-panel);
+      border-radius: 2px;
+      line-height: 1.4;
+    }
+    .addr-card .desc {
+      font-size: clamp(0.7rem, 0.95vw, 0.85rem);
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ========================================================================
+       BLOCKCHAIN DIAGRAM (Slide 5)
+       ======================================================================== */
+    .chain {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: clamp(0.4rem, 0.8vw, 0.6rem);
+      padding: clamp(0.75rem, 1.5vw, 1rem) 0;
+    }
+    .block {
+      border: clamp(1.5px, 0.2vw, 2px) solid var(--ink);
+      background: var(--bg);
+      padding: clamp(0.5rem, 1vw, 0.85rem);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.3rem, 0.55vw, 0.45rem);
+      min-width: 0;
+    }
+    .block.current { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .block.current .row b { color: #fff; }
+    .block .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: clamp(0.2rem, 0.4vw, 0.3rem);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .block .head .n { opacity: 0.8; }
+    .block .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: clamp(0.6rem, 0.85vw, 0.75rem);
+      color: inherit;
+    }
+    .block .row b { color: var(--ink); font-weight: 500; }
+    .block.current .row { color: #fff; }
+    .link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      color: var(--ink);
+    }
+    .link .arrow {
+      width: clamp(1.5rem, 3vw, 3rem);
+      height: clamp(1px, 0.2vw, 2px);
+      background: var(--ink);
+      position: relative;
+    }
+    .link .arrow::after {
+      content: "";
+      position: absolute;
+      right: -1px;
+      top: 50%;
+      width: clamp(0.4rem, 0.7vw, 0.7rem);
+      height: clamp(0.4rem, 0.7vw, 0.7rem);
+      border-top: clamp(1px, 0.2vw, 2px) solid var(--ink);
+      border-right: clamp(1px, 0.2vw, 2px) solid var(--ink);
+      transform: translateY(-50%) rotate(45deg);
+    }
+    .link .hash-label {
+      position: absolute;
+      top: calc(100% + 0.25rem);
+      font-family: var(--font-mono);
+      font-size: clamp(0.55rem, 0.75vw, 0.65rem);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* ========================================================================
+       CIA TRIAD (Slide 6)
+       ======================================================================== */
+    .cia-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(0.5rem, 1vw, 0.85rem);
+    }
+    @media (max-width: 720px) {
+      .cia-grid { grid-template-columns: 1fr; }
+    }
+    .cia-card {
+      padding: clamp(0.8rem, 1.4vw, 1.25rem);
+      border: clamp(1.5px, 0.2vw, 2px) solid var(--ink);
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.35rem, 0.7vw, 0.55rem);
+      position: relative;
+      min-width: 0;
+    }
+    .cia-card .letter {
+      position: absolute;
+      top: clamp(0.4rem, 0.8vw, 0.6rem);
+      right: clamp(0.5rem, 1vw, 0.8rem);
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0.85;
+    }
+    .cia-card .lbl {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.6rem, 0.85vw, 0.72rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .cia-card .name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      line-height: 1.15;
+      color: var(--ink);
+    }
+    .cia-card .desc {
+      font-size: clamp(0.75rem, 1vw, 0.9rem);
+      line-height: 1.45;
+      color: var(--ink-soft);
+      margin-top: clamp(0.2rem, 0.4vw, 0.4rem);
+    }
+
+    /* ========================================================================
+       TRANSACTIONS (Slide · Transacciones y UTXO)
+       ======================================================================== */
+    .tx-split {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: clamp(0.6rem, 1.2vw, 1rem);
+      align-items: stretch;
+    }
+    @media (max-width: 860px) {
+      .tx-split { grid-template-columns: 1fr; }
+    }
+
+    .analogy-card,
+    .tx-diagram {
+      padding: clamp(0.8rem, 1.3vw, 1.1rem) clamp(0.95rem, 1.5vw, 1.3rem);
+      border: 1px solid var(--ink);
+      background: var(--bg-panel);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.45rem, 0.9vw, 0.75rem);
+      min-width: 0;
+    }
+    .analogy-card { border-left: clamp(3px, 0.5vw, 5px) solid var(--accent-2); }
+    .tx-diagram   { border-left: clamp(3px, 0.5vw, 5px) solid var(--accent); }
+
+    .analogy-card .q-head,
+    .tx-diagram .q-head {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.6rem, 0.88vw, 0.74rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .analogy-card p {
+      font-size: clamp(0.75rem, 1vw, 0.9rem);
+      line-height: 1.5;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+    .analogy-card p b { color: var(--ink); font-weight: 700; }
+    .analogy-card p em {
+      font-style: italic;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .tx-flow {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: clamp(0.25rem, 0.55vw, 0.45rem);
+      align-items: stretch;
+    }
+    .tx-col {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.2rem, 0.45vw, 0.35rem);
+      padding: clamp(0.4rem, 0.75vw, 0.6rem);
+      border: 1px solid var(--ink);
+      background: var(--bg);
+      min-width: 0;
+    }
+    .tx-col .col-label {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.53rem, 0.72vw, 0.65rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: clamp(0.18rem, 0.35vw, 0.28rem);
+      border-bottom: 1px solid var(--grid-line);
+    }
+    .tx-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: clamp(0.58rem, 0.82vw, 0.7rem);
+      color: var(--ink-soft);
+    }
+    .tx-row .io-addr {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
+    }
+    .tx-row .io-amt { color: var(--ink); font-weight: 600; white-space: nowrap; }
+    .tx-total {
+      margin-top: auto;
+      padding-top: clamp(0.22rem, 0.45vw, 0.38rem);
+      border-top: 1px dashed var(--grid-line);
+      font-family: var(--font-mono);
+      font-size: clamp(0.58rem, 0.8vw, 0.7rem);
+      color: var(--muted);
+    }
+    .tx-total b { color: var(--ink); font-weight: 700; }
+    .tx-col.outputs .tx-total b { color: var(--accent); }
+
+    .tx-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+      color: var(--ink);
+      padding: 0 clamp(0.2rem, 0.4vw, 0.35rem);
+    }
+    .tx-arrow .arrow {
+      width: clamp(1.25rem, 2.2vw, 2rem);
+      height: clamp(1px, 0.2vw, 2px);
+      background: var(--ink);
+      position: relative;
+    }
+    .tx-arrow .arrow::after {
+      content: "";
+      position: absolute;
+      right: -1px;
+      top: 50%;
+      width: clamp(0.35rem, 0.6vw, 0.55rem);
+      height: clamp(0.35rem, 0.6vw, 0.55rem);
+      border-top: clamp(1px, 0.2vw, 2px) solid var(--ink);
+      border-right: clamp(1px, 0.2vw, 2px) solid var(--ink);
+      transform: translateY(-50%) rotate(45deg);
+    }
+    .tx-arrow .arrow-lbl {
+      font-family: var(--font-mono);
+      font-size: clamp(0.52rem, 0.7vw, 0.62rem);
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .tx-fee {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: clamp(0.35rem, 0.7vw, 0.6rem) clamp(0.5rem, 1vw, 0.85rem);
+      padding: clamp(0.4rem, 0.75vw, 0.6rem) clamp(0.55rem, 1vw, 0.85rem);
+      background: var(--ink);
+      color: #fff;
+    }
+    .tx-fee .fee-tag {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(0.58rem, 0.8vw, 0.7rem);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .tx-fee .fee-math {
+      font-family: var(--font-mono);
+      font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+      color: #fff;
+    }
+    .tx-fee .fee-math b {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .tx-fee .fee-note {
+      font-size: clamp(0.62rem, 0.85vw, 0.75rem);
+      color: rgba(255, 255, 255, 0.72);
+      font-style: italic;
+      flex: 1;
+      min-width: 12ch;
+      line-height: 1.4;
+    }
+
+    /* ========================================================================
+       NETWORK SLIDES (WMBN anatomy, node types, SPV, relay networks)
+       ======================================================================== */
+
+    /* --- Two-column split shared by network slides --- */
+    .net-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(0.7rem, 1.3vw, 1.1rem);
+      align-items: stretch;
+      min-height: 0;
+    }
+    .net-split.lean { grid-template-columns: 1.1fr 1fr; }
+    @media (max-width: 860px) {
+      .net-split, .net-split.lean { grid-template-columns: 1fr; }
+    }
+
+    /* --- WMBN module grid (2x2 of coloured circles) --- */
+    .wmbn-wrap {
+      padding: clamp(0.8rem, 1.3vw, 1.1rem);
+      border: 1px solid var(--ink);
+      background: var(--bg-panel);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.5rem, 1vw, 0.85rem);
+      min-width: 0;
+    }
+    .wmbn-wrap .q-head {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.6rem, 0.88vw, 0.74rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .wmbn-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(0.45rem, 0.9vw, 0.75rem);
+    }
+    .wmbn-cell {
+      display: flex;
+      align-items: center;
+      gap: clamp(0.5rem, 1vw, 0.8rem);
+      padding: clamp(0.5rem, 0.9vw, 0.75rem);
+      border: 1px solid var(--ink);
+      background: var(--bg);
+      min-width: 0;
+    }
+    .wmbn-cell .bubble {
+      flex: 0 0 auto;
+      width: clamp(2rem, 3.4vw, 2.6rem);
+      height: clamp(2rem, 3.4vw, 2.6rem);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(0.85rem, 1.4vw, 1.15rem);
+      line-height: 1;
+    }
+    .wmbn-cell .bubble.w { background: #4b9f63; }
+    .wmbn-cell .bubble.m { background: #0a0a0a; }
+    .wmbn-cell .bubble.b { background: #2f78c4; }
+    .wmbn-cell .bubble.n { background: var(--accent-btc); color: var(--ink); }
+    .wmbn-cell .label {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.1rem, 0.25vw, 0.2rem);
+      min-width: 0;
+    }
+    .wmbn-cell .label .name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.75rem, 1.05vw, 0.9rem);
+      color: var(--ink);
+      line-height: 1.1;
+    }
+    .wmbn-cell .label .desc {
+      font-size: clamp(0.63rem, 0.85vw, 0.75rem);
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    /* --- Node-type cards (full / archive / lightweight / api) --- */
+    .node-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(0.5rem, 1vw, 0.85rem);
+    }
+    @media (max-width: 860px) { .node-grid { grid-template-columns: 1fr; } }
+    .node-card {
+      padding: clamp(0.7rem, 1.2vw, 1rem);
+      border: 1px solid var(--ink);
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.3rem, 0.6vw, 0.5rem);
+      min-width: 0;
+      position: relative;
+    }
+    .node-card .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35em;
+      align-self: flex-start;
+      padding: 0.15rem 0.5rem;
+      background: var(--ink);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.55rem, 0.78vw, 0.68rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .node-card .tag.red { background: var(--accent); }
+    .node-card .tag.btc { background: var(--accent-btc); color: var(--ink); }
+    .node-card .tag.muted { background: var(--muted); }
+    .node-card .name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.95rem, 1.35vw, 1.15rem);
+      color: var(--ink);
+      line-height: 1.1;
+    }
+    .node-card .modules {
+      font-family: var(--font-mono);
+      font-size: clamp(0.6rem, 0.85vw, 0.72rem);
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    .node-card .modules b { color: var(--accent); font-weight: 700; }
+    .node-card .desc {
+      font-size: clamp(0.7rem, 0.95vw, 0.82rem);
+      color: var(--ink-soft);
+      line-height: 1.42;
+    }
+    .node-card .desc b { color: var(--ink); font-weight: 700; }
+
+    /* --- Sybil warning card --- */
+    .warn-card {
+      padding: clamp(0.75rem, 1.3vw, 1.1rem) clamp(0.9rem, 1.5vw, 1.25rem);
+      border: 1px solid var(--ink);
+      border-left: clamp(3px, 0.5vw, 5px) solid var(--accent);
+      background: var(--bg-panel);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.35rem, 0.75vw, 0.6rem);
+      min-width: 0;
+    }
+    .warn-card .tag {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 0.15rem 0.55rem;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(0.58rem, 0.82vw, 0.72rem);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+    .warn-card .name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+      color: var(--ink);
+      line-height: 1.15;
+    }
+    .warn-card .desc {
+      font-size: clamp(0.72rem, 1vw, 0.87rem);
+      color: var(--ink-soft);
+      line-height: 1.45;
+    }
+    .warn-card .desc b { color: var(--ink); font-weight: 700; }
+    .warn-card .desc em { color: var(--accent); font-style: italic; font-weight: 500; }
+
+    /* --- Relay network cards (BRN + FIBRE) --- */
+    .relay-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(0.5rem, 1vw, 0.85rem);
+    }
+    @media (max-width: 720px) { .relay-grid { grid-template-columns: 1fr; } }
+    .relay-card {
+      padding: clamp(0.75rem, 1.2vw, 1rem);
+      border: 1px solid var(--ink);
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.3rem, 0.6vw, 0.5rem);
+      min-width: 0;
+    }
+    .relay-card.accent { background: var(--bg-panel); border-left: clamp(3px, 0.5vw, 5px) solid var(--accent); }
+    .relay-card .year {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+      color: var(--accent);
+      line-height: 1;
+    }
+    .relay-card .name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+      color: var(--ink);
+      line-height: 1.15;
+    }
+    .relay-card .sub {
+      font-family: var(--font-mono);
+      font-size: clamp(0.6rem, 0.85vw, 0.72rem);
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    .relay-card .desc {
+      font-size: clamp(0.7rem, 0.95vw, 0.83rem);
+      color: var(--ink-soft);
+      line-height: 1.42;
+    }
+
+    /* --- Inline prose card used in network overview slide --- */
+    .prose-card {
+      padding: clamp(0.8rem, 1.3vw, 1.1rem) clamp(0.95rem, 1.5vw, 1.3rem);
+      border: 1px solid var(--ink);
+      background: var(--bg-panel);
+      border-left: clamp(3px, 0.5vw, 5px) solid var(--accent-2);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.45rem, 0.9vw, 0.75rem);
+      min-width: 0;
+    }
+    .prose-card .q-head {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.6rem, 0.88vw, 0.74rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .prose-card p {
+      font-size: clamp(0.75rem, 1vw, 0.9rem);
+      line-height: 1.5;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+    .prose-card p b { color: var(--ink); font-weight: 700; }
+    .prose-card p em { color: var(--accent); font-style: italic; font-weight: 500; }
+
+    /* --- Mini feature list used tightly inside cards --- */
+    .mini-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.2rem, 0.45vw, 0.35rem);
+    }
+    .mini-list li {
+      position: relative;
+      padding-left: clamp(0.9rem, 1.4vw, 1.15rem);
+      font-size: clamp(0.7rem, 0.95vw, 0.82rem);
+      color: var(--ink-soft);
+      line-height: 1.4;
+    }
+    .mini-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: clamp(0.35rem, 0.6vw, 0.5rem);
+      height: 1px;
+      background: var(--accent);
+    }
+    .mini-list li b { color: var(--ink); font-weight: 700; }
+
+    .closing-line {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(0.9rem, 1.4vw, 1.15rem);
+      color: var(--ink);
+      line-height: 1.35;
+      padding-top: clamp(0.4rem, 0.8vw, 0.75rem);
+      border-top: 1px solid var(--grid-line);
+    }
+    .closing-line b { color: var(--accent); font-weight: 700; }
+
+    /* ========================================================================
+       PROGRESS BAR + NAV DOTS
+       ======================================================================== */
+    .progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: clamp(2px, 0.3vw, 3px);
+      width: 0%;
+      background: var(--accent);
+      z-index: 100;
+      transition: width 0.3s var(--ease-out-expo);
+    }
+    .nav-dots {
+      position: fixed;
+      right: clamp(0.75rem, 1.5vw, 1.5rem);
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.4rem, 0.8vw, 0.65rem);
+    }
+    .nav-dots button {
+      width: clamp(0.5rem, 0.8vw, 0.65rem);
+      height: clamp(0.5rem, 0.8vw, 0.65rem);
+      border-radius: 50%;
+      border: 1px solid var(--ink);
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.25s ease, transform 0.25s ease;
+    }
+    .nav-dots button:hover { transform: scale(1.25); }
+    .nav-dots button.active { background: var(--accent); border-color: var(--accent); }
+
+    .keyboard-hint {
+      position: fixed;
+      bottom: clamp(0.75rem, 1.5vw, 1.25rem);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 90;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(0.6rem, 0.85vw, 0.75rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      gap: clamp(0.5rem, 1vw, 0.85rem);
+      align-items: center;
+      pointer-events: none;
+    }
+    .keyboard-hint .key {
+      display: inline-block;
+      padding: 0.1rem 0.4rem;
+      border: 1px solid var(--muted-2);
+      border-radius: 3px;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    /* ========================================================================
+       ANIMATIONS
+       ======================================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition:
+        opacity var(--duration-normal) var(--ease-out-expo),
+        transform var(--duration-normal) var(--ease-out-expo);
+    }
+    .slide.visible .reveal { opacity: 1; transform: translateY(0); }
+    .slide.visible .reveal:nth-of-type(1) { transition-delay: 0.05s; }
+    .slide.visible .reveal:nth-of-type(2) { transition-delay: 0.15s; }
+    .slide.visible .reveal:nth-of-type(3) { transition-delay: 0.28s; }
+    .slide.visible .reveal:nth-of-type(4) { transition-delay: 0.42s; }
+    .slide.visible .reveal:nth-of-type(5) { transition-delay: 0.55s; }
+    .slide.visible .reveal:nth-of-type(6) { transition-delay: 0.68s; }
+
+    /* ========================================================================
+       INLINE EDITING UI
+       JS-controlled visibility (don't use CSS ~ sibling selector).
+       ======================================================================== */
+    .edit-hotzone {
+      position: fixed;
+      top: 0; left: 0;
+      width: 80px;
+      height: 80px;
+      z-index: 10000;
+      cursor: pointer;
+    }
+    .edit-toggle {
+      position: fixed;
+      top: clamp(0.75rem, 1.5vw, 1.25rem);
+      left: clamp(0.75rem, 1.5vw, 1.25rem);
+      width: clamp(2.25rem, 3vw, 2.75rem);
+      height: clamp(2.25rem, 3vw, 2.75rem);
+      border: 1px solid var(--ink);
+      background: var(--bg);
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10001;
+      display: grid;
+      place-items: center;
+      font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, background 0.2s ease;
+    }
+    .edit-toggle.show, .edit-toggle.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .edit-toggle.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .edit-banner {
+      position: fixed;
+      top: clamp(0.75rem, 1.5vw, 1.25rem);
+      left: 50%;
+      transform: translate(-50%, -120%);
+      background: var(--ink);
+      color: #fff;
+      padding: clamp(0.4rem, 0.8vw, 0.55rem) clamp(0.75rem, 1.2vw, 1rem);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      border-radius: 3px;
+      z-index: 10002;
+      transition: transform 0.35s var(--ease-out-expo);
+      white-space: nowrap;
+    }
+    .edit-banner.active { transform: translate(-50%, 0); }
+    .edit-banner .dot {
+      display: inline-block;
+      width: 0.5rem; height: 0.5rem;
+      background: var(--accent);
+      border-radius: 50%;
+      margin-right: 0.55rem;
+      vertical-align: middle;
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+    }
+
+    body.edit-active [contenteditable="true"] {
+      outline: 1px dashed var(--accent);
+      outline-offset: 3px;
+      cursor: text;
+      border-radius: 2px;
+    }
+    body.edit-active [contenteditable="true"]:focus {
+      outline: 2px solid var(--accent);
+      background: rgba(255, 51, 0, 0.06);
+    }
+
+    /* ========================================================================
+       MINING & CONSENSUS · Slides 11-14
+       ======================================================================== */
+
+    /* --- Consensus four-pillars grid --- */
+    .consensus-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(0.5rem, 1vw, 0.85rem);
+    }
+    @media (max-width: 900px) { .consensus-grid { grid-template-columns: repeat(2, 1fr); } }
+    .consensus-card {
+      padding: clamp(0.7rem, 1.1vw, 0.95rem);
+      border: 1px solid var(--ink);
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.3rem, 0.55vw, 0.45rem);
+      min-width: 0;
+      position: relative;
+    }
+    .consensus-card .idx {
+      font-family: var(--font-mono);
+      font-size: clamp(0.6rem, 0.8vw, 0.72rem);
+      color: var(--accent);
+      letter-spacing: 0.14em;
+    }
+    .consensus-card .name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.78rem, 1.1vw, 0.95rem);
+      color: var(--ink);
+      line-height: 1.18;
+    }
+    .consensus-card .desc {
+      font-size: clamp(0.66rem, 0.9vw, 0.78rem);
+      color: var(--ink-soft);
+      line-height: 1.4;
+    }
+
+    /* --- Confirmation scale bar --- */
+    .confirm-scale {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: clamp(0.3rem, 0.6vw, 0.5rem);
+      align-items: stretch;
+    }
+    .confirm-step {
+      padding: clamp(0.5rem, 0.9vw, 0.7rem) clamp(0.4rem, 0.7vw, 0.55rem);
+      border: 1px solid var(--ink);
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.15rem, 0.35vw, 0.25rem);
+      align-items: flex-start;
+      min-width: 0;
+    }
+    .confirm-step.warn { background: #fff7f4; border-left: clamp(3px, 0.5vw, 5px) solid var(--accent); }
+    .confirm-step.ok { background: var(--bg-panel); border-left: clamp(3px, 0.5vw, 5px) solid var(--ink); }
+    .confirm-step .n {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+      color: var(--ink);
+      line-height: 1;
+    }
+    .confirm-step .lbl {
+      font-family: var(--font-mono);
+      font-size: clamp(0.55rem, 0.75vw, 0.68rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .confirm-step .note {
+      font-size: clamp(0.6rem, 0.82vw, 0.72rem);
+      color: var(--ink-soft);
+      line-height: 1.3;
+    }
+
+    /* --- Reward split (subsidy + fees = coinbase) --- */
+    .reward-split {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      gap: clamp(0.4rem, 0.8vw, 0.7rem);
+      align-items: stretch;
+    }
+    @media (max-width: 860px) { .reward-split { grid-template-columns: 1fr; } .reward-split .op { display: none; } }
+    .reward-card {
+      padding: clamp(0.7rem, 1.1vw, 0.95rem);
+      border: 1px solid var(--ink);
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.25rem, 0.5vw, 0.4rem);
+    }
+    .reward-card.subsidy { border-left: clamp(3px, 0.5vw, 5px) solid var(--accent-btc); }
+    .reward-card.fees { border-left: clamp(3px, 0.5vw, 5px) solid var(--accent); }
+    .reward-card.total { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    .reward-card .tag {
+      font-family: var(--font-mono);
+      font-size: clamp(0.55rem, 0.75vw, 0.68rem);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .reward-card.total .tag { color: rgba(255,255,255,0.65); }
+    .reward-card .name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.85rem, 1.2vw, 1.05rem);
+    }
+    .reward-card .val {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: clamp(0.75rem, 1.05vw, 0.92rem);
+      color: var(--accent);
+    }
+    .reward-card.total .val { color: var(--accent-btc); }
+    .reward-card .desc {
+      font-size: clamp(0.62rem, 0.85vw, 0.74rem);
+      color: var(--ink-soft);
+      line-height: 1.38;
+    }
+    .reward-card.total .desc { color: rgba(255,255,255,0.72); }
+    .reward-split .op {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+      color: var(--muted);
+    }
+
+    /* --- PoW formula card --- */
+    .pow-card {
+      padding: clamp(0.85rem, 1.4vw, 1.2rem);
+      border: 1px solid var(--ink);
+      background: var(--bg-panel);
+      border-left: clamp(3px, 0.5vw, 5px) solid var(--accent);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.45rem, 0.8vw, 0.7rem);
+    }
+    .pow-card .q-head {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.6rem, 0.88vw, 0.74rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .pow-formula {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: clamp(0.85rem, 1.35vw, 1.15rem);
+      color: var(--ink);
+      letter-spacing: 0.02em;
+      line-height: 1.3;
+    }
+    .pow-formula .var { color: var(--accent); }
+    .pow-formula .le { color: var(--accent-btc); }
+
+    /* --- Difficulty adjust callout --- */
+    .diff-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(0.4rem, 0.8vw, 0.7rem);
+      padding: clamp(0.6rem, 1vw, 0.85rem);
+      border: 1px solid var(--ink);
+      background: var(--bg);
+    }
+    @media (max-width: 860px) { .diff-strip { grid-template-columns: 1fr; } }
+    .diff-strip .cell {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.15rem, 0.35vw, 0.3rem);
+    }
+    .diff-strip .cell .big {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(1.1rem, 2vw, 1.7rem);
+      color: var(--accent);
+      line-height: 1;
+    }
+    .diff-strip .cell .cap {
+      font-family: var(--font-mono);
+      font-size: clamp(0.55rem, 0.78vw, 0.68rem);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .diff-strip .cell .sub {
+      font-size: clamp(0.65rem, 0.9vw, 0.78rem);
+      color: var(--ink-soft);
+      line-height: 1.35;
+    }
+
+    /* --- Mining pool flow diagram --- */
+    .pool-diagram {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: clamp(0.5rem, 1vw, 0.85rem);
+      align-items: stretch;
+    }
+    @media (max-width: 860px) { .pool-diagram { grid-template-columns: 1fr; } }
+    .pool-box {
+      padding: clamp(0.7rem, 1.1vw, 0.95rem);
+      border: 1px solid var(--ink);
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.3rem, 0.55vw, 0.45rem);
+      min-width: 0;
+    }
+    .pool-box.accent { background: var(--bg-panel); border-left: clamp(3px, 0.5vw, 5px) solid var(--accent); }
+    .pool-box .q-head {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.6rem, 0.88vw, 0.74rem);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .pool-box .name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+      color: var(--ink);
+      line-height: 1.15;
+    }
+    .pool-box .desc {
+      font-size: clamp(0.68rem, 0.92vw, 0.8rem);
+      color: var(--ink-soft);
+      line-height: 1.4;
+    }
+    .pool-box .desc b { color: var(--ink); font-weight: 700; }
+    .pool-box .desc em { color: var(--accent); font-style: italic; font-weight: 500; }
+
+    /* --- Share / target mono snippet --- */
+    .share-target {
+      font-family: var(--font-mono);
+      font-size: clamp(0.6rem, 0.85vw, 0.72rem);
+      color: var(--ink);
+      background: var(--bg);
+      border: 1px dashed var(--muted-2);
+      padding: clamp(0.35rem, 0.55vw, 0.45rem) clamp(0.4rem, 0.7vw, 0.6rem);
+      line-height: 1.5;
+      word-break: break-all;
+    }
+    .share-target .lead { color: var(--accent); }
+    .share-target .zeros { color: var(--muted); }
+
+    /* --- Fork comparison grid --- */
+    .fork-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(0.5rem, 1vw, 0.85rem);
+    }
+    @media (max-width: 860px) { .fork-grid { grid-template-columns: 1fr; } }
+    .fork-card {
+      padding: clamp(0.85rem, 1.3vw, 1.15rem);
+      border: 1px solid var(--ink);
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.4rem, 0.7vw, 0.6rem);
+      min-width: 0;
+    }
+    .fork-card.hard { border-left: clamp(3px, 0.5vw, 5px) solid var(--accent); background: var(--bg-panel); }
+    .fork-card.soft { border-left: clamp(3px, 0.5vw, 5px) solid var(--accent-btc); }
+    .fork-card .tag {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: clamp(0.55rem, 0.75vw, 0.68rem);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.5rem;
+      background: var(--ink);
+      color: var(--bg);
+      align-self: flex-start;
+    }
+    .fork-card.soft .tag { background: var(--accent-btc); }
+    .fork-card .title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(1rem, 1.5vw, 1.3rem);
+      color: var(--ink);
+      line-height: 1.15;
+    }
+    .fork-card .title b { color: var(--accent); font-weight: 900; }
+    .fork-card.soft .title b { color: var(--accent-btc); }
+    .fork-card .desc {
+      font-size: clamp(0.7rem, 0.95vw, 0.82rem);
+      color: var(--ink-soft);
+      line-height: 1.45;
+    }
+    .fork-card .desc b { color: var(--ink); font-weight: 700; }
+
+    /* --- Fork example callout (e.g. BCH) --- */
+    .fork-example {
+      padding: clamp(0.55rem, 0.9vw, 0.75rem) clamp(0.7rem, 1.1vw, 0.95rem);
+      border: 1px solid var(--muted-2);
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.2rem, 0.4vw, 0.3rem);
+    }
+    .fork-example .ex-head {
+      font-family: var(--font-mono);
+      font-size: clamp(0.55rem, 0.75vw, 0.68rem);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .fork-example .ex-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+      color: var(--ink);
+    }
+    .fork-example .ex-desc {
+      font-size: clamp(0.65rem, 0.88vw, 0.76rem);
+      color: var(--ink-soft);
+      line-height: 1.4;
+    }
+
+    /* --- Two-column layout utility for mining slides --- */
+    .split-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(0.5rem, 1vw, 0.85rem);
+      align-items: stretch;
+    }
+    @media (max-width: 860px) { .split-2 { grid-template-columns: 1fr; } }
+
+    /* Stratum mini sequence diagram */
+    .stratum-seq {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 0 clamp(0.3rem, 0.6vw, 0.5rem);
+      row-gap: clamp(0.18rem, 0.35vw, 0.3rem);
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: clamp(0.6rem, 0.85vw, 0.72rem);
+      padding: clamp(0.55rem, 0.9vw, 0.75rem) clamp(0.7rem, 1.1vw, 0.95rem);
+      border: 1px solid var(--ink);
+      background: var(--bg);
+    }
+    .stratum-seq .role {
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .stratum-seq .role.srv { text-align: right; }
+    .stratum-seq .msg {
+      text-align: center;
+      color: var(--accent);
+      font-weight: 600;
+      border-bottom: 1px solid var(--muted-2);
+      padding-bottom: 2px;
+    }
+    .stratum-seq .msg.up::before { content: "→ "; color: var(--muted); }
+    .stratum-seq .msg.dn::before { content: "← "; color: var(--muted); }
+  </style>
+</head>
+<body class="">
+
+  <!-- Progress bar (top) -->
+  <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
+
+  <!-- Navigation dots (right edge) — populated by JS -->
+  <nav class="nav-dots" id="navDots" aria-label="Navegación de diapositivas"><button aria-label="Ir a diapositiva 1: Portada" class="active"></button><button aria-label="Ir a diapositiva 2: Origen"></button><button aria-label="Ir a diapositiva 3: Criptografía"></button><button aria-label="Ir a diapositiva 4: Direcciones"></button><button aria-label="Ir a diapositiva 5: Blockchain"></button><button aria-label="Ir a diapositiva 6: Transacciones"></button><button aria-label="Ir a diapositiva 7: Red Bitcoin"></button><button aria-label="Ir a diapositiva 8: Tipos de nodos"></button><button aria-label="Ir a diapositiva 9: SPV y Sybil"></button><button aria-label="Ir a diapositiva 10: Relay Networks"></button><button aria-label="Ir a diapositiva 11: Minado y consenso"></button><button aria-label="Ir a diapositiva 12: Confirmaciones"></button><button aria-label="Ir a diapositiva 13: Recompensa y PoW"></button><button aria-label="Ir a diapositiva 14: Pools y Stratum"></button><button aria-label="Ir a diapositiva 15: Hard Forks"></button><button aria-label="Ir a diapositiva 16: Soft Forks"></button></nav>
+
+  <!-- Keyboard hint (bottom) -->
+  <div class="keyboard-hint">
+    <span class="key">←</span><span class="key">→</span>
+    <span>Navegar</span>
+  </div>
+
+  <!-- =====================================================================
+       SLIDE 1 · TITLE
+       ===================================================================== -->
+  <section class="slide title-slide visible" data-title="Portada">
+    <div class="slide-header">
+      <div class="left reveal"><span class="mark"></span><span>Módulo 05 · Bitcoin</span></div>
+      <div class="right reveal">Sesión 1 / Teoría</div>
+    </div>
+
+    <div class="slide-body">
+      <div class="title-main">
+        <span class="eyebrow-tag reveal">Recordatorioe</span>
+        <h1 class="reveal">¿Qué es <span class="accent">Bitcoin</span>?</h1>
+        <div class="rule reveal"></div>
+        <p class="subline reveal">Un breve repaso a los fundamentos de la primera blockchain descentralizada</p>
+      </div>
+
+      <div class="byline reveal">
+        <span class="name">Manuel Montenegro</span>
+        <span class="meta">Curso de Extensión Universitaria en Tecnologías Blockchain · UMA · 2026</span>
+      </div>
+    </div>
+
+    <!-- Big ₿ inside an outlined circle, top-right decoration -->
+    <div class="circle-deco reveal" aria-hidden="true"></div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 2 · 01 · ORIGEN Y ESENCIA
+       ===================================================================== -->
+  <section class="slide visible" data-title="Origen">
+    <div class="slide-header">
+      <div class="left reveal"><span class="mark"></span><span>Módulo 05 · Bitcoin</span></div>
+      <div class="right reveal">01 · Origen</div>
+    </div>
+
+    <div class="slide-body">
+      <div class="two-col">
+        <div class="col-left">
+          <span class="kicker reveal"><span class="bar"></span><span>01 · Origen y esencia</span></span>
+          <h2 class="heading reveal">Dinero electrónico entre <span class="accent">pares</span>.</h2>
+          <div class="quote-card reveal">
+            <span class="q-head">Lo que hace aceptable a una criptomoneda</span>
+            <ol class="q-list">
+              <li>¿Puedo confiar en que este dinero es auténtico y no está falsificado?</li>
+              <li>¿Puedo confiar en que solo puede gastarse una vez? <em>(el problema del «doble gasto»)</em></li>
+              <li>¿Puedo estar seguro de que nadie más podrá reclamarlo como suyo en lugar de mío?</li>
+            </ol>
+            <span class="q-src">— A. Antonopoulos, <em>Mastering Bitcoin</em> · cap. 1</span>
+          </div>
+        </div>
+
+        <div class="col-right">
+          <div class="stat-strip reveal">
+            <div class="stat">
+              <span class="num">2008</span>
+              <span class="lbl">Whitepaper</span>
+            </div>
+            <div class="stat">
+              <span class="num">2009</span>
+              <span class="lbl">Red Bitcoin</span>
+            </div>
+            <div class="stat">
+              <span class="num">21M<span class="small">BTC</span></span>
+              <span class="lbl">Suministro finito</span>
+            </div>
+            <div class="stat">
+              <span class="num">~10<span class="small">min</span></span>
+              <span class="lbl">Ritmo de bloques</span>
+            </div>
+          </div>
+
+          <ul class="feature-list reveal">
+            <li><b>Satoshi Nakamoto (2008)</b> publica un whitepaper de 9 páginas sobre dinero electrónico P2P.</li>
+            <li><b>Red descentralizada</b> sin autoridad central, sin intermediarios y sin permisos para participar.</li>
+            <li><b>Resuelve el doble gasto</b> en entornos sin confianza mediante consenso por PoW.</li>
+            <li><b>Unidad mínima</b>: 1 BTC = 100 000 000 satoshis; emisión programada hasta alcanzar 21 millones (en teoría).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer reveal">
+      <span><b>Curso de Extensión Universitaria en Tecnologías Blockchain</b> · UMA · 2026</span>
+      <span class="page">02<span class="sep">/</span>17</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 3 · 02 · CIMIENTOS CRIPTOGRÁFICOS
+       ===================================================================== -->
+  <section class="slide visible" data-title="Criptografía">
+    <div class="slide-header">
+      <div class="left reveal"><span class="mark"></span><span>Módulo 05 · Bitcoin</span></div>
+      <div class="right reveal">02 · Criptografía</div>
+    </div>
+
+    <div class="slide-body">
+      <div class="two-col">
+        <div class="col-left">
+          <span class="kicker reveal"><span class="bar"></span><span>02 · Cimientos criptográficos</span></span>
+          <h2 class="heading reveal">Propiedad basada en <span class="accent">claves</span></h2>
+          <div class="pull-quote reveal">
+            «Poseer bitcoins equivale a poseer la clave privada asociada a la dirección»
+            <span class="src">Esa clave autoriza a gastar las <b>UTXOs</b> (<em>Unspent Transaction Outputs</em>) vinculadas a la dirección — lo que llamamos «saldo» es simplemente la suma de esas UTXOs.</span>
+          </div>
+        </div>
+
+        <div class="col-right">
+          <ul class="feature-list reveal">
+            <li><b>Criptografía asimétrica</b> sobre la curva elíptica <span style="font-family:var(--font-mono)">secp256k1</span>.</li>
+            <li><b>Derivación unidireccional</b>: clave privada → clave pública. Lo contrario es computacionalmente inviable.</li>
+            <li><b>SHA-256</b> como función hash: compromete datos, construye hashes de bloques y direcciones.</li>
+            <li><b>Firma digital ECDSA</b>: demuestra autoría sin revelar la clave privada; cualquiera puede verificarla con la clave pública.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer reveal">
+      <span><b>Curso de Extensión Universitaria en Tecnologías Blockchain</b> · UMA · 2026</span>
+      <span class="page">03<span class="sep">/</span>17</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 4 · 03 · DIRECCIONES Y TRANSACCIONES
+       ===================================================================== -->
+  <section class="slide visible" data-title="Direcciones">
+    <div class="slide-header">
+      <div class="left reveal"><span class="mark"></span><span>Módulo 05 · Bitcoin</span></div>
+      <div class="right reveal">03 · Direcciones</div>
+    </div>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap: clamp(0.75rem,1.5vw,1.25rem); min-height:0;">
+        <div>
+          <span class="kicker reveal"><span class="bar"></span><span>03 · Direcciones y transacciones</span></span>
+          <h2 class="heading reveal" style="margin-top: clamp(0.4rem,0.8vw,0.75rem);">Tres formatos, <span class="accent">un mismo propósito</span>.</h2>
+        </div>
+
+        <div class="address-grid reveal">
+          <div class="addr-card">
+            <span class="tag">Legacy</span>
+            <span class="name">P2PKH · <span style="font-family:var(--font-mono); color:var(--accent); font-weight:500;">1…</span></span>
+            <code class="sample">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</code>
+            <span class="desc">Pay-to-PubKey-Hash — el formato clásico basado en el hash de la clave pública.</span>
+          </div>
+          <div class="addr-card">
+            <span class="tag red">Script</span>
+            <span class="name">P2SH · <span style="font-family:var(--font-mono); color:var(--accent); font-weight:500;">3…</span></span>
+            <code class="sample">3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy</code>
+            <span class="desc">Pay-to-Script-Hash — habilita multi-firma, time-locks y otras condiciones.</span>
+          </div>
+          <div class="addr-card">
+            <span class="tag btc">SegWit</span>
+            <span class="name">Bech32 · <span style="font-family:var(--font-mono); color:var(--accent); font-weight:500;">bc1…</span></span>
+            <code class="sample">bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq</code>
+            <span class="desc">Nativo SegWit — tarifas más bajas, mejor detección de errores, estándar actual.</span>
+          </div>
+        </div>
+
+        <ul class="feature-list reveal">
+          <li><b>Dirección</b> = derivada de la clave pública mediante SHA-256 + RIPEMD-160 y codificada (Base58 o Bech32).</li>
+          <li><b>Transacción</b> = conjunto de inputs firmados con la clave privada + outputs que definen los nuevos propietarios.</li>
+          <li><b>Fee</b> = inputs − outputs; incentivo económico que los mineros cobran por incluir la transacción en un bloque.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="slide-footer reveal">
+      <span><b>Curso de Extensión Universitaria en Tecnologías Blockchain</b> · UMA · 2026</span>
+      <span class="page">04<span class="sep">/</span>17</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 5 · 04 · CADENA DE BLOQUES
+       ===================================================================== -->
+  <section class="slide visible" data-title="Blockchain">
+    <div class="slide-header">
+      <div class="left reveal"><span class="mark"></span><span>Módulo 05 · Bitcoin</span></div>
+      <div class="right reveal">04 · Blockchain</div>
+    </div>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap: clamp(0.75rem,1.5vw,1.25rem); min-height:0;">
+        <div>
+          <span class="kicker reveal"><span class="bar"></span><span>04 · Cadena de bloques</span></span>
+          <h2 class="heading reveal" style="margin-top: clamp(0.4rem,0.8vw,0.75rem);">Bloques <span class="accent">enlazados</span> por hash.</h2>
+        </div>
+
+        <div class="chain reveal">
+          <div class="block">
+            <div class="head"><span>Block</span><span class="n">N−1</span></div>
+            <div class="row"><span>prev_hash</span><b>…0x7a2c</b></div>
+            <div class="row"><span>merkle</span><b>…0x9f3e</b></div>
+            <div class="row"><span>nonce</span><b>412 877</b></div>
+          </div>
+          <div class="link"><span class="arrow"></span><span class="hash-label">hash →</span></div>
+          <div class="block current">
+            <div class="head"><span>Block</span><span class="n">N</span></div>
+            <div class="row"><span>prev_hash</span><b>…0xc41e</b></div>
+            <div class="row"><span>merkle</span><b>…0x1d88</b></div>
+            <div class="row"><span>nonce</span><b>2 901 133</b></div>
+          </div>
+          <div class="link"><span class="arrow"></span><span class="hash-label">hash →</span></div>
+          <div class="block">
+            <div class="head"><span>Block</span><span class="n">N+1</span></div>
+            <div class="row"><span>prev_hash</span><b>…0xe502</b></div>
+            <div class="row"><span>merkle</span><b>pending</b></div>
+            <div class="row"><span>nonce</span><b>?</b></div>
+          </div>
+        </div>
+
+        <ul class="feature-list reveal">
+          <li><b>Encadenamiento por hash</b>: cada bloque referencia al anterior, haciendo cualquier modificación pasada visiblemente incoherente.</li>
+          <li><b>Merkle root</b>: compromete todas las transacciones del bloque en un único hash; verificación eficiente en O(log N).</li>
+          <li><b>Nonce + PoW</b>: los mineros prueban valores hasta que el hash cumpla la dificultad objetivo.</li>
+          <li><b>Ritmo</b>: un bloque cada ~10 minutos; reajuste automático de dificultad cada 2 016 bloques.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="slide-footer reveal">
+      <span><b>Curso de Extensión Universitaria en Tecnologías Blockchain</b> · UMA · 2026</span>
+      <span class="page">05<span class="sep">/</span>17</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 6 · 05 · TRANSACCIONES Y UTXO
+       ===================================================================== -->
+  <section class="slide visible" data-title="Transacciones">
+    <div class="slide-header">
+      <div class="left reveal"><span class="mark"></span><span>Módulo 05 · Bitcoin</span></div>
+      <div class="right reveal">05 · Transacciones</div>
+    </div>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap: clamp(0.7rem,1.4vw,1.2rem); min-height:0;">
+        <div>
+          <span class="kicker reveal"><span class="bar"></span><span>05 · Transacciones y UTXO</span></span>
+          <h2 class="heading reveal" style="margin-top: clamp(0.4rem,0.8vw,0.75rem);">Bitcoin es un <span class="accent">registro</span>, no un objeto.</h2>
+        </div>
+
+        <div class="tx-split reveal">
+          <!-- Real-estate analogy card -->
+          <div class="analogy-card">
+            <span class="q-head">Analogía · Registro de la Propiedad</span>
+            <p>Los bitcoins <b>no existen físicamente ni como datos digitales</b>. Transferir bitcoin se parece a transferir una vivienda: cuando le pasas tu casa a otra persona, <em>no coges la casa y la mueves a otro sitio</em> — eso no tiene sentido.</p>
+            <p>En su lugar, un <b>registro público</b> (la blockchain) anota que la propiedad ahora pertenece a otra persona. «Tener bitcoins» significa, en realidad, <b>controlar las UTXOs que el registro te atribuye</b>.</p>
+          </div>
+
+          <!-- Transaction diagram -->
+          <div class="tx-diagram">
+            <span class="q-head">Ejemplo · Transacción con fees</span>
+
+            <div class="tx-flow">
+              <div class="tx-col inputs">
+                <span class="col-label">Inputs · UTXOs gastadas</span>
+                <div class="tx-row"><span class="io-addr">bc1q…a3x</span><span class="io-amt">0.60 BTC</span></div>
+                <div class="tx-row"><span class="io-addr">bc1q…7fe</span><span class="io-amt">0.42 BTC</span></div>
+                <div class="tx-total">Σ in = <b>1.02 BTC</b></div>
+              </div>
+
+              <div class="tx-arrow">
+                <span class="arrow"></span>
+                <span class="arrow-lbl">tx</span>
+              </div>
+
+              <div class="tx-col outputs">
+                <span class="col-label">Outputs · UTXOs nuevas</span>
+                <div class="tx-row"><span class="io-addr">bc1q…b2c · pago</span><span class="io-amt">0.80 BTC</span></div>
+                <div class="tx-row"><span class="io-addr">bc1q…9cd · cambio</span><span class="io-amt">0.21 BTC</span></div>
+                <div class="tx-total">Σ out = <b>1.01 BTC</b></div>
+              </div>
+            </div>
+
+            <div class="tx-fee">
+              <span class="fee-tag">Fee</span>
+              <span class="fee-math">Σ in − Σ out = <b>0.01 BTC</b></span>
+              <span class="fee-note">→ la diferencia no se declara; emerge como propina implícita que cobra el minero que incluya la transacción en su bloque.</span>
+            </div>
+          </div>
+        </div>
+
+        <ul class="feature-list reveal">
+          <li><b>UTXO</b> (<em>Unspent Transaction Output</em>) = cantidad de bitcoin con una condición de gasto; sólo se puede consumir <b>entera</b>.</li>
+          <li><b>Inputs</b> = referencias a UTXOs anteriores que se gastan, autorizadas con la firma de la clave privada correspondiente.</li>
+          <li><b>Outputs</b> = nuevas UTXOs que se crean (pago + cambio); todo sobrante vuelve al emisor como una UTXO de «cambio».</li>
+          <li><b>Fee implícita</b>: Σ inputs − Σ outputs. Incentiva al minero a priorizar la transacción (ver <em>Mastering Bitcoin</em>, cap. 6).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="slide-footer reveal">
+      <span><b>Curso de Extensión Universitaria en Tecnologías Blockchain</b> · UMA · 2026</span>
+      <span class="page">06<span class="sep">/</span>17</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 7 · 06 · LA RED BITCOIN · ANATOMÍA DE UN NODO
+       ===================================================================== -->
+  <section class="slide visible" data-title="Red Bitcoin">
+    <div class="slide-header">
+      <div class="left reveal"><span class="mark"></span><span>Módulo 05 · Bitcoin</span></div>
+      <div class="right reveal">06 · La red Bitcoin</div>
+    </div>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap: clamp(0.7rem,1.4vw,1.2rem); min-height:0;">
+        <div>
+          <span class="kicker reveal"><span class="bar"></span><span>06 · La red Bitcoin</span></span>
+          <h2 class="heading reveal" style="margin-top: clamp(0.4rem,0.8vw,0.75rem);">Una red P2P <span class="accent">plana</span> y abierta.</h2>
+        </div>
+
+        <div class="net-split lean reveal">
+          <!-- Left: prose + mini-list about the network -->
+          <div class="prose-card">
+            <span class="q-head">La red · a vista de pájaro</span>
+            <p>La «red Bitcoin» es el <b>conjunto de nodos</b> que ejecutan el protocolo P2P Bitcoin e intercambian bloques y transacciones mediante <em>gossip</em>. <b>No existen servidores centrales, jerarquías ni intermediarios</b>.</p>
+            <ul class="mini-list">
+              <li><b>~10 000 nodos públicos</b> escuchando en la red principal.</li>
+              <li><b>Descubrimiento</b>: DNS seeds + caché local + petición a pares conocidos.</li>
+              <li><b>Handshake</b>, <b>inventario</b>, <b>getdata</b>, <b>block</b>, <b>tx</b>, <b>headers</b>… + <em>heartbeat</em>.</li>
+              <li><b>BIP 324</b>: comunicación cifrada (no autenticada) entre pares.</li>
+            </ul>
+          </div>
+
+          <!-- Right: WMBN module anatomy -->
+          <div class="wmbn-wrap">
+            <span class="q-head">Anatomía · 4 módulos funcionales</span>
+            <div class="wmbn-grid">
+              <div class="wmbn-cell">
+                <span class="bubble w">W</span>
+                <span class="label">
+                  <span class="name">Wallet</span>
+                  <span class="desc">Gestiona claves, firma transacciones.</span>
+                </span>
+              </div>
+              <div class="wmbn-cell">
+                <span class="bubble m">M</span>
+                <span class="label">
+                  <span class="name">Miner</span>
+                  <span class="desc">Compite en la PoW para crear bloques.</span>
+                </span>
+              </div>
+              <div class="wmbn-cell">
+                <span class="bubble b">B</span>
+                <span class="label">
+                  <span class="name">Blockchain</span>
+                  <span class="desc">Copia completa e índices locales.</span>
+                </span>
+              </div>
+              <div class="wmbn-cell">
+                <span class="bubble n">N</span>
+                <span class="label">
+                  <span class="name">Network Routing</span>
+                  <span class="desc">Habla el protocolo P2P y propaga.</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="closing-line reveal" style="font-size: clamp(0.78rem, 1.05vw, 0.95rem); padding-top: clamp(0.3rem,0.6vw,0.5rem);">
+          El <b>tipo</b> de nodo se define por <b>qué módulos tiene activos</b>: cada combinación da un perfil distinto.
+        </p>
+      </div>
+    </div>
+
+    <div class="slide-footer reveal">
+      <span><b>Curso de Extensión Universitaria en Tecnologías Blockchain</b> · UMA · 2026</span>
+      <span class="page">07<span class="sep">/</span>17</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 8 · 07 · TIPOS DE NODOS
+       ===================================================================== -->
+  <section class="slide visible" data-title="Tipos de nodos">
+    <div class="slide-header">
+      <div class="left reveal"><span class="mark"></span><span>Módulo 05 · Bitcoin</span></div>
+      <div class="right reveal">07 · Tipos de nodos</div>
+    </div>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap: clamp(0.65rem,1.3vw,1.1rem); min-height:0;">
+        <div>
+          <span class="kicker reveal"><span class="bar"></span><span>07 · Tipos de nodos</span></span>
+          <h2 class="heading reveal" style="margin-top: clamp(0.4rem,0.8vw,0.75rem);">Cuatro perfiles, <span class="accent">cuatro compromisos</span>.</h2>
+        </div>
+
+        <div class="node-grid reveal">
+          <!-- Full node -->
+          <div class="node-card">
+            <span class="tag">Full Node</span>
+            <span class="name">Bitcoin Core · «Satoshi Client»</span>
+            <span class="modules">Módulos: <b>W · M* · B · N</b> <span style="color:var(--muted-2);">(*minero desactivado por defecto)</span></span>
+            <span class="desc"><b>Valida cada bloque y transacción</b> aplicando todas las reglas de consenso. Implementación de referencia (C++, desde 2009). Independencia y privacidad máximas; &gt;95 % de los nodos públicos lo ejecutan.</span>
+          </div>
+
+          <!-- Archive node -->
+          <div class="node-card">
+            <span class="tag btc">Archive Node</span>
+            <span class="name">Full node que guarda todo el histórico</span>
+            <span class="modules">Módulos: <b>B · N</b> (sin wallet, sin minado)</span>
+            <span class="desc">Mantiene la <b>blockchain completa</b> sin podarla (&gt;700 GB). Sirve datos a clientes SPV, exploradores de bloques, exchanges y procesadores de pago. Actúa como <b>edge router</b> del ecosistema.</span>
+          </div>
+
+          <!-- Lightweight / SPV -->
+          <div class="node-card">
+            <span class="tag red">Lightweight (SPV)</span>
+            <span class="name">Cliente ligero · móviles, wallets</span>
+            <span class="modules">Módulos: <b>W · N</b> (sin blockchain)</span>
+            <span class="desc">Solo descarga <b>cabeceras de bloques</b> (~80 B cada una) y usa <em>Simplified Payment Verification</em>. Verifica PoW y pruebas Merkle; <b>confía en nodos completos</b> para los datos. Menos recursos, menos seguridad.</span>
+          </div>
+
+          <!-- Third-party API -->
+          <div class="node-card">
+            <span class="tag muted">Third-Party API</span>
+            <span class="name">Wallet delegada · REST / WebSocket</span>
+            <span class="modules">Módulos: <b>W</b> (sin N, sin B)</span>
+            <span class="desc">No habla el protocolo P2P: consulta un servicio externo (Electrum, Esplora, APIs de exchanges…). Saldos, historial y <em>broadcast</em> se <b>delegan por completo</b>. Máxima comodidad, máxima dependencia.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer reveal">
+      <span><b>Curso de Extensión Universitaria en Tecnologías Blockchain</b> · UMA · 2026</span>
+      <span class="page">08<span class="sep">/</span>17</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 9 · 08 · SPV EN DETALLE · FILTROS Y SYBIL
+       ===================================================================== -->
+  <section class="slide visible" data-title="SPV y Sybil">
+    <div class="slide-header">
+      <div class="left reveal"><span class="mark"></span><span>Módulo 05 · Bitcoin</span></div>
+      <div class="right reveal">08 · Nodos ligeros y SPV</div>
+    </div>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap: clamp(0.7rem,1.4vw,1.2rem); min-height:0;">
+        <div>
+          <span class="kicker reveal"><span class="bar"></span><span>08 · Nodos ligeros y SPV</span></span>
+          <h2 class="heading reveal" style="margin-top: clamp(0.4rem,0.8vw,0.75rem);">SPV: verificación <span class="accent">simplificada</span>.</h2>
+        </div>
+
+        <div class="net-split reveal">
+          <!-- Left: SPV mechanics -->
+          <div class="prose-card">
+            <span class="q-head">Cómo funciona SPV</span>
+            <p>Un nodo ligero verifica <b>por profundidad</b>: si una transacción aparece en un bloque «enterrado» bajo suficiente PoW, se asume válida <em>sin reconstruir UTXOs</em>.</p>
+            <ul class="mini-list">
+              <li>Descarga <b>solo cabeceras</b> (~80 B / bloque) vía mensaje <code style="font-family:var(--font-mono);">getheaders</code>.</li>
+              <li>Verifica la inclusión de una tx con una <b>prueba Merkle</b> desde el nodo al root.</li>
+              <li><b>Limitación</b>: puede probar que una tx <em>existe</em>, pero no que <em>no existe</em> — vulnerable a doble gasto.</li>
+            </ul>
+            <p style="border-top:1px solid var(--grid-line); padding-top: clamp(0.35rem,0.7vw,0.55rem);"><b>Filtros</b> para descubrir tus txs sin revelar direcciones al peer: <em>Bloom Filters</em> (BIP 37, server-side) y <em>Compact Block Filters</em> (BIP 157/158, client-side).</p>
+          </div>
+
+          <!-- Right: Sybil warning -->
+          <div class="warn-card">
+            <span class="tag">⚠ Riesgo</span>
+            <span class="name">Sybil attack</span>
+            <span class="desc"><b>Un Sybil attack</b> consiste en crear <b>muchas identidades falsas</b> (nodos controlados por el mismo atacante) para <em>rodear</em> a la víctima en la red. Si todos sus pares son hostiles, ve una realidad fabricada.</span>
+            <span class="desc">Los SPV son <b>especialmente sensibles</b>: sin cadena local no pueden verificar por sí mismos, así que <b>dependen de sus pares</b>. También son vulnerables a <em>network partitioning</em>, DoS y, en última instancia, a doble gasto.</span>
+            <span class="desc" style="border-top:1px solid var(--grid-line); padding-top: clamp(0.3rem,0.6vw,0.45rem);"><b>Defensa</b>: conectar a muchos pares aleatorios y, si es posible, apuntar al <b>propio nodo completo</b>.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer reveal">
+      <span><b>Curso de Extensión Universitaria en Tecnologías Blockchain</b> · UMA · 2026</span>
+      <span class="page">09<span class="sep">/</span>17</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 10 · 09 · PROPAGACIÓN · RELAY NETWORKS Y FIBRE
+       ===================================================================== -->
+  <section class="slide visible" data-title="Relay Networks">
+    <div class="slide-header">
+      <div class="left reveal"><span class="mark"></span><span>Módulo 05 · Bitcoin</span></div>
+      <div class="right reveal">09 · Relay networks</div>
+    </div>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap: clamp(0.65rem,1.3vw,1.1rem); min-height:0;">
+        <div>
+          <span class="kicker reveal"><span class="bar"></span><span>09 · Propagación y relay networks</span></span>
+          <h2 class="heading reveal" style="margin-top: clamp(0.4rem,0.8vw,0.75rem);">Minimizar la <span class="accent">latencia</span> entre mineros.</h2>
+        </div>
+
+        <div class="prose-card reveal">
+          <span class="q-head">El problema · block-finding race</span>
+          <p>Cuando un minero encuentra un bloque, los demás siguen trabajando sobre el anterior hasta que lo reciben. <b>Esos segundos de retraso favorecen a los grandes mineros</b> y empujan hacia la centralización. La red pública ya optimiza con <em>Compact Block Relay</em> (BIP 152), pero <b>algunos actores van más allá con redes privadas</b>.</p>
+        </div>
+
+        <div class="relay-grid reveal">
+          <div class="relay-card">
+            <span class="year">2015</span>
+            <span class="name">Bitcoin Relay Network</span>
+            <span class="sub">Matt Corallo · VPSes globales</span>
+            <span class="desc">Red privada de servidores virtuales estratégicamente distribuidos para conectar <b>la mayoría de mineros y pools</b> con muy baja latencia.</span>
+          </div>
+          <div class="relay-card accent">
+            <span class="year">2016</span>
+            <span class="name">FIBRE</span>
+            <span class="sub">Fast Internet Bitcoin Relay Engine</span>
+            <span class="desc">Sucesor del BRN. <b>UDP + Forward Error Correction</b> + <em>compact block</em>: reduce drásticamente la latencia y tolera pérdidas sin re-peticiones.</span>
+          </div>
+        </div>
+
+        <p class="closing-line reveal" style="font-size: clamp(0.82rem, 1.12vw, 1rem); padding-top: clamp(0.35rem,0.7vw,0.55rem);">
+          La latencia es <b>crítica</b> en minería competitiva → en las siguientes transparencias nos centraremos en <b>minado</b> y proof-of-work.
+        </p>
+      </div>
+    </div>
+
+    <div class="slide-footer reveal">
+      <span><b>Curso de Extensión Universitaria en Tecnologías Blockchain</b> · UMA · 2026</span>
+      <span class="page">10<span class="sep">/</span>17</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 11 · 10 · MINADO COMO MECANISMO DE CONSENSO
+       ===================================================================== -->
+  <section class="slide visible" data-title="Minado y consenso">
+    <div class="slide-header">
+      <div class="left reveal"><span class="mark"></span><span>Módulo 05 · Bitcoin</span></div>
+      <div class="right reveal">10 · Minado &amp; consenso</div>
+    </div>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap: clamp(0.6rem,1.2vw,1rem); min-height:0;">
+        <div>
+          <span class="kicker reveal"><span class="bar"></span><span>10 · Minado = seguridad + consenso</span></span>
+          <h2 class="heading reveal" style="margin-top: clamp(0.4rem,0.8vw,0.75rem);">Consenso <span class="accent">emergente</span>, sin autoridad central.</h2>
+        </div>
+
+        <div class="prose-card reveal">
+          <span class="q-head">La función real del minado</span>
+          <p>El propósito del minado <b>no es crear bitcoins</b>. Eso es el <em>incentivo</em>. El fin último es <b>asegurar el sistema</b>: validar transacciones y lograr que <b>miles de nodos independientes</b> converjan en la misma verdad sobre <em>quién posee qué</em>, sin ningún banco central ni cámara de compensación.</p>
+        </div>
+
+        <div class="consensus-grid reveal">
+          <div class="consensus-card">
+            <span class="idx">01 / Verificar</span>
+            <span class="name">Cada tx, cada nodo</span>
+            <span class="desc">Todos los full nodes validan <b>independientemente</b> cada transacción según una lista exhaustiva de reglas.</span>
+          </div>
+          <div class="consensus-card">
+            <span class="idx">02 / Agregar</span>
+            <span class="name">PoW + bloques</span>
+            <span class="desc">Los mineros empaquetan txs en un bloque candidato y <b>demuestran cómputo</b> resolviendo el <em>proof of work</em>.</span>
+          </div>
+          <div class="consensus-card">
+            <span class="idx">03 / Validar</span>
+            <span class="name">El bloque, por todos</span>
+            <span class="desc">Cada nodo verifica el nuevo bloque independientemente y lo encadena al anterior si cumple las reglas.</span>
+          </div>
+          <div class="consensus-card">
+            <span class="idx">04 / Elegir</span>
+            <span class="name">Más PoW acumulado</span>
+            <span class="desc">Cada nodo selecciona la cadena con <b>mayor trabajo acumulado</b>. Esa es, por definición, la verdad.</span>
+          </div>
+        </div>
+
+        <p class="closing-line reveal">
+          <b>Consenso</b> no se vota: <b>emerge</b> de la interacción asíncrona de nodos independientes que siguen reglas simples.
+        </p>
+      </div>
+    </div>
+
+    <div class="slide-footer reveal">
+      <span><b>Curso de Extensión Universitaria en Tecnologías Blockchain</b> · UMA · 2026</span>
+      <span class="page">11<span class="sep">/</span>17</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 12 · 11 · LA MEMPOOL
+       ===================================================================== -->
+  <section class="slide visible" data-title="Mempool">
+    <div class="slide-header">
+      <div class="left reveal"><span class="mark"></span><span>Módulo 05 · Bitcoin</span></div>
+      <div class="right reveal">11 · La mempool</div>
+    </div>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap: clamp(0.6rem,1.2vw,1rem); min-height:0;">
+        <div>
+          <span class="kicker reveal"><span class="bar"></span><span>11 · La mempool</span></span>
+          <h2 class="heading reveal" style="margin-top: clamp(0.4rem,0.8vw,0.75rem);">El limbo de las tx <span class="accent">sin confirmar</span>.</h2>
+        </div>
+
+        <div class="prose-card reveal">
+          <span class="q-head">Memory pool · mempool</span>
+          <p>Casi todos los nodos mantienen una <b>lista temporal en memoria</b> con las transacciones que han sido <em>validadas</em> y <em>propagadas</em> por la red pero que <b>todavía no están en ningún bloque</b>. A esa lista se la llama <b>mempool</b>.</p>
+          <p style="border-top:1px solid var(--grid-line); padding-top: clamp(0.35rem,0.7vw,0.55rem);">Cuando una tx llega nueva, el nodo la <b>valida</b>, la guarda en su mempool y la <b>retransmite</b> (<em>relay</em>) a sus pares. Los mineros eligen <b>desde la mempool</b> qué incluyen en su próximo bloque candidato.</p>
+        </div>
+
+        <div class="two-col reveal">
+          <div class="col-left">
+            <div class="stat-strip">
+              <div class="stat">
+                <span class="num">~300<span class="small">MB</span></span>
+                <span class="lbl">Tamaño por defecto</span>
+              </div>
+              <div class="stat">
+                <span class="num">Local</span>
+                <span class="lbl">A cada nodo</span>
+              </div>
+              <div class="stat">
+                <span class="num">RAM</span>
+                <span class="lbl">Donde vive</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-right">
+            <ul class="feature-list">
+              <li><b>Mercado de fees</b>: si la mempool se llena, el nodo expulsa las tx con <b>feerate más bajo</b>. Así emerge el precio por byte en vivo.</li>
+              <li><b>Perspectiva local</b>: cada nodo tiene su propia mempool; pueden diferir entre sí según <em>policy</em>, uptime y red.</li>
+              <li><b>Orphan pool</b>: tx cuyo «padre» aún no ha llegado se guardan aparte hasta que aparezca, momento en que se promueven a la mempool.</li>
+              <li><b>Ciclo</b>: validar → mempool → relay → minada en bloque → expulsada. También se expulsan por <em>expiración</em> (~2 semanas).</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="closing-line reveal">
+          La mempool es la <b>sala de espera</b> de Bitcoin — y el termómetro más honesto del estado de la red. Sin ella no habría mercado de fees ni propagación eficiente.
+        </p>
+      </div>
+    </div>
+
+    <div class="slide-footer reveal">
+      <span><b>Curso de Extensión Universitaria en Tecnologías Blockchain</b> · UMA · 2026</span>
+      <span class="page">12<span class="sep">/</span>17</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 13 · 12 · CONFIRMACIONES Y DOBLE GASTO
+       ===================================================================== -->
+  <section class="slide visible" data-title="Confirmaciones">
+    <div class="slide-header">
+      <div class="left reveal"><span class="mark"></span><span>Módulo 05 · Bitcoin</span></div>
+      <div class="right reveal">12 · Confirmaciones &amp; doble gasto</div>
+    </div>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap: clamp(0.6rem,1.2vw,1rem); min-height:0;">
+        <div>
+          <span class="kicker reveal"><span class="bar"></span><span>12 · ¿Cuándo está "confirmada" una tx?</span></span>
+          <h2 class="heading reveal" style="margin-top: clamp(0.4rem,0.8vw,0.75rem);">Cada bloque es <span class="accent">otra capa</span> de seguridad.</h2>
+        </div>
+
+        <div class="prose-card reveal">
+          <span class="q-head">Confirmación</span>
+          <p>Una transacción se considera <b>confirmada</b> cuando entra en un bloque minado y pasa a formar parte de la blockchain. A partir de ahí, cada bloque posterior añade una <em>confirmación adicional</em> — y cuanta más PoW se apile encima, <b>más inmutable</b> se vuelve.</p>
+        </div>
+
+        <div class="confirm-scale reveal">
+          <div class="confirm-step warn">
+            <span class="n">0</span>
+            <span class="lbl">En mempool</span>
+            <span class="note">No confirmada · reemplazable</span>
+          </div>
+          <div class="confirm-step">
+            <span class="n">1</span>
+            <span class="lbl">Primer bloque</span>
+            <span class="note">Café, propinas</span>
+          </div>
+          <div class="confirm-step">
+            <span class="n">3</span>
+            <span class="lbl">Baja exposición</span>
+            <span class="note">Intercambios casuales</span>
+          </div>
+          <div class="confirm-step ok">
+            <span class="n">6</span>
+            <span class="lbl">Regla estándar</span>
+            <span class="note">~1 hora · defecto</span>
+          </div>
+          <div class="confirm-step ok">
+            <span class="n">100</span>
+            <span class="lbl">Coinbase maturity</span>
+            <span class="note">Recompensa gastable</span>
+          </div>
+          <div class="confirm-step ok">
+            <span class="n">144</span>
+            <span class="lbl">Alto valor</span>
+            <span class="note">~24 h · bienes caros</span>
+          </div>
+        </div>
+
+        <div class="split-2 reveal">
+          <div class="prose-card">
+            <span class="q-head">Cómo se evita el double spending</span>
+            <p>Dentro de una misma cadena, las transacciones tienen un <b>orden topológico</b>: solo son válidas si gastan salidas de txs <em>anteriores</em> y si <b>ninguna otra</b> ha gastado ya esas mismas salidas. Imposible gastar dos veces el mismo UTXO.</p>
+            <p style="border-top:1px solid var(--grid-line); padding-top: clamp(0.35rem,0.7vw,0.55rem);">Si un atacante intenta reescribir la historia necesita <b>rehacer el PoW</b> de todos los bloques desde la tx objetivo — inviable a partir de ~6 confirmaciones salvo con un ataque del <b>51%</b>.</p>
+          </div>
+          <div class="warn-card">
+            <span class="tag">⚠ Doble gasto</span>
+            <span class="name">Ataque del 51%</span>
+            <span class="desc">Un minero (o coalición) con <b>mayoría del hash rate</b> puede forkear la cadena y <em>reemplazar</em> una tx ya confirmada por otra que devuelve el UTXO al atacante. Solo es rentable sobre txs propias y requiere un coste energético enorme.</span>
+            <span class="desc" style="border-top:1px solid var(--grid-line); padding-top: clamp(0.3rem,0.6vw,0.45rem);"><b>Defensa</b>: esperar suficientes confirmaciones antes de entregar bienes de alto valor.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer reveal">
+      <span><b>Curso de Extensión Universitaria en Tecnologías Blockchain</b> · UMA · 2026</span>
+      <span class="page">13<span class="sep">/</span>17</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 14 · 13 · RECOMPENSAS + COINBASE + POW
+       ===================================================================== -->
+  <section class="slide visible" data-title="Recompensa y PoW">
+    <div class="slide-header">
+      <div class="left reveal"><span class="mark"></span><span>Módulo 05 · Bitcoin</span></div>
+      <div class="right reveal">13 · Recompensa &amp; Proof of Work</div>
+    </div>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap: clamp(0.55rem,1.1vw,0.9rem); min-height:0;">
+        <div>
+          <span class="kicker reveal"><span class="bar"></span><span>13 · Incentivos + Proof of Work</span></span>
+          <h2 class="heading reveal" style="margin-top: clamp(0.4rem,0.8vw,0.75rem);">Coinbase = <span class="accent">subsidy</span> + <span style="color:var(--accent-btc);">fees</span>.</h2>
+        </div>
+
+        <div class="reward-split reveal">
+          <div class="reward-card subsidy">
+            <span class="tag">Bloque nuevo</span>
+            <span class="name">Subsidy</span>
+            <span class="val">3,125 BTC (2024+)</span>
+            <span class="desc">Bitcoins <b>acuñados de la nada</b> en cada bloque. Empezó en <b>50 BTC</b> y se <em>halvea</em> cada 210 000 bloques (~4 años). En 2140 será cero.</span>
+          </div>
+          <div class="op">+</div>
+          <div class="reward-card fees">
+            <span class="tag">De cada tx</span>
+            <span class="name">Transaction fees</span>
+            <span class="val">Σ(inputs) − Σ(outputs)</span>
+            <span class="desc">El minero se queda la <em>diferencia</em> entre inputs y outputs de cada transacción incluida. Con el tiempo <b>serán la única fuente</b> de recompensa.</span>
+          </div>
+          <div class="op">=</div>
+          <div class="reward-card total">
+            <span class="tag">Primera tx del bloque</span>
+            <span class="name">Coinbase transaction</span>
+            <span class="val">Sin inputs reales</span>
+            <span class="desc">Tx especial que <b>no gasta UTXOs</b>: tiene un <em>coinbase input</em> implícito. Paga al minero y debe esperar <b>100 confirmaciones</b> antes de poder gastarse.</span>
+          </div>
+        </div>
+
+        <div class="split-2 reveal">
+          <div class="pow-card">
+            <span class="q-head">Proof of Work · SHA-256 doble</span>
+            <div class="pow-formula">H(<span class="var">merkle_root</span>, <span class="var">prev_hash</span>, <span class="var">X</span>) <span class="le">≤</span> target</div>
+            <p style="font-size: clamp(0.7rem, 0.95vw, 0.83rem); color: var(--ink-soft); line-height:1.42; margin:0;">El minero varía <b>X</b> (nonce de 32 bits + extra-nonce en el coinbase + timestamp) hasta que el hash del header <b>cae bajo el target</b>. Es una lotería: billones de intentos por segundo, ganador ≈ cada 10 min.</p>
+            <p style="font-size: clamp(0.7rem, 0.95vw, 0.83rem); color: var(--ink-soft); line-height:1.42; margin:0; border-top:1px solid var(--grid-line); padding-top: clamp(0.35rem,0.7vw,0.55rem);">Verificar una solución es <b>instantáneo</b>; encontrarla cuesta <em>energía real</em>. Ése es el coste que asegura la cadena.</p>
+          </div>
+          <div class="diff-strip" style="grid-template-columns: 1fr; gap: clamp(0.55rem,0.9vw,0.75rem); align-items: stretch;">
+            <div class="cell">
+              <span class="cap">Cada cuántos bloques</span>
+              <span class="big">2 016</span>
+              <span class="sub">Cada ~2 semanas todos los nodos <b>reajustan</b> el target de forma independiente, con la misma fórmula.</span>
+            </div>
+            <div class="cell" style="border-top:1px solid var(--grid-line); padding-top: clamp(0.4rem,0.7vw,0.55rem);">
+              <span class="cap">Fórmula de retarget</span>
+              <span style="font-family:var(--font-mono); font-size:clamp(0.7rem,1vw,0.85rem); color:var(--ink); line-height:1.4;">new_target = old_target × (<span style="color:var(--accent);">tiempo real 2016 bloques</span> / 20 160 min)</span>
+              <span class="sub">Si se minaron <b>más rápido</b> de 10 min/bloque → el target baja (más difícil). Si más lento → sube (más fácil). Ajuste máximo ×4 por período.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer reveal">
+      <span><b>Curso de Extensión Universitaria en Tecnologías Blockchain</b> · UMA · 2026</span>
+      <span class="page">14<span class="sep">/</span>17</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 15 · 14 · POOLS DE MINADO + SHARES + STRATUM
+       ===================================================================== -->
+  <section class="slide visible" data-title="Pools y Stratum">
+    <div class="slide-header">
+      <div class="left reveal"><span class="mark"></span><span>Módulo 05 · Bitcoin</span></div>
+      <div class="right reveal">14 · Mining pools &amp; Stratum</div>
+    </div>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap: clamp(0.55rem,1.1vw,0.9rem); min-height:0;">
+        <div>
+          <span class="kicker reveal"><span class="bar"></span><span>14 · Mining pools</span></span>
+          <h2 class="heading reveal" style="margin-top: clamp(0.4rem,0.8vw,0.75rem);">Minar en <span class="accent">solitario</span> es una lotería.</h2>
+        </div>
+
+        <div class="pool-diagram reveal">
+          <div class="pool-box accent">
+            <span class="q-head">Cómo funciona un pool</span>
+            <span class="name">Cooperar para cobrar a menudo</span>
+            <span class="desc">Muchos mineros conectan su hardware a un <b>servidor pool</b>. El pool arma bloques candidato, distribuye trabajo, y cuando <em>alguien</em> del pool encuentra la solución, el premio se reparte <b>proporcionalmente al trabajo aportado</b>.</span>
+            <ul class="mini-list">
+              <li><b>Primera pool</b>: Slushpool, diciembre 2010.</li>
+              <li>El pool cobra una comisión típica <b>&lt; 2%</b>.</li>
+              <li>Un minero pequeño pasa de "un bloque cada 20 años" a <b>ingresos diarios</b> pequeños pero continuos.</li>
+            </ul>
+          </div>
+          <div class="pool-box">
+            <span class="q-head">Shares · cómo medir el trabajo</span>
+            <span class="name">Un share = hash bajo un target fácil</span>
+            <span class="desc">El pool fija un <b>target más permisivo</b> (≥ 1 000× más fácil que el de la red). Cada vez que un minero encuentra un hash bajo ese target gana un <em>share</em>, que <b>prueba</b> que ha hecho trabajo real.</span>
+            <div class="share-target">
+              <div><span style="color:var(--muted);">target red&nbsp;&nbsp;</span> 0x<span class="zeros">00000000000000</span>3A30C0…0</div>
+              <div><span style="color:var(--muted);">target share</span> 0x<span class="zeros">0000000000</span>3A30C0…0</div>
+            </div>
+            <span class="desc"><b>Reparto</b>: <em>PPS</em> (pago fijo por share), <em>PPLNS</em> (últimos N shares), <em>FPPS</em> (PPS + incluye fees). Cada estrategia traslada distinto riesgo entre pool y minero.</span>
+          </div>
+        </div>
+
+        <div class="split-2 reveal">
+          <div class="pool-box">
+            <span class="q-head">Protocolo Stratum</span>
+            <span class="name">TCP + JSON-RPC · creado por Slush</span>
+            <span class="desc"><b>No es un BIP</b>. El minero <em>no</em> necesita un nodo completo: se conecta al pool, recibe <b>templates de bloque</b> y devuelve shares. <b>Stratum v2</b> añade cifrado y permite que cada minero escoja sus propias txs.</span>
+          </div>
+          <div class="stratum-seq">
+            <span class="role">Minero</span><span class="msg up">registro (user/pass)</span><span class="role srv">Pool</span>
+            <span class="role">Minero</span><span class="msg up">subscribe</span><span class="role srv">Pool</span>
+            <span class="role">Minero</span><span class="msg dn">notify · block template</span><span class="role srv">Pool</span>
+            <span class="role">Minero</span><span class="msg dn">set_difficulty</span><span class="role srv">Pool</span>
+            <span class="role">Minero</span><span class="msg up">submit · "share"</span><span class="role srv">Pool</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer reveal">
+      <span><b>Curso de Extensión Universitaria en Tecnologías Blockchain</b> · UMA · 2026</span>
+      <span class="page">15<span class="sep">/</span>17</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 16 · 15 · HARD FORKS
+       ===================================================================== -->
+  <section class="slide visible" data-title="Hard Forks">
+    <div class="slide-header">
+      <div class="left reveal"><span class="mark"></span><span>Módulo 05 · Bitcoin</span></div>
+      <div class="right reveal">15 · Cambiando las reglas · Hard Forks</div>
+    </div>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap: clamp(0.6rem,1.2vw,1rem); min-height:0;">
+        <div>
+          <span class="kicker reveal"><span class="bar"></span><span>15 · Hard Forks</span></span>
+          <h2 class="heading reveal" style="margin-top: clamp(0.4rem,0.8vw,0.75rem);">Cuando las reglas de consenso <span class="accent">se rompen</span>.</h2>
+        </div>
+
+        <div class="fork-grid reveal" style="grid-template-columns: 1.3fr 1fr;">
+          <div class="fork-card hard">
+            <span class="tag">Hard fork</span>
+            <span class="title">Cambio <b>incompatible hacia atrás</b>.</span>
+            <span class="desc">Alguien introduce una regla nueva que hace <b>válidos</b> bloques o txs que antes eran inválidos (o al revés). Los nodos que <b>no actualicen</b> rechazarán los nuevos bloques: la red se <em>parte en dos cadenas</em> que evolucionan por separado.</span>
+            <ul class="mini-list">
+              <li>Requiere <b>coordinación casi unánime</b>: mineros, wallets, exchanges y nodos.</li>
+              <li>Una vez separadas, <b>no convergen</b>: aparecen <em>dos criptomonedas</em>.</li>
+              <li>Causa habitual: bug en las reglas, o cambio deliberado (tamaño de bloque, formato de firma, etc.).</li>
+            </ul>
+          </div>
+          <div style="display:flex; flex-direction:column; gap: clamp(0.4rem,0.8vw,0.65rem); min-width:0;">
+            <div class="fork-example">
+              <span class="ex-head">Caso más famoso · Ago 2017</span>
+              <span class="ex-name">Bitcoin Cash (BCH)</span>
+              <span class="ex-desc">Disputa por el tamaño de bloque (1 MB). Un grupo sube el límite a 8 MB y fuerza un fork en el bloque <b>478 558</b>. Nace BCH. Después <b>BCH se vuelve a forkear</b> en Bitcoin SV (2018).</span>
+            </div>
+            <div class="fork-example">
+              <span class="ex-head">Otros casos</span>
+              <span class="ex-name">Bitcoin Gold (2017), Bitcoin XT, Bitcoin Classic</span>
+              <span class="ex-desc">Propuestas que, o no lograron adopción (XT, Classic), o derivaron en su propia cadena minoritaria. Ilustran lo <b>difícil</b> que es mover Bitcoin por hard fork.</span>
+            </div>
+            <div class="fork-example">
+              <span class="ex-head">Incidente accidental · Mar 2013</span>
+              <span class="ex-name">Bug Core 0.7 → 0.8</span>
+              <span class="ex-desc">Un cambio no intencionado en BerkeleyDB provocó un fork involuntario durante 6 bloques. Se resolvió volviendo a la versión antigua.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer reveal">
+      <span><b>Curso de Extensión Universitaria en Tecnologías Blockchain</b> · UMA · 2026</span>
+      <span class="page">16<span class="sep">/</span>17</span>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SLIDE 17 · 16 · SOFT FORKS
+       ===================================================================== -->
+  <section class="slide visible" data-title="Soft Forks">
+    <div class="slide-header">
+      <div class="left reveal"><span class="mark"></span><span>Módulo 05 · Bitcoin</span></div>
+      <div class="right reveal">16 · Cambiando las reglas · Soft Forks</div>
+    </div>
+
+    <div class="slide-body">
+      <div style="display:flex; flex-direction:column; gap: clamp(0.6rem,1.2vw,1rem); min-height:0;">
+        <div>
+          <span class="kicker reveal"><span class="bar"></span><span>16 · Soft Forks</span></span>
+          <h2 class="heading reveal" style="margin-top: clamp(0.4rem,0.8vw,0.75rem);">Reglas que <span style="color:var(--accent-btc);">se estrechan</span>, compatibles hacia atrás.</h2>
+        </div>
+
+        <div class="fork-grid reveal" style="grid-template-columns: 1.3fr 1fr;">
+          <div class="fork-card soft">
+            <span class="tag">Soft fork</span>
+            <span class="title">Cambio <b>forward-compatible</b>.</span>
+            <span class="desc">Se introducen reglas <b>más restrictivas</b>: todo lo válido bajo la nueva regla sigue siendo válido bajo la antigua. Los nodos sin actualizar <b>no notan nada</b> y siguen en consenso con el resto. <em>Técnicamente no es un fork</em>.</span>
+            <ul class="mini-list">
+              <li>Solo pueden <b>restringir</b> lo válido, nunca ampliarlo (o sería un hard fork).</li>
+              <li>Activación por <b>señalización de mineros</b>: BIP34, BIP9, BIP8, speedy trial.</li>
+              <li>Críticas: deuda técnica, validación "ciega" en nodos viejos, casi <b>irreversibles</b>.</li>
+            </ul>
+          </div>
+          <div style="display:flex; flex-direction:column; gap: clamp(0.4rem,0.8vw,0.65rem); min-width:0;">
+            <div class="fork-example">
+              <span class="ex-head">BIP 16 · Abr 2012</span>
+              <span class="ex-name">P2SH · Pay-to-Script-Hash</span>
+              <span class="ex-desc">Permite pagar a un <b>hash de script</b> (multifirma, contratos) en vez de a una clave pública. Origen de las direcciones que empiezan por <b>3…</b>.</span>
+            </div>
+            <div class="fork-example">
+              <span class="ex-head">BIP 141/143/147 · Ago 2017</span>
+              <span class="ex-name">SegWit · Segregated Witness</span>
+              <span class="ex-desc">Separa las firmas ("witness") del resto de la tx: arregla la maleabilidad, aumenta la capacidad efectiva del bloque y habilita <b>Lightning</b>. Direcciones <b>bc1q…</b>.</span>
+            </div>
+            <div class="fork-example">
+              <span class="ex-head">BIP 340/341/342 · Nov 2021</span>
+              <span class="ex-name">Taproot</span>
+              <span class="ex-desc">Firmas <b>Schnorr</b> + MAST: mejora privacidad y coste de contratos complejos. Direcciones <b>bc1p…</b>. Activado con <em>speedy trial</em>.</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="closing-line reveal">
+          En Bitcoin, las reglas cambian <b>lentamente y con consenso</b>: los hard forks dividen la red, los soft forks la hacen evolucionar.
+        </p>
+      </div>
+    </div>
+
+    <div class="slide-footer reveal">
+      <span><b>Curso de Extensión Universitaria en Tecnologías Blockchain</b> · UMA · 2026</span>
+      <span class="page">17<span class="sep">/</span>17</span>
+    </div>
+  </section>
+
+  <script>
+    /* ========================================================================
+       SLIDE PRESENTATION CONTROLLER
+       Keyboard · touch · nav dots · progress bar
+       ======================================================================== */
+    class SlidePresentation {
+      constructor() {
+        this.slides = Array.from(document.querySelectorAll('.slide'));
+        this.total = this.slides.length;
+        this.currentSlide = 0;
+        this.progressBar = document.getElementById('progressBar');
+        this.navDotsContainer = document.getElementById('navDots');
+        this._buildNavDots();
+        this._setupIntersectionObserver();
+        this._setupKeyboardNav();
+        this._setupTouchNav();
+        this._setupScrollProgress();
+      }
+
+      _setupIntersectionObserver() {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+              const idx = this.slides.indexOf(entry.target);
+              entry.target.classList.add('visible');
+              this.currentSlide = idx;
+              this._updateNavDots();
+              this._updateProgress();
+            }
+          });
+        }, { threshold: [0.6] });
+        this.slides.forEach((s) => io.observe(s));
+      }
+
+      _setupKeyboardNav() {
+        document.addEventListener('keydown', (e) => {
+          if (e.target && e.target.getAttribute && e.target.getAttribute('contenteditable') === 'true') return;
+          switch (e.key) {
+            case 'ArrowRight':
+            case 'ArrowDown':
+            case ' ':
+            case 'PageDown':
+              e.preventDefault();
+              this.goTo(this.currentSlide + 1);
+              break;
+            case 'ArrowLeft':
+            case 'ArrowUp':
+            case 'PageUp':
+              e.preventDefault();
+              this.goTo(this.currentSlide - 1);
+              break;
+            case 'Home':
+              e.preventDefault();
+              this.goTo(0);
+              break;
+            case 'End':
+              e.preventDefault();
+              this.goTo(this.total - 1);
+              break;
+          }
+        });
+      }
+
+      _setupTouchNav() {
+        let startY = 0;
+        document.addEventListener('touchstart', (e) => { startY = e.touches[0].clientY; }, { passive: true });
+        document.addEventListener('touchend', (e) => {
+          const endY = e.changedTouches[0].clientY;
+          const diff = startY - endY;
+          if (Math.abs(diff) > 60) { this.goTo(this.currentSlide + (diff > 0 ? 1 : -1)); }
+        }, { passive: true });
+      }
+
+      _setupScrollProgress() {
+        window.addEventListener('scroll', () => this._updateProgress(), { passive: true });
+      }
+
+      _updateProgress() {
+        const scrollTop = window.scrollY;
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = total > 0 ? (scrollTop / total) * 100 : 0;
+        this.progressBar.style.width = pct + '%';
+      }
+
+      _buildNavDots() {
+        // Clear first in case outerHTML was captured while dots existed
+        this.navDotsContainer.innerHTML = '';
+        this.slides.forEach((slide, i) => {
+          const b = document.createElement('button');
+          b.setAttribute('aria-label', `Ir a diapositiva ${i + 1}: ${slide.dataset.title || ''}`);
+          if (i === 0) b.classList.add('active');
+          b.addEventListener('click', () => this.goTo(i));
+          this.navDotsContainer.appendChild(b);
+        });
+      }
+      _updateNavDots() {
+        this.navDotsContainer.querySelectorAll('button').forEach((b, i) => {
+          b.classList.toggle('active', i === this.currentSlide);
+        });
+      }
+
+      goTo(i) {
+        const idx = Math.max(0, Math.min(this.total - 1, i));
+        this.slides[idx].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // Boot · versión presentación (sin editor inline)
+    window.addEventListener('DOMContentLoaded', () => {
+      new SlidePresentation();
+      const first = document.querySelector('.slide');
+      if (first) first.classList.add('visible');
+    });
+  </script>
+
+
+</body></html>
