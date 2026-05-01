@@ -1735,7 +1735,8 @@ Experimentamos en carne propia la asimetría del capital en Lightning. Un comerc
 1.  **Paso 11: Montar la tienda "Erin"**
     Arrastra un nuevo nodo LND al lienzo desde la derecha, llámalo Erin, y deposítale fondos (100 millones de sats, igual que hiciste al principio).
     
-    ![Topología de la red en Polar con el nodo Erin recién creado](./img/polar-paso-11.png)
+    ![Fondeo de nodos y apertura de canales en Polar](./img/erin-deposit.png)
+    ![Estado del canal abierto en el panel lateral](./img/state-open-erin.png)
 
     *   Haz que Dave le abra un canal a Erin por 10.000.000 sats.
     *   Asegúrate de darle a **"Minado rápido"** unas 6 veces para que el canal se abra y la línea quede lista.
@@ -1743,6 +1744,9 @@ Experimentamos en carne propia la asimetría del capital en Lightning. Un comerc
 2.  **Paso 12: Saturar la tienda a base de ventas**
     *   Haz que Erin (la tienda) cree una factura de 1.000.000 sats.
     *   Haz que Alice (la clienta en el otro extremo de la red) la pague.
+    
+    ![Error de saldo insuficiente al intentar realizar un pago sin liquidez en la ruta](./img/insufficient-balance-error.png)
+
     *   Ahora vuelve a hacer lo mismo unas 4 veces más (factura nueva en Erin, pago en Alice).
     *   Al 5º o 6º pago seguido, verás que la red te dice que el pago falla por `INSUFFICIENT_BALANCE`, a pesar de que el canal entre Dave y Erin tiene capacidad de sobra. ¡Intenta saturar la tienda y me cuentas si te salta el error!
 
