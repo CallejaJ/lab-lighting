@@ -1718,7 +1718,7 @@ Experimentamos en carne propia la asimetría del capital en Lightning. Un comerc
 1.  **Paso 11: Montar la tienda "Erin"**
     Arrastra un nuevo nodo LND al lienzo desde la derecha, llámalo Erin, y deposítale fondos (100 millones de sats, igual que hiciste al principio).
     
-    ![Topología de la red en Polar con el nodo Erin recién creado](file:///C:/Users/calle/.gemini/antigravity/brain/ebf14321-0453-419f-8637-e1f2e61681c1/media__1777642888355.png)
+    ![Topología de la red en Polar con el nodo Erin recién creado](./img/polar-paso-11.png)
 
     *   Haz que Dave le abra un canal a Erin por 10.000.000 sats.
     *   Asegúrate de darle a **"Minado rápido"** unas 6 veces para que el canal se abra y la línea quede lista.
