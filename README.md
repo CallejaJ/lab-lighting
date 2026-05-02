@@ -1736,7 +1736,11 @@ Experimentamos en carne propia la asimetría del capital en Lightning. Un comerc
     Arrastra un nuevo nodo LND al lienzo desde la derecha, llámalo Erin, y deposítale fondos (100 millones de sats, igual que hiciste al principio).
     
     ![Fondeo de nodos y apertura de canales en Polar](./img/erin-deposit.png)
-    ![Estado del canal abierto en el panel lateral](./img/state-open-erin.png)
+    ![Estado del canal abierto en el panel lateral](./img/state-open-erin-alice.png)
+
+    > [!TIP]
+    > **¿Tu canal aparece como inactivo (línea naranja)?**
+    > Si después de minar bloques la línea sigue naranja o el comando `lncli listchannels` muestra `active: false`, haz clic derecho sobre los nodos involucrados, selecciona **Detener** y luego **Iniciar**. Esto suele forzar la reconexión y activar el canal inmediatamente.
 
     *   Haz que Dave le abra un canal a Erin por 10.000.000 sats.
     *   Asegúrate de darle a **"Minado rápido"** unas 6 veces para que el canal se abra y la línea quede lista.
@@ -1744,14 +1748,71 @@ Experimentamos en carne propia la asimetría del capital en Lightning. Un comerc
 2.  **Paso 12: Saturar la tienda a base de ventas**
     *   Haz que Erin (la tienda) cree una factura de 1.000.000 sats.
     *   Haz que Alice (la clienta en el otro extremo de la red) la pague.
-    
-    ![Error de saldo insuficiente al intentar realizar un pago sin liquidez en la ruta](./img/insufficient-balance-error.png)
-
     *   Ahora vuelve a hacer lo mismo unas 4 veces más (factura nueva en Erin, pago en Alice).
     *   ![Fallo de pago tras agotar la liquidez en el cuarto intento](./img/failure-4th-payment-erin-alice.png)
     *   Al 4º o 5º pago seguido, verás que la red te dice que el pago falla por `INSUFFICIENT_BALANCE`, a pesar de que el canal entre Dave y Erin tiene capacidad de sobra. ¡Has conseguido saturar la tienda!
 
-Checkpoint
+### **Bloque 5: Force-close y cierre de la sesión**
+
+Observamos qué ocurre cuando uno de los lados no puede (o no quiere) cerrar el canal cooperativamente y recurre al broadcast unilateral de su última *commitment transaction*.
+
+1.  **Preparación**: Añade dos nuevos nodos LND, **Frank** y **Grace**, al network. Añade fondos a Frank (100M sats).
+2.  **Apertura**: Frank abre un canal hacia Grace de **5.000.000 sats**. Polar se encargará de minar 6 bloques para confirmarlo.
+3.  **Movimiento de fondos**: Frank envía un pago de **2.000.000 sats** a Grace.
+    *   Grace crea una invoice (Actions → Create Invoice).
+    *   Frank la paga (Actions → Pay Invoice).
+    *   Así, cuando se produzca el *force-close*, la *commitment transaction* tendrá valor real a ambos lados del canal.
+
+4.  **Identificación**: Obtén el `funding_txid` y el `output_index` del canal. Lanza en Frank:
+    ```bash
+    frank$ lncli listchannels
+    ```
+    Busca el campo `channel_point`. Tiene el formato `<funding_txid>:<output_index>`.
+
+5.  **Ejecución del Cierre**: Frank fuerza el cierre del canal con Grace:
+    ```bash
+    frank$ lncli closechannel --force --funding_txid <txid> --output_index <idx>
+    ```
+    Este comando no genera una *cooperative close*: Frank broadcastea unilateralmente su última *commitment transaction* a la mempool de Bitcoin Core.
+
+6.  **Inspección en el limbo**: Localiza el `txid` de la *commitment transaction* consultando el estado del cierre pendiente en Frank:
+    ```bash
+    frank$ lncli pendingchannels
+    ```
+    La transacción todavía no está minada, por lo que el canal aparece dentro de `waiting_close_channels`. Observa el campo `closing_txid` y el `limbo_balance`.
+
+7.  **Forense On-chain**: Decodifica la transacción desde el nodo **bitcoind**. Abre su terminal y lanza:
+    ```bash
+    bitcoind$ bitcoin-cli getrawtransaction <closing_txid> 2
+    ```
+    *   **vout**: Verás cuatro outputs de tipo `witness_v0_scripthash` (P2WSH).
+    *   **Grace (~2M sats)**: Output `to_remote`. Sin timelock significativo.
+    *   **Frank (~3M sats)**: Output `to_local`. Bloqueado por un script con **OP_CHECKSEQUENCEVERIFY** (CSV).
+    *   **Ofuscación**: Observa los campos `locktime` y `sequence`. Contienen el *obscured commitment number* (BOLT 3) para proteger la privacidad.
+
+8.  **Maduración**: Mina 1 bloque con *Quick Mine*. Vuelve a ejecutar `lncli pendingchannels`. Ahora el canal está en `pending_force_closing_channels`. Fíjate en el campo **`blocks_til_maturity`**.
+
+9.  **Salto en el tiempo**: Para no minar uno a uno, usa este comando en el terminal de **bitcoind** para minar todos los bloques de golpe:
+    ```bash
+    bitcoind$ bitcoin-cli -generate <N>
+    ```
+    *(Sustituye `<N>` por el valor de `blocks_til_maturity`)*.
+
+10. **Finalización**: Verifica que Frank ha recuperado sus sats on-chain:
+    ```bash
+    frank$ lncli walletbalance
+    frank$ lncli pendingchannels
+    ```
+
+---
+
+### **Entregable**
+
+**Qué tenéis que entregar:**
+Subid un único archivo **`lightning-lab-<apellido>.zip`**: la network exportada desde Polar al final del laboratorio.
+
+**Formato:**
+Desde Polar: menú **File → Export Network**. Polar genera un `.zip` con el estado completo de la red (nodos, canales, balances, datos on-chain). Ese es el archivo que subís tal cual, renombrándolo con vuestro apellido.
 
 Entiendes por qué un comercio que sólo recibe pagos Lightning sufre un problema de inbound. En el mundo real, los **LSPs** (Lightning Service Providers) y los **submarine swaps** existen para resolver esto: el LSP te abre un canal con inbound ya "cargado" a cambio de una tarifa.
 
